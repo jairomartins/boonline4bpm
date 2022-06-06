@@ -13,9 +13,9 @@ function App() {
   return (
     <>
     <Home/>
-    <Header/>
+    {/* <Header/> */}
     <EnderecoBo/>
-    <Envolvido/>
+    {/* <Envolvido/> */}
     </>   
   );
 }
