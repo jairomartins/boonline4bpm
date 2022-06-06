@@ -13,7 +13,7 @@ const Home = ()=>{
             </Row>
             <Row> 
                 <Col sm={12} className="text-center">
-                <h3>Boletim de Ocorrencia PMMA 4°BPM </h3>
+                <h3>Boletim de Ocorrencia PMMA 4°BPM - 2022.1</h3>
                 </Col>
             </Row>
             <Row>
