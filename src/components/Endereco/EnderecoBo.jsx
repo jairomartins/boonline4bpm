@@ -1,80 +1,83 @@
 import React from "react";
 
-import { Col, Container, FormControl, Row } from "react-bootstrap";
+import { Col, Container, FormControl, Row, Form } from "react-bootstrap";
 
 const EnderecoBo = ()=>{
     return(
-        <>  
+        <>  <br></br>
             <Container>
                 <Row className="justify-content-center">
-                <h2>Endereço</h2>
                 </Row>
             </Container>
             <Container>
                 <Row>
                     <Col sm={8}>
+                    <Form.Label>Endereço</Form.Label>
                     <FormControl
-                    placeholder="Local"
-                    aria-label="Username"
+                    size="sm"
+                    placeholder="Nome da Rua"
+                    
                     />
                     </Col >
                     <Col sm={4}>
+                    <Form.Label>Número</Form.Label>
                     <FormControl
+                    size="sm"
                     placeholder="Número"
-                    aria-label="Username"
                     />
                     </Col>
                 </Row>
-                <br/>
-                <Row>
-                    <Col sm={12}>
-                    <FormControl
-                    placeholder="Logradouro"
-                    aria-label="Username"
-                    />
-                    </Col >
-                </Row>
-                <br/>
+            
                 <Row>
                     <Col sm={4}>
+                    <Form.Label>Bairro</Form.Label>
                     <FormControl
-                    placeholder="Bairro"
-                    aria-label="Username"
+                    size="sm"
+                    placeholder="Ex.: Potosí"
+                  
                     />
                     </Col >
                     <Col sm={4}>
+                    <Form.Label>Complemento</Form.Label>
                     <FormControl
-                    placeholder="Complemento"
-                    aria-label="Username"
+                    size="sm"
+                    placeholder=""
+        
                     />
                     </Col >
                     <Col sm={4}>
+                    <Form.Label>CEP</Form.Label>
                     <FormControl
-                    placeholder="CEP"
-                    aria-label="Username"
+                    size="sm"
+                    placeholder="Ex.:65800-000"
+                   
                     />
                     </Col >
                 </Row>
                 <br/>
                 <Row>
                     <Col sm={12}>
+                    <Form.Label>Ponto de Referência</Form.Label>
                     <FormControl
-                    placeholder="Referência"
-                    aria-label="Username"
+                    size="sm"
+                    placeholder="Ex.: Proximo ao Supermercado xyz"
                     />
                     </Col>
                 </Row>
                 <br/>
                 <Row>
                     <Col sm={6}>
+                    <Form.Label>Município</Form.Label>
                     <FormControl
-                    placeholder="Município"
-                    aria-label="Username"
+                    size="sm"
+                    placeholder="Ex.: Balsas - Maranhao"
                     />
                     </Col >
                     <Col sm={6}>
+                    <Form.Label>Tipo de Local:</Form.Label>
                     <FormControl
-                    placeholder="Tipo de Local"
+                    size="sm"
+                    placeholder="Ex.: Residência"
                     aria-label="Username"
                     />
                     </Col >

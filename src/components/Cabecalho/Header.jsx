@@ -1,21 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import AddOcorrencia from "./AddOcorrencia";
 
-import {  Col, Container, Row, FormControl } from 'react-bootstrap';
 
 const Header = ()=>{
+
+    const [ ocorrencia, setOcorrencia] = useState([])
+
+    const handleAddOcorrencia = (o) =>{
+        setOcorrencia(o)
+        console.log(ocorrencia)
+    }
+
     return(
         <>
-        <Container fluid>
-            <Row>
-            <Col sm={3} className="text-center mt-12 mb-12">
-                <br/>
-                <FormControl size="sm" 
-                    placeholder="N° do Boletim"
-                />
-            </Col>
-            </Row>
-
-        </Container>
+        <AddOcorrencia handleAddOcorrencia={handleAddOcorrencia}/>
         </>
     )
 }

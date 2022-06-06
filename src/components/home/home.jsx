@@ -2,6 +2,7 @@ import React from "react";
 
 import Logo4BPM from '../Logo4BPM';
 import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 const Home = ()=>{
     return(
@@ -18,7 +19,9 @@ const Home = ()=>{
             <Row>
             <Col sm={12} className="text-center mt-12 mb-12">
                 <br/>
-                <Button variant='success'>Iniciar Boletim</Button>
+                <Link to="/header">
+                    <Button variant='success'>Iniciar</Button>
+                </Link>
                 </Col>
             </Row>
 
