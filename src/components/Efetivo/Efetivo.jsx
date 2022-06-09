@@ -9,12 +9,6 @@ function Efetivo  (){
             id:871110,
             nome:"SD PM 194/18 J. MARTINS",
             vtr:128
-        },
-        {
-            id:871210,
-            nome:"SD PM 135/18 Marcos",
-            vtr:128
-
         }
     ])
 

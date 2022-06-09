@@ -16,7 +16,7 @@ function ListaEnvolvidos ({handleEnvolvidos, handleRemoveEnvolvido}){
                 </tr>
             </thead>
             <tbody>
-                {handleEnvolvidos.map(envolvido=><Envolvido Envolvido={envolvido} handleRemoveEnvolvido={handleRemoveEnvolvido}/>)}
+                {handleEnvolvidos.map(envolvido=><Envolvido key={envolvido.id} Envolvido={envolvido} handleRemoveEnvolvido={handleRemoveEnvolvido}/>)}
             </tbody>
         </Table>
         </Container>

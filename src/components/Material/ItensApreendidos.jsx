@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 
 import MateriaisApreendidos from "./MateriaisApreendidos";
 import AddMaterialApreendido from "./AddMaterialApreendido"
+import { Button, Container, Row } from "react-bootstrap";
 function ItensApreendidos ({materialApreendido}){
     
     const  [materiaisApreendido, setMateriaisApreendido] = useState([
@@ -52,6 +53,14 @@ function ItensApreendidos ({materialApreendido}){
             materiaisApreendidos={materiaisApreendido}
             handleMaterialApreendidoRemove={handleMaterialApreendidoRemove}
             />
+
+            <Container>
+                <Row className="d-grid gap-2">
+                        <Button variant="outline-primary"><a href="/envolvido">Voltar</a></Button>
+    
+                        <Button variant="outline-primary" ><a href="/efetivo">Proximo</a></Button>
+                </Row>
+            </Container>
         </>
     )
 

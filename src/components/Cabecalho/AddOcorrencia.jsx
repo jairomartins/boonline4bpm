@@ -1,20 +1,10 @@
-import React, { useState } from "react";
+import React  from "react";
 
-import {  Col, Container, Row, Form, Button } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import {  Col, Container, Row, Form } from 'react-bootstrap';
 
-function AddOcorrencia ({handleAddOcorrencia}){
+function AddOcorrencia ({boletim,setBoletim}){
 
-    const [numeroBo, setNumeroBO] = useState('')
-    const [natureza, setNatureza] = useState('')
-    const [data, setData] = useState('')
-    const [horario, setHorario] = useState('')
-
-
-    const handleClickAdd =()=>{
-        handleAddOcorrencia({numeroBo,natureza,data,horario})
-    }
-
+    
     return (
         <>
         <br></br>
@@ -23,10 +13,10 @@ function AddOcorrencia ({handleAddOcorrencia}){
                 <Col sm={3} className="text-center mt-12 mb-12">
                     <Form.Label>Número B.O</Form.Label>
                     <Form.Control 
-                        size="sm" 
+                        size="sm"
+                        defaultValue={boletim.numero}
                         placeholder="N° do Boletim"
-                        value={numeroBo}
-                        onChange={(e)=>{setNumeroBO(e.target.value)}}
+                        onChange={(e)=>{setBoletim({...boletim, numero:e.target.value})}}
                     />
                 </Col>
             </Row>
@@ -36,16 +26,19 @@ function AddOcorrencia ({handleAddOcorrencia}){
                     <Form.Control
                         required
                         size="sm"
+                        defaultValue={boletim.natureza}
+                        onChange={(e)=>{setBoletim({...boletim, natureza:e.target.value})}}
                         placeholder="EX.: Furto / Roubo"
-                        onChange={(e)=>{setNatureza(e.target.value)}}
+                        
                     />
                 </Col>
                 <Col sm={2}>
-                    <Form.Label>Data : {data} </Form.Label>
+                    <Form.Label>Data :  </Form.Label>
                     <Form.Control
                         size="sm"
                         type="date"
-                        onChange={(e)=>{setData(e.target.value)}}
+                        defaultValue={boletim.data}
+                        onChange={(e)=>{setBoletim({...boletim, data:e.target.value})}}
                     />
                 </Col>
                 <Col sm={2}>
@@ -53,24 +46,13 @@ function AddOcorrencia ({handleAddOcorrencia}){
                     <Form.Control
                         size="sm"
                         type="time"
-                        onChange={(e)=>{setHorario(e.target.value)}}
+                        defaultValue={boletim.horario}
+                        onChange={(e)=>{setBoletim({...boletim, horario:e.target.value})}}
                     />
                 </Col>
 
             </Row>
             <br></br>
-            <Row >
-                {/* <Col > */}
-                <Link to="/">
-                        <Button variant="outline-primary">Voltar</Button>
-                    </Link>
-                {/* </Col>
-                <Col > */}
-                    <Link to="/envolvido">
-                        <Button variant="outline-primary" onClick={handleClickAdd}>Proximo</Button>
-                    </Link>
-                {/* </Col> */}
-            </Row>
         </Container>
         </>
     )

@@ -1,9 +1,9 @@
 import React from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Row, Table } from "react-bootstrap";
 import Policial from "./Policial";
 
 function Policiais ({policiais,handleRemoverPolicial}){
-
+   
     return (
         <>
         
@@ -24,6 +24,12 @@ function Policiais ({policiais,handleRemoverPolicial}){
            
              </tbody>
         </Table>
+        </Container>
+        <Container>
+                <Row className="d-grid gap-2">
+                        <Button variant="outline-primary"><a href="/material">Voltar</a></Button>
+                        <Button variant="outline-primary" ><a href="/relato">Proximo</a></Button>
+                </Row>
         </Container>
         </>
     )

@@ -1,10 +1,10 @@
 import React from "react";
 
-import Logo4BPM from '../Logo4BPM';
+import Logo4BPM from '../components/Logo4BPM';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
-const Home = ()=>{
+const Home = ({boletim})=>{
     return(
         <>
         <Container fluid>
@@ -17,14 +17,12 @@ const Home = ()=>{
                 </Col>
             </Row>
             <Row>
-            <Col sm={12} className="text-center mt-12 mb-12">
-                <br/>
-                <Link to="/header">
+                <Col sm={12} className="text-center mt-12 mb-12">
+                    <Link to="/header">
                     <Button variant='success'>Iniciar</Button>
-                </Link>
+                    </Link>
                 </Col>
             </Row>
-
         </Container>
         </>
     )

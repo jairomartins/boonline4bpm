@@ -1,19 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
+import NavPage from "../NavPage";
 import AddOcorrencia from "./AddOcorrencia";
 
 
-const Header = ()=>{
-
-    const [ ocorrencia, setOcorrencia] = useState([])
-
-    const handleAddOcorrencia = (o) =>{
-        setOcorrencia(o)
-        console.log(ocorrencia)
-    }
-
+const Header = ({boletim,setBoletim})=>{
+    
     return(
         <>
-        <AddOcorrencia handleAddOcorrencia={handleAddOcorrencia}/>
+            <AddOcorrencia boletim={boletim} setBoletim={setBoletim} />
+            <NavPage prev="/" next="/envolvido"/>
         </>
     )
 }
