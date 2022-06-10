@@ -3,12 +3,20 @@ import React from "react";
 import NavPage from "../NavPage";
 
 import AddEnvolvido from "./AddEnvolvido";
+import ListaEnvolvidos from "./ListaEnvolvidos";
 
-function Envolvidos ({test}){
+function Envolvidos ({boletim,setBoletim}){
+    // const [envolvidos, setEnvolvidos] = useState([])
+
+    // const atualizarEnvolvidos = ()=>{
+    //     setBoletim({...boletim, envolvidos:envolvidos})
+    // }
+       
 
     return (
         <>
-            <AddEnvolvido/>
+            <AddEnvolvido boletim={boletim} setBoletim={setBoletim} />
+            <ListaEnvolvidos envolvidos={boletim.envolvidos}/>
             <NavPage prev="/header" next="/material"/>
         </>
     )

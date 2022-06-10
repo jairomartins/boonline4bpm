@@ -2,7 +2,7 @@ import React  from "react";
 
 import {  Col, Container, Row, Form } from 'react-bootstrap';
 
-function AddOcorrencia ({boletim,setBoletim}){
+function AddHeader ({boletim,setBoletim}){
 
     
     return (
@@ -58,4 +58,4 @@ function AddOcorrencia ({boletim,setBoletim}){
     )
 }
 
-export default AddOcorrencia
+export default AddHeader

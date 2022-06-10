@@ -3,7 +3,7 @@ import { Container, Table } from "react-bootstrap";
 import Envolvido from "./Envolvido";
 
 
-function ListaEnvolvidos ({handleEnvolvidos, handleRemoveEnvolvido}){
+function ListaEnvolvidos ({envolvidos}){
     return (
         <>
         <Container>
@@ -16,7 +16,7 @@ function ListaEnvolvidos ({handleEnvolvidos, handleRemoveEnvolvido}){
                 </tr>
             </thead>
             <tbody>
-                {handleEnvolvidos.map(envolvido=><Envolvido key={envolvido.id} Envolvido={envolvido} handleRemoveEnvolvido={handleRemoveEnvolvido}/>)}
+                {envolvidos.map(envolvido=><Envolvido key={envolvido.id} Envolvido={envolvido}/>)}
             </tbody>
         </Table>
         </Container>

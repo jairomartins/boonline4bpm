@@ -1,13 +1,13 @@
 import React from "react";
 import NavPage from "../NavPage";
-import AddOcorrencia from "./AddOcorrencia";
+import AddHeader from "./AddHeader";
 
 
 const Header = ({boletim,setBoletim})=>{
     
     return(
         <>
-            <AddOcorrencia boletim={boletim} setBoletim={setBoletim} />
+            <AddHeader boletim={boletim} setBoletim={setBoletim} />
             <NavPage prev="/" next="/envolvido"/>
         </>
     )
