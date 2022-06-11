@@ -2,18 +2,22 @@ import React, { useState } from "react";
 import { Button, Col,Row,Container, FormControl } from "react-bootstrap";
 import { MdLibraryAdd } from "react-icons/md";
 
-function AddPolicial ({handelAddPolicial}){
+function AddPolicial ({boletim,setBoletim}){
     const [vtr, setVtr] = useState('')
     const [nome, setNome] = useState('')
     const [id, setId] = useState('')
 
 
     const handelAddPolicialClick = ()=>{
-        handelAddPolicial({vtr,nome,id})
-        setVtr('')
-        setNome('')
-        setId('')
+        const newPolicialList = [...boletim.efetivo,{
+            vtr:vtr,
+            nome:nome,
+            id:id
+        }]
+
+        setBoletim ({...boletim, efetivo:newPolicialList})
     }
+
     return(
         <>
             <Container>

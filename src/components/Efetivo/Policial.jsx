@@ -2,7 +2,12 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { MdDeleteForever } from "react-icons/md";
 
-function Policial({policial,handleRemoverPolicial}){
+function Policial({policial,boletim,setBoletim}){
+
+    const handleRemoverPolicial = (id) =>{
+        const newEfetivo = boletim.efetivo.filter(policial=>policial.id!==id)
+        setBoletim({...boletim,efetivo:newEfetivo})
+    }
     return(<>
         <tr>
             <td>{policial.vtr}</td>

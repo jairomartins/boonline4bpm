@@ -1,41 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
+
+
 import AddPolicial from "./AddPolicial";
-import Policiais from "./Policiais";
+import PolicialList from "./PolicialList";
+import NavPage from "../NavPage";
+import { Col, Container, Row } from "react-bootstrap";
 
-function Efetivo  (){
-
-    const [policiais, setPoliciais] = useState([
-        {
-            id:871110,
-            nome:"SD PM 194/18 J. MARTINS",
-            vtr:128
-        }
-    ])
-
-    const handleAddPolicial = (policial)=>{
-        const newPolicial = [
-            ...policiais,{
-                id:policial.id,
-                nome:policial.nome,
-                vtr:policial.vtr
-            }
-        ]
-
-        setPoliciais(newPolicial)
-    }
-
-    const handleRemoverPolicial = (idPolicial)=>{
-        const newPoliciais = policiais.filter(policial=>policial.id!==idPolicial)
-        setPoliciais(newPoliciais)
-    }
+function Efetivo  ({boletim,setBoletim}){
 
     return(
-
         <>
-        <br></br>
-
-        <AddPolicial handelAddPolicial={handleAddPolicial}/>
-        <Policiais policiais={policiais}  handleRemoverPolicial={handleRemoverPolicial}/>
+        <Container>
+            <Row>
+                <Col className="text-center">
+                    <h3>Adicionar Efetivo</h3>
+                </Col>
+            </Row>
+        </Container>
+        <AddPolicial boletim={boletim} setBoletim={setBoletim}/>
+        <Container>
+            <Row>
+                <Col className="text-center">
+                    <h3>Efetivo Empregado</h3>
+                </Col>
+            </Row>
+        </Container>
+        <PolicialList policiais={boletim.efetivo} boletim={boletim} setBoletim={setBoletim} />
+        <NavPage next="/revisao" prev="/material"/>
         </>
     )
 }

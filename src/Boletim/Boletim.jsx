@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 
 import { v4 as uuidv4 } from "uuid";
-import Header from "../components/Header/Header";
-import Envolvidos from "../components/Envolvido/Envolvidos"
 
 import {
     BrowserRouter,
@@ -10,15 +8,24 @@ import {
     Route,
   } from "react-router-dom";
 
+
+
 import Home from "../Home/home"
+import Header from "../components/Header/Header";
+import Envolvidos from "../components/Envolvido/Envolvidos"
 import ItensApreendidos from "../components/Material/ItensApreendidos";
+import Efetivo from "../components/Efetivo/Efetivo"
+
+
+
 
 export default function Boletim(){ 
    
     const [boletim, setBoletim] = useState({
         id:uuidv4(),
         envolvidos:[],
-        materiaisApreendidos:[]
+        materiaisApreendidos:[],
+        efetivo:[]
     })
 
     return (
@@ -29,6 +36,7 @@ export default function Boletim(){
                     <Route path="/header" element={<Header boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/envolvido" element={<Envolvidos boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/material" element={<ItensApreendidos boletim={boletim} setBoletim={setBoletim}/>} />
+                    <Route path="/efetivo" element={<Efetivo boletim={boletim} setBoletim={setBoletim}/>} />
                 </Routes>
             </BrowserRouter>
 
