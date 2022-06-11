@@ -7,8 +7,9 @@ function Envolvido({Envolvido,handleRemoveEnvolvido}){
     return(
         <>
         <tr>
-            <td>{Envolvido.tipoEnvolvido}</td>
+            <td>{Envolvido.tipo}</td>
             <td>{Envolvido.nome}</td>
+            <td>{Envolvido.telefone}</td>
             <td >
             <Button variant="danger"
                 onClick={()=>{handleRemoveEnvolvido(Envolvido.id)}}>

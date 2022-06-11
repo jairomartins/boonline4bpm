@@ -4,7 +4,7 @@ import { Container, Table } from "react-bootstrap";
 import Material from "./Material";
 
 
-function MaterialList ({materiaisApreendidos, handleMaterialApreendidoRemove}){
+function MaterialList ({boletim, setBoletim}){
 
     return(
         <>
@@ -19,7 +19,7 @@ function MaterialList ({materiaisApreendidos, handleMaterialApreendidoRemove}){
                 </tr>
             </thead>
             <tbody>
-                {materiaisApreendidos.map(item=> <Material materialApreendido={item} handleMaterialApreendidoRemove={handleMaterialApreendidoRemove}/>)}
+                {boletim.materiaisApreendidos.map(item=> <Material materialApreendido={item} boletim={boletim} setBoletim={setBoletim}/>)}
             </tbody>
             </Table>
         </Container>

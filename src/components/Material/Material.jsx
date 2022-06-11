@@ -2,7 +2,12 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import { MdDeleteForever } from "react-icons/md";
 
-function Material ({materialApreendido,handleMaterialApreendidoRemove}){
+function Material ({boletim,setBoletim,materialApreendido}){
+
+    const handleMaterialApreendidoRemove = (id)=>{
+        const newMateriais = boletim.materiaisApreendidos.filter(item=> item.id!==id)
+        setBoletim({...boletim, materiaisApreendidos:newMateriais})
+    }
     
     return(
         <>

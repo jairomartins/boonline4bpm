@@ -12,6 +12,7 @@ function ListaEnvolvidos ({envolvidos}){
                 <tr>
                 <th>Envolvimento</th>
                 <th>Nome</th>
+                <th>Contato</th>
                 <th>Opões</th>
                 </tr>
             </thead>

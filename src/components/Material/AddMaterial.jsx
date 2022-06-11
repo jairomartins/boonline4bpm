@@ -1,15 +1,22 @@
 import React, { useState } from "react";
+import { v4 as uuidV4 } from "uuid";
+
 import { Button, Col, Container, FormControl, Row } from "react-bootstrap";
 import { MdLibraryAdd } from "react-icons/md";
 
-function AddMaterial({handleAddMaterial}){
+function AddMaterial({boletim,setBoletim}){
 
     const [descricao, setDescricao] = useState('')
     const [quantidade, setQuantidade] = useState()
 
-    const handleAdicionarMaterial = () =>{
-        handleAddMaterial({descricao,quantidade})
-        console.log("adicionou -"+descricao)
+    const addMaterial = () =>{
+        const newMaterial = [...boletim.materiaisApreendidos,{
+            id:uuidV4(),
+            descricao:descricao,
+            quantidade:quantidade
+        }]
+
+        setBoletim({...boletim,materiaisApreendidos:newMaterial })
     }
 
 
@@ -31,7 +38,7 @@ function AddMaterial({handleAddMaterial}){
                     />
                 </Col>
                 <Col md={2} sm={2}>
-                    <Button size="sm" onClick={handleAdicionarMaterial}> <MdLibraryAdd/></Button>
+                    <Button size="sm" onClick={addMaterial}> <MdLibraryAdd/></Button>
                 </Col>
             </Row>
         </Container>
