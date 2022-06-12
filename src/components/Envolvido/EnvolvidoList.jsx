@@ -3,7 +3,7 @@ import { Container, Table } from "react-bootstrap";
 import Envolvido from "./Envolvido";
 
 
-function ListaEnvolvidos ({envolvidos}){
+function EnvolvidoList ({boletim,setBoletim}){
     return (
         <>
         <Container>
@@ -17,7 +17,7 @@ function ListaEnvolvidos ({envolvidos}){
                 </tr>
             </thead>
             <tbody>
-                {envolvidos.map(envolvido=><Envolvido key={envolvido.id} Envolvido={envolvido}/>)}
+                {boletim.envolvidos.map(envolvido=><Envolvido key={envolvido.id} Envolvido={envolvido} boletim={boletim} setBoletim={setBoletim}/>)}
             </tbody>
         </Table>
         </Container>
@@ -26,4 +26,4 @@ function ListaEnvolvidos ({envolvidos}){
 
 }
 
-export default ListaEnvolvidos
+export default EnvolvidoList

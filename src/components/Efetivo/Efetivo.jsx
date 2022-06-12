@@ -26,7 +26,7 @@ function Efetivo  ({boletim,setBoletim}){
             </Row>
         </Container>
         <PolicialList policiais={boletim.efetivo} boletim={boletim} setBoletim={setBoletim} />
-        <NavPage next="/revisao" prev="/material"/>
+        <NavPage prev="/material" next="/historico"/>
         </>
     )
 }

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { v4 as uuidV4 } from "uuid";
+
 import { Col, Button, Container, Form, Row} from "react-bootstrap";
 import {MdAdd} from "react-icons/md"
 
@@ -23,6 +25,7 @@ function AddEnvolvido ({boletim, setBoletim}){
     const clickAddEnvolvido = ()=>{
     const newEnvolvidos = [...boletim.envolvidos,
             {
+            id:uuidV4(),
             tipo:tipoEnvolvido,
             nome:nome,
             cpf:cpf,
@@ -156,7 +159,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                         />
                     </Col>  
                 </Row>
-                <br></br>
+                <br/>
                 <Row>
                     <Button 
                         variant="primary"
@@ -167,6 +170,8 @@ function AddEnvolvido ({boletim, setBoletim}){
                     </Button>
                 </Row>
             </Container>
+            <br/>
+            <br/>
         </>
     )
 }

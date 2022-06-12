@@ -15,6 +15,8 @@ import Header from "../components/Header/Header";
 import Envolvidos from "../components/Envolvido/Envolvidos"
 import ItensApreendidos from "../components/Material/ItensApreendidos";
 import Efetivo from "../components/Efetivo/Efetivo"
+import Historico from "../components/Historico/Historico";
+import BoletimDetalhe from "../components/BoletimDetalhe/BoletimDetalhe"
 
 
 
@@ -37,6 +39,8 @@ export default function Boletim(){
                     <Route path="/envolvido" element={<Envolvidos boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/material" element={<ItensApreendidos boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/efetivo" element={<Efetivo boletim={boletim} setBoletim={setBoletim}/>} />
+                    <Route path="/historico" element={<Historico boletim={boletim} setBoletim={setBoletim}/>} />
+                    <Route path="/resumo" element={<BoletimDetalhe boletim={boletim}/>}/>
                 </Routes>
             </BrowserRouter>
 

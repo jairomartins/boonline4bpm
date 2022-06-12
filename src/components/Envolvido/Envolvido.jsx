@@ -3,7 +3,14 @@ import { MdDeleteForever } from "react-icons/md";
 import { Button } from "react-bootstrap";
 
 
-function Envolvido({Envolvido,handleRemoveEnvolvido}){
+function Envolvido({Envolvido,boletim,setBoletim}){
+    
+    
+    const handleRemoveEnvolvido = (id)=>{
+        const newEnvolvidosList = boletim.envolvidos.filter(envolvido=>envolvido.id!==id)
+        setBoletim({...boletim,envolvidos:newEnvolvidosList})
+    }
+
     return(
         <>
         <tr>
