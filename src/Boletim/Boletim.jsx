@@ -27,7 +27,8 @@ export default function Boletim(){
         id:uuidv4(),
         envolvidos:[],
         materiaisApreendidos:[],
-        efetivo:[]
+        efetivo:[],
+        historico:[]
     })
 
     return (

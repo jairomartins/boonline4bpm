@@ -19,7 +19,7 @@ function MaterialList ({boletim, setBoletim}){
                 </tr>
             </thead>
             <tbody>
-                {boletim.materiaisApreendidos.map(item=> <Material materialApreendido={item} boletim={boletim} setBoletim={setBoletim}/>)}
+                {boletim.materiaisApreendidos.map(item=> <Material key={item.id} materialApreendido={item} boletim={boletim} setBoletim={setBoletim}/>)}
             </tbody>
             </Table>
         </Container>

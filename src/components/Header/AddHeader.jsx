@@ -37,6 +37,7 @@ function AddHeader ({boletim,setBoletim}){
                     <Form.Control
                         size="sm"
                         type="date"
+                        format="dd-mm-yyyy"
                         defaultValue={boletim.data}
                         onChange={(e)=>{setBoletim({...boletim, data:e.target.value})}}
                     />

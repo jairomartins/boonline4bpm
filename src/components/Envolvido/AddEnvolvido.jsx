@@ -13,7 +13,7 @@ function AddEnvolvido ({boletim, setBoletim}){
     const [tipoEnvolvido, setTipoEnvolvido] = useState('Autor')
     const [nome, setNome] = useState('')
     const [cpf, setCpf] = useState('')
-    const [sexo , setSexo]  = useState('')
+    const [sexo , setSexo]  = useState('Masculino')
     const [nascimento, setNascimento]  = useState('')
     const [endereco, setEndereco] = useState('')
     const [bairro, setBairro] = useState('')
