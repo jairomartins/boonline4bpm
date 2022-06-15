@@ -17,7 +17,7 @@ const EnvolvidosDetalhe = ({envolvido}) => {
              <Row>
                  <Col>Endereço: {envolvido.endereco}</Col>
                  <Col>Bairro: {envolvido.bairro} </Col>
-                 <Col>Município: {envolvido.muncipio} </Col>	
+                 <Col>Município: {envolvido.municipio} </Col>	
              </Row>
              <Row>
                  <Col>Nome da Mãe: {envolvido.nomeMae}</Col>	

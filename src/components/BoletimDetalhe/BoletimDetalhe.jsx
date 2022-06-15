@@ -56,7 +56,7 @@ const BoletimDetalhe = ({boletim}) => {
             <Row>
                 <Col>Local: {boletim.endereco}, {boletim.numeroEndereco}  </Col>
                 <Col>Bairro: {boletim.bairro}</Col>
-                <Col>{boletim.cidade}</Col>
+                <Col>{boletim.municipio}</Col>
             </Row>
             <Row>
                 <Col >Ponto de Refêrencia : {boletim.referencia}</Col>
