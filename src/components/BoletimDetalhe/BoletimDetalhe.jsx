@@ -1,7 +1,7 @@
-import React, {useState} from "react";
-import { Col, Row, Container} from "react-bootstrap";
+import React,{useState} from "react";
+import { Col, Row, Container, Button} from "react-bootstrap";
 
-import {Editor,EditorState, convertFromRaw} from "draft-js"
+import {Editor,EditorState} from "draft-js"
 import 'draft-js/dist/Draft.css';
 
 
@@ -9,22 +9,24 @@ import BandeiraMaranhao from "../BandeiraMaranhao";
 import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
 import LogoPMMA from "../Logo_PMMA";
 import MaterialDetalhe from "./MaterialDetalhe";
+import PolicialDetalhe from "./PolicialDetalhe";
+import { Link } from "react-router-dom";
 
 const BoletimDetalhe = ({boletim}) => {
-    const contentState = convertFromRaw(boletim.historico)
-    const [editorState, setEditorState] = useState(()=>EditorState.createWithContent(contentState) )
+
+    const [editorState, setEditorState] = useState(()=>EditorState.createWithContent(boletim.historico) )
     
    return ( <>
-        <Container  style={{fontSize:"12px"}}>
+        <Container  style={{fontSize:"10px"}}>
             <br></br>
             <Row className="text-center">
                 <Col>
                     <BandeiraMaranhao/>
                 </Col>
                 <Col style={{fontSize:"10px"}}>
-                    <p><b>BOLETIM DE OCORRÊNCIA – PMMA <br/>ESTADO DO MARANHAO</b></p>
-                    <p>4º Batalhão de Polícia Militar</p>
-                    <p>Endereço: Av. Contorno, 176, Balsas - MA</p>
+                    <p><b>BOLETIM DE OCORRÊNCIA – PMMA <br/>ESTADO DO MARANHAO</b><br/>
+                    4º Batalhão de Polícia Militar<br/>
+                    Endereço: Av. Contorno, 176, Balsas - MA</p>
                 </Col>
                 <Col>
                     <LogoPMMA/>
@@ -76,10 +78,12 @@ const BoletimDetalhe = ({boletim}) => {
         </Container>
     
         <Container>
-            {/* <Row style={{pageBreakBefore:"always"}}></Row> */}
+            {/**faz a quebra de pagina na impressao */}
+            {/* <Row style={{pageBreakBefore:"always"}}>
+            </Row>  */}
 
             <Row>
-                <Col className="text-center"><h5>Armas e Objetos Apreendidos</h5></Col>
+                <Col className="text-center"><h5>Armas e Objetos Apreendidos<Link className="d-print-none" to="/material">Editar</Link></h5></Col>
             </Row>
            
                 {boletim.materiaisApreendidos.map(material=><MaterialDetalhe key={material.id} material={material}/>)}
@@ -89,12 +93,12 @@ const BoletimDetalhe = ({boletim}) => {
             <hr/>
 
             <Row>
-                <Col className="text-center"><h5>Histórico</h5></Col>
+                <Col className="text-center"><h5>Histórico <Link className="d-print-none" to="/historico">Editar</Link></h5></Col>
             </Row>
 
             <Row>
 
-                <Editor editorState={editorState} readOnly={true}/>
+                <Editor editorState={editorState} onChange={setEditorState} readOnly={true}/>
               
             </Row>
             <hr/>
@@ -104,11 +108,13 @@ const BoletimDetalhe = ({boletim}) => {
             </Row>
             <Row>
 
-                <Col >VTR: 128</Col>
-                <Col >Nome: 2°SGT PM N°194/18 J.Martins</Col>
-                <Col >Matricula/ID: 871110</Col>
+            {boletim.efetivo.map(policial=><PolicialDetalhe key={policial.id} policial={policial}/>)}
+                 
             </Row>
-
+            <Row>
+                {/* d-print-none exclui o botao do pdf*/}
+                <Button className="d-print-none" onClick={()=>window.print()}>Imprimir</Button>
+            </Row>
         </Container>
     
     </> );

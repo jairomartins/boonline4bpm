@@ -18,9 +18,6 @@ import Efetivo from "../components/Efetivo/Efetivo"
 import Historico from "../components/Historico/Historico";
 import BoletimDetalhe from "../components/BoletimDetalhe/BoletimDetalhe"
 
-
-
-
 export default function Boletim(){ 
    
     const [boletim, setBoletim] = useState({
@@ -28,7 +25,6 @@ export default function Boletim(){
         envolvidos:[],
         materiaisApreendidos:[],
         efetivo:[],
-        historico:[]
     })
 
     return (

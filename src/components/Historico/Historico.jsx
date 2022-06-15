@@ -1,38 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, {useState,useEffect} from "react";
 
-import {Editor,EditorState,convertToRaw, convertFromRaw} from "draft-js"
-import 'draft-js/dist/Draft.css';
 import { Container, Row , Button} from "react-bootstrap";
-
 
 import NavPage from "../NavPage";
 
+import {Editor, EditorState, convertToRaw} from 'draft-js';
+import 'draft-js/dist/Draft.css';
+
+
 const Historico = ({boletim,setBoletim}) => {
-    const [editorState, setEditorState] = useState()
 
     useEffect(() => {
         const state = boletim.historico
-          ? EditorState.createWithContent(convertFromRaw(boletim.historico))
+          ? EditorState.createWithContent(boletim.historico)
           : EditorState.createEmpty();
         setEditorState(state);
-      }, [boletim.historico]); // add 'value' to the dependency list to recalculate state when value changes.
-    
+      }, [boletim.historico]);
+
+    const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
+
     const handleSalvarHistorico = ()=>{
         const his = editorState.getCurrentContent()
         console.log(convertToRaw(his))
-        setBoletim({...boletim, historico:convertToRaw(his)})
+        setBoletim({...boletim, historico:editorState.getCurrentContent()})
     }
 
     return ( <>
         <Container className="text-center">
             <h1>Historico da Ocorrencia</h1>
             <Row>
-                <Editor 
-                    editorState={editorState}
-                    onChange={setEditorState}
-                    />
+                <Editor editorState={editorState} onChange={setEditorState} />
             </Row>
-
             <Button onClick={handleSalvarHistorico}>Save</Button>
             <NavPage prev="/efetivo" next="/resumo"/>
 
