@@ -13,7 +13,7 @@ function Envolvidos ({boletim,setBoletim}){
         <>
             <Cabecalho texto={"Adicionar Envolvidos "}/>
             <AddEnvolvido boletim={boletim} setBoletim={setBoletim} />
-            <EnvolvidoList envolvidos={boletim.envolvidos} boletim={boletim} setBoletim={setBoletim}/>
+            <EnvolvidoList boletim={boletim} setBoletim={setBoletim}/>
             <NavPage prev="/header" next="/material"/>
         </>
     )

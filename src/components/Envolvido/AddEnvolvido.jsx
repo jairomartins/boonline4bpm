@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 
 import { Col, Button, Container, Form, Row} from "react-bootstrap";
-import {MdAdd} from "react-icons/md"
+import {BsFillPersonPlusFill} from "react-icons/bs"
 
 
 
@@ -41,7 +41,8 @@ function AddEnvolvido ({boletim, setBoletim}){
         setBoletim({...boletim, envolvidos:newEnvolvidos})
     }
     return(
-        <>  
+        <>  <br/>
+            {/* Container dados pessoais */}
             <Container>
                 <Row>
                     <Col sm={3}>
@@ -103,6 +104,10 @@ function AddEnvolvido ({boletim, setBoletim}){
                         />
                     </Col>
                 </Row>
+            </Container>
+            
+            {/* Container dados de Localizacao */}
+            <Container>
                 <Row>
                 <Col sm={4}>
                     <Form.Label>Endereço:</Form.Label>
@@ -138,29 +143,30 @@ function AddEnvolvido ({boletim, setBoletim}){
                         <Form.Control size="sm"
                             type="text"
                             onChange={(e)=>{setNomeMae(e.target.value)}}
-                            placeholder="Nome do Município"
+                            placeholder="Nome da Mãe"
                             value={nomeMae}
                         />
                     </Col>
                     <Col sm={4}>
-                        <Form.Label>Nome da Mãe:</Form.Label>
+                        <Form.Label>Observação</Form.Label>
                         <Form.Control size="sm"
                             type="text"
                             onChange={(e)=>{setObs(e.target.value)}}
-                            placeholder="Nome do Município"
+                            placeholder=""
                             value={obs}
                         />
                     </Col>  
                 </Row>
                 <br/>
-                <Row>
-                    <Button 
-                        variant="primary"
-                        onClick={clickAddEnvolvido}
+                <Row className="text-center">
+                    <Col>
+                        <Button 
+                            variant="success"
+                            onClick={clickAddEnvolvido}
                         >
-                        Adicionar
-                        <MdAdd/>
-                    </Button>
+                            Adicionar Envolvido  <BsFillPersonPlusFill/> 
+                        </Button>
+                    </Col>
                 </Row>
             </Container>
             <br/>
