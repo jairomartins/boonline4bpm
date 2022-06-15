@@ -43,13 +43,6 @@ function AddEnvolvido ({boletim, setBoletim}){
     return(
         <>  
             <Container>
-                <br></br>
-                <Row className="justify-content-center">
-                    <h2>Adicionar Envolvido</h2>
-                </Row>
-                <br></br>
-            </Container>
-            <Container>
                 <Row>
                     <Col sm={3}>
                         <Form.Label>Tipo Envolvimento:</Form.Label>

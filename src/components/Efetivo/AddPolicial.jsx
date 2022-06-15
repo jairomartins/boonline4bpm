@@ -19,7 +19,7 @@ function AddPolicial ({boletim,setBoletim}){
     }
 
     return(
-        <>
+        <>  <br/>
             <Container>
                 <Row>
                     <Col md={2} >

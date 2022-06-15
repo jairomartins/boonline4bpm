@@ -7,6 +7,7 @@ import NavPage from "../NavPage";
 import {Editor, EditorState, convertToRaw} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 
+import Cabecalho from "../Cabecalho/Cabecalho";
 
 const Historico = ({boletim,setBoletim}) => {
 
@@ -31,13 +32,15 @@ const Historico = ({boletim,setBoletim}) => {
     }
 
     return ( <>
-        <Container className="text-center">
-            <h1>Historico da Ocorrencia</h1>
 
-            <Row style={{ border: "1px solid black", minHeight: "6em", cursor: "text" }}
+        <Cabecalho texto={"Histórico da Ocorrência"}/>
+        <br/>
+        <Container className="text-center">
+            <Row style={{ border: "1px solid black", minHeight: "200px", cursor: "text"}}
                 onClick={focusEditor}>
                 <Editor ref={editor} editorState={editorState} onChange={setEditorState} />
             </Row>
+            <br/>
             <Button onClick={handleSalvarHistorico}>Save</Button>
             <NavPage prev="/efetivo" next="/resumo"/>
 

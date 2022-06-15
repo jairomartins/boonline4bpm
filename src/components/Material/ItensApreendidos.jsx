@@ -6,16 +6,13 @@ import NavPage from "../NavPage"
 
 
 import { Container, Col } from "react-bootstrap";
+import Cabecalho from "../Cabecalho/Cabecalho";
 
 function ItensApreendidos ({boletim,setBoletim}){
     
     return(
         <>
-            <Container>
-                <Col className="text-center mt-4 mb-4">
-                <h3>Materiais Apreendidos</h3>
-                </Col>
-            </Container>
+            <Cabecalho texto={"Materiais Apreendidos"}/>
             <AddMaterial boletim={boletim} setBoletim={setBoletim}/>
 
             <Container>

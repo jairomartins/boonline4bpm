@@ -23,7 +23,7 @@ function AddMaterial({boletim,setBoletim}){
     return (
         <>
         <Container>
-        <br></br>
+            <br/>
             <Row>
                 <Col md={8} sm={8}>
                     <FormControl size="sm"

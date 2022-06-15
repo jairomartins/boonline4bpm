@@ -6,17 +6,13 @@ import PolicialList from "./PolicialList";
 import NavPage from "../NavPage";
 import { Col, Container, Row } from "react-bootstrap";
 
+import Cabecalho from "../Cabecalho/Cabecalho";
+
 function Efetivo  ({boletim,setBoletim}){
 
     return(
         <>
-        <Container>
-            <Row>
-                <Col className="text-center">
-                    <h3>Adicionar Efetivo</h3>
-                </Col>
-            </Row>
-        </Container>
+        <Cabecalho texto={"Adicionar Efetivo"}/>
         <AddPolicial boletim={boletim} setBoletim={setBoletim}/>
         <Container>
             <Row>

@@ -89,7 +89,6 @@ const BoletimDetalhe = ({boletim}) => {
                 {boletim.materiaisApreendidos.map(material=><MaterialDetalhe key={material.id} material={material}/>)}
                    
 
-                
             <hr/>
 
             <Row>
