@@ -17,7 +17,7 @@ const BoletimDetalhe = ({boletim}) => {
     const [editorState, setEditorState] = useState(()=>EditorState.createWithContent(boletim.historico) )
     
    return ( <>
-        <Container  style={{fontSize:"10px"}}>
+        <Container  style={{fontSize:"12px"}}>
             <br></br>
             <Row className="text-center">
                 <Col>
@@ -77,7 +77,7 @@ const BoletimDetalhe = ({boletim}) => {
             <hr/>
         </Container>
     
-        <Container>
+        <Container style={{fontSize:"12px"}}>
             {/**faz a quebra de pagina na impressao */}
             {/* <Row style={{pageBreakBefore:"always"}}>
             </Row>  */}

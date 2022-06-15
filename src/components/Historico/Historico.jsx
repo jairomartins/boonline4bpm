@@ -25,18 +25,25 @@ const Historico = ({boletim,setBoletim}) => {
         setBoletim({...boletim, historico:editorState.getCurrentContent()})
     }
 
+    const editor = React.useRef(null);
+    const focusEditor = ()=> {
+        editor.current.focus()
+    }
+
     return ( <>
         <Container className="text-center">
             <h1>Historico da Ocorrencia</h1>
-            <Row>
-                <Editor editorState={editorState} onChange={setEditorState} />
+
+            <Row style={{ border: "1px solid black", minHeight: "6em", cursor: "text" }}
+                onClick={focusEditor}>
+                <Editor ref={editor} editorState={editorState} onChange={setEditorState} />
             </Row>
             <Button onClick={handleSalvarHistorico}>Save</Button>
             <NavPage prev="/efetivo" next="/resumo"/>
 
            
         </Container>
-    
+        
     </> );
 }
  
