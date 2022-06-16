@@ -5,6 +5,8 @@ import { BsFillPersonPlusFill } from "react-icons/bs";
 function AddPolicial ({boletim,setBoletim}){
     const [vtr, setVtr] = useState('')
     const [nome, setNome] = useState('')
+    const [graduacao, setGraduacao] = useState('')
+    const [numeroBarra, setNumeroBarra] = useState('')
     const [id, setId] = useState('')
 
 
@@ -26,16 +28,34 @@ function AddPolicial ({boletim,setBoletim}){
                         <Form.Label>Prefixo da VTR:</Form.Label>
                         <Form.Control
                         size="sm"
-                        placeholder=""
+                        placeholder="EX.: 128"
                         value={vtr}
                         onChange={(e)=>{setVtr(e.target.value)}}
                         />
                     </Col>
-                    <Col md={6} >
-                        <Form.Label>Policial:</Form.Label>
+                    <Col md={2} >
+                        <Form.Label>Posto/Graduação:</Form.Label>
                         <Form.Control
                         size="sm"
-                        placeholder="Posto/Graduação - N° - Nome"
+                        placeholder="Ex.:SD"
+                        value={graduacao}
+                        onChange={(e)=>setGraduacao(e.target.value)}
+                        />
+                    </Col>
+                    <Col md={2} >
+                        <Form.Label>Numero / Barra:</Form.Label>
+                        <Form.Control
+                        size="sm"
+                        placeholder="000/18"
+                        value={numeroBarra}
+                        onChange={(e)=>setNumeroBarra(e.target.value)}
+                        />
+                    </Col>
+                    <Col md={4} >
+                        <Form.Label>Nome:</Form.Label>
+                        <Form.Control
+                        size="sm"
+                        placeholder="Nome Completo"
                         value={nome}
                         onChange={(e)=>setNome(e.target.value)}
                         />
