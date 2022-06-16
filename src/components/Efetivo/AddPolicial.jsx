@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Button, Col,Row,Container, FormControl } from "react-bootstrap";
-import { MdLibraryAdd } from "react-icons/md";
+import { Button, Col,Row,Container, Form } from "react-bootstrap";
+import { BsFillPersonPlusFill } from "react-icons/bs";
 
 function AddPolicial ({boletim,setBoletim}){
     const [vtr, setVtr] = useState('')
@@ -23,15 +23,17 @@ function AddPolicial ({boletim,setBoletim}){
             <Container>
                 <Row>
                     <Col md={2} >
-                        <FormControl
+                        <Form.Label>Prefixo da VTR:</Form.Label>
+                        <Form.Control
                         size="sm"
-                        placeholder="Viatura"
+                        placeholder=""
                         value={vtr}
                         onChange={(e)=>{setVtr(e.target.value)}}
                         />
                     </Col>
                     <Col md={6} >
-                        <FormControl
+                        <Form.Label>Policial:</Form.Label>
+                        <Form.Control
                         size="sm"
                         placeholder="Posto/Graduação - N° - Nome"
                         value={nome}
@@ -39,17 +41,27 @@ function AddPolicial ({boletim,setBoletim}){
                         />
                     </Col>
                     <Col md={2} >
-                        <FormControl
+                        <Form.Label>Matrícula:</Form.Label>
+                        <Form.Control
                         size="sm"
                         placeholder="ID / Matrícula"
                         value={id}
                         onChange={(e)=>setId(e.target.value)}
                         />
                     </Col>
-                    <Col md={2} sm={2}>
-                    <Button onClick={handelAddPolicialClick} > <MdLibraryAdd/></Button>
+                </Row>
+                <br/>
+                <Row className="text-center">
+                    <Col>
+                        <Button
+                            size="sm"
+                            variant="success" 
+                            onClick={handelAddPolicialClick}>
+                                Adicionar Policial <BsFillPersonPlusFill/>
+                        </Button>
                     </Col>
                 </Row>
+                <br/>
             </Container>
         </>
     )
