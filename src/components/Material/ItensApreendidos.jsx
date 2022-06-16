@@ -5,7 +5,7 @@ import AddMaterial from "./AddMaterial"
 import NavPage from "../NavPage"
 
 
-import { Container, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import Cabecalho from "../Cabecalho/Cabecalho";
 
 function ItensApreendidos ({boletim,setBoletim}){
@@ -13,14 +13,16 @@ function ItensApreendidos ({boletim,setBoletim}){
     return(
         <>
             <Cabecalho texto={"Materiais Apreendidos"}/>
+
             <AddMaterial boletim={boletim} setBoletim={setBoletim}/>
 
             <Container>
-                <Col className="text-center mt-4 mb-4">
-                    <h5>Lista de Materiais </h5>
-                </Col>
+                <Row>
+                    <Col className="text-center mt-4 mb-4">
+                        <h5>Lista de Materiais </h5>
+                    </Col>
+                </Row>
             </Container>
-
 
             <MaterialList 
                 boletim={boletim} setBoletim={setBoletim}/>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 
-import { Button, Col, Container, FormControl, Row } from "react-bootstrap";
-import { MdLibraryAdd } from "react-icons/md";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { MdAddBox } from "react-icons/md";
 
 function AddMaterial({boletim,setBoletim}){
 
@@ -25,20 +25,30 @@ function AddMaterial({boletim,setBoletim}){
         <Container>
             <br/>
             <Row>
-                <Col md={8} sm={8}>
-                    <FormControl size="sm"
+                <Col md={10} sm={10}>
+                    <Form.Label>Descrição: </Form.Label>
+                    <Form.Control size="sm"
                     placeholder="Descrição"
                     onChange={(e)=>{setDescricao(e.target.value)}}
                     />
                 </Col>
                 <Col md={2} sm={2}>
-                    <FormControl size="sm"
+                    <Form.Label>Quantidade:</Form.Label>
+                    <Form.Control size="sm"
                     placeholder="QTD"
                     onChange={(e)=>{setQuantidade(e.target.value)}}
                     />
                 </Col>
-                <Col md={2} sm={2}>
-                    <Button size="sm" onClick={addMaterial}> <MdLibraryAdd/></Button>
+            </Row>
+            <br/>
+            <Row className="text-center">
+                <Col>
+                    <Button
+                        size="sm"
+                        variant="success"
+                        onClick={addMaterial}>
+                             Adicionar Material <MdAddBox/>
+                    </Button>
                 </Col>
             </Row>
         </Container>
