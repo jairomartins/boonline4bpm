@@ -11,7 +11,7 @@ function AddHeader ({boletim,setBoletim}){
         <Container>
             <Form>
                 <Row>
-                    <Col sm={3} className="text-center mt-12 mb-12">
+                    <Col sm={4} className="text-center mt-12 mb-12">
                         <Form.Label>Número B.O</Form.Label>
                         <Form.Control 
                             size="sm"
@@ -19,6 +19,22 @@ function AddHeader ({boletim,setBoletim}){
                             placeholder="N° do Boletim"
                             onChange={(e)=>{setBoletim({...boletim, numero:e.target.value})}}
                         />
+                    </Col>
+                    <Col sm={4}>
+                        <Form.Label>Latitude : </Form.Label>
+                        <Form.Control
+                        size="sm"
+                        placeholder="Latitude"
+                        defaultValue={boletim.latitude}
+                        onChange={(e)=>{setBoletim({...boletim, latitude:e.target.value})}}/>
+                    </Col>
+                    <Col sm={4}>
+                        <Form.Label>Longitude : </Form.Label>
+                        <Form.Control
+                        size="sm"
+                        placeholder="Longitude"
+                        defaultValue={boletim.longitude}
+                        onChange={(e)=>{setBoletim({...boletim, longitude:e.target.value})}}/>
                     </Col>
                 </Row>
                 <Row>
@@ -89,24 +105,7 @@ function AddHeader ({boletim,setBoletim}){
                         defaultValue={boletim.municipio}
                         onChange={(e)=>{setBoletim({...boletim, municipio:e.target.value})}}/>
                     </Col>
-                    <Col sm={2}>
-                        <Form.Label>Latitude : </Form.Label>
-                        <Form.Control
-                        size="sm"
-                        placeholder="Latitude"
-                        defaultValue={boletim.latitude}
-                        onChange={(e)=>{setBoletim({...boletim, latitude:e.target.value})}}/>
-                    </Col>
-                    <Col sm={2}>
-                        <Form.Label>Longitude : </Form.Label>
-                        <Form.Control
-                        size="sm"
-                        placeholder="Longitude"
-                        defaultValue={boletim.longitude}
-                        onChange={(e)=>{setBoletim({...boletim, longitude:e.target.value})}}/>
-                    </Col>
-                </Row>
-                <Row>
+
                     <Col>
                         <Form.Label>Ponto de Referencia : </Form.Label>
                         <Form.Control
