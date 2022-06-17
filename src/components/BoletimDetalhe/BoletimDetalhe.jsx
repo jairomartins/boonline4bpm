@@ -1,21 +1,29 @@
-import React,{useState} from "react";
+import React,{useState, useEffect} from "react";
 import { Col, Row, Container, Button} from "react-bootstrap";
 
 import {Editor,EditorState} from "draft-js"
 import 'draft-js/dist/Draft.css';
-
+import { AiFillPrinter } from "react-icons/ai";
 
 import BandeiraMaranhao from "../BandeiraMaranhao";
 import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
 import LogoPMMA from "../Logo_PMMA";
 import MaterialDetalhe from "./MaterialDetalhe";
 import PolicialDetalhe from "./PolicialDetalhe";
+
 import { Link } from "react-router-dom";
 
 const BoletimDetalhe = ({boletim}) => {
 
-    const [editorState, setEditorState] = useState(()=>EditorState.createWithContent(boletim.historico) )
-    
+    useEffect(() => {
+        const state = boletim.historico
+          ? EditorState.createWithContent(boletim.historico)
+          : EditorState.createEmpty();
+        setEditorState(state);
+      }, [boletim.historico]);
+
+      const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
+
    return ( <>
         <Container  style={{fontSize:"12px"}}>
             <br></br>
@@ -38,7 +46,7 @@ const BoletimDetalhe = ({boletim}) => {
             </Row>
             <hr/>
             <Row>
-                <Col className="text-center" style={{backgroundColor:"grey"}}><h5>Fato Comunicado</h5></Col>
+                <Col className="text-center"><h6>Fato Comunicado<Link className="d-print-none" to="/header">Editar</Link></h6></Col>
                 
             </Row>
             <br/>
@@ -67,7 +75,7 @@ const BoletimDetalhe = ({boletim}) => {
             <hr/>
             <Row>
             
-                <Col className="text-center"><h5>Envolvido(s)</h5></Col>
+                <Col className="text-center"><h6>Envolvido(s)<Link className="d-print-none" to="/envolvido">Editar</Link></h6></Col>
                 
             </Row>
 
@@ -83,7 +91,7 @@ const BoletimDetalhe = ({boletim}) => {
             </Row>  */}
 
             <Row>
-                <Col className="text-center"><h5>Armas e Objetos Apreendidos<Link className="d-print-none" to="/material">Editar</Link></h5></Col>
+                <Col className="text-center"><h6>Armas e Objetos Apreendidos<Link className="d-print-none" to="/material">Editar</Link></h6></Col>
             </Row>
            
                 {boletim.materiaisApreendidos.map(material=><MaterialDetalhe key={material.id} material={material}/>)}
@@ -92,7 +100,7 @@ const BoletimDetalhe = ({boletim}) => {
             <hr/>
 
             <Row>
-                <Col className="text-center"><h5>Histórico <Link className="d-print-none" to="/historico">Editar</Link></h5></Col>
+                <Col className="text-center"><h6>Histórico <Link className="d-print-none" to="/historico">Editar</Link></h6></Col>
             </Row>
 
             <Row>
@@ -103,17 +111,27 @@ const BoletimDetalhe = ({boletim}) => {
             <hr/>
 
             <Row>
-                <Col className="text-center"><h5>Efetivo Empenhado</h5></Col>
+                <Col className="text-center"><h6>Efetivo Empenhado</h6></Col>
             </Row>
             <Row>
 
             {boletim.efetivo.map(policial=><PolicialDetalhe key={policial.id} policial={policial}/>)}
                  
             </Row>
+            <br/>
             <Row>
-                {/* d-print-none exclui o botao do pdf*/}
-                <Button className="d-print-none" onClick={()=>window.print()}>Imprimir</Button>
+                <Col className="text-center">
+                    {/* d-print-none exclui o botao do pdf*/}
+                    <Button 
+                        size="sm"
+                        variant="success" 
+                        className="d-print-none"
+                        onClick={()=>window.print()}>
+                            Imprimir <AiFillPrinter/>
+                    </Button>
+                </Col>
             </Row>
+            <br/><br/>
         </Container>
     
     </> );
