@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button, Col,Row,Container, Form, Alert } from "react-bootstrap";
-import { set } from "react-hook-form";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 
 function AddPolicial ({boletim,setBoletim}){
