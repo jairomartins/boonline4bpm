@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { Button, Col,Row,Container, Form} from "react-bootstrap";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 
-import InputMask from 'react-input-mask';
-
 function AddPolicial ({boletim,setBoletim}){
     const [vtr, setVtr] = useState('')
     const [nome, setNome] = useState('')
@@ -11,34 +9,20 @@ function AddPolicial ({boletim,setBoletim}){
     const [numeroBarra, setNumeroBarra] = useState('')
     const [id, setId] = useState('')
 
-    const validaCampos = (e) =>{
-    //    let count = 1
-    //    while(count <= 5)
-        // e.target.name.map(name=>console.log(name))
-        for (let i = 0; i < e.target.length-1; i++) {
-            let element = e.target[i].value==='';
-            console.log(element)
-            if(element){
-                break
-            }
-        }
-
-    }
-
     const handelAddPolicialClick = (e)=>{
         e.preventDefault()
-        if((menssagem.estado)){
-            const newPolicialList = [...boletim.efetivo,{
-            vtr:vtr,
-            graduacao:graduacao,
-            numeroBarra:numeroBarra,
-            nome:nome,
-            id:id
+
+        const newPolicialList = [...boletim.efetivo,{
+        vtr:vtr,
+        graduacao:graduacao,
+        numeroBarra:numeroBarra,
+        nome:nome,
+        id:id
         }]
         validaCampos()
         setBoletim ({...boletim, efetivo:newPolicialList})
     }
-    }
+    
 
  
 
