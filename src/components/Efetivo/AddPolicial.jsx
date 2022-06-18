@@ -1,27 +1,33 @@
 import React, { useState } from "react";
-import { Button, Col,Row,Container, Form, Alert } from "react-bootstrap";
+import { Button, Col,Row,Container, Form} from "react-bootstrap";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 
-function AddPolicial ({boletim,setBoletim}){
-    const [menssagem , setMenssagem] = useState({
-        estado:false,
-        texto:""
-    })
+import InputMask from 'react-input-mask';
 
+function AddPolicial ({boletim,setBoletim}){
     const [vtr, setVtr] = useState('')
     const [nome, setNome] = useState('')
     const [graduacao, setGraduacao] = useState('')
     const [numeroBarra, setNumeroBarra] = useState('')
     const [id, setId] = useState('')
 
-    const validaCampos = (campo)=>{
-        alert("as")
-        const campos=[vtr,nome,graduacao,numeroBarra,id]
-        campos.map((campo)=>console.log(campo))
+    const validaCampos = (e) =>{
+    //    let count = 1
+    //    while(count <= 5)
+        // e.target.name.map(name=>console.log(name))
+        for (let i = 0; i < e.target.length-1; i++) {
+            let element = e.target[i].value==='';
+            console.log(element)
+            if(element){
+                break
+            }
+        }
 
     }
 
-    const handelAddPolicialClick = ()=>{
+    const handelAddPolicialClick = (e)=>{
+        e.preventDefault()
+        if((menssagem.estado)){
             const newPolicialList = [...boletim.efetivo,{
             vtr:vtr,
             graduacao:graduacao,
@@ -29,24 +35,27 @@ function AddPolicial ({boletim,setBoletim}){
             nome:nome,
             id:id
         }]
-        // validaCampos()
+        validaCampos()
         setBoletim ({...boletim, efetivo:newPolicialList})
+    }
     }
 
  
 
     return(
         <>  <br/>
+            
             <Container>
-                {!menssagem.status?<Alert>{menssagem.texto}</Alert>:"SEM ERRO"}
-                <Form>
+                {/* {menssagem.estado?<Alert variant={menssagem.tipo} size="sm">{menssagem.texto}</Alert>:""} */}
+                <Form onSubmit={handelAddPolicialClick}>
                     <Row>
                         <Col md={2} >
                             <Form.Label>Prefixo da VTR:</Form.Label>
                             <Form.Control
                             size="sm"
                             required
-                            onBlur={validaCampos}
+                            name="Prefixo da Viatura"
+                            // onBlur={validaCampos}
                             placeholder="EX.: 128"
                             value={vtr}
                             onChange={(e)=>{setVtr(e.target.value)}}
@@ -56,6 +65,8 @@ function AddPolicial ({boletim,setBoletim}){
                             <Form.Label>Posto/Graduação:</Form.Label>
                             <Form.Control
                             size="sm"
+                            name="Posto/Graduação"
+                            // onBlur={validaCampos}
                             placeholder="Ex.:SD"
                             value={graduacao}
                             onChange={(e)=>setGraduacao(e.target.value)}
@@ -93,9 +104,11 @@ function AddPolicial ({boletim,setBoletim}){
                     <Row className="text-center">
                         <Col>
                             <Button
+                                type="submit"
                                 size="sm"
                                 variant="success"
-                                onClick={handelAddPolicialClick}>
+                                // onClick={handelAddPolicialClick}
+                                >
                                     Adicionar Policial <BsFillPersonPlusFill/>
                             </Button>
                         </Col>
