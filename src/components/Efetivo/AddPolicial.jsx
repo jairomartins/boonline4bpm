@@ -19,7 +19,6 @@ function AddPolicial ({boletim,setBoletim}){
         nome:nome,
         id:id
         }]
-        validaCampos()
         setBoletim ({...boletim, efetivo:newPolicialList})
     }
     
