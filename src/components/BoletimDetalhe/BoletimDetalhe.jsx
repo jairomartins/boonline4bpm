@@ -46,25 +46,25 @@ const BoletimDetalhe = ({boletim}) => {
             </Row>
             <hr/>
             <Row>
-                <Col className="text-center"><h6>Fato Comunicado<Link className="d-print-none" to="/header">Editar</Link></h6></Col>
+                <Col className="text-center"><h6>FATO COMUNICADO<Link className="d-print-none" to="/header">Editar</Link></h6></Col>
                 
             </Row>
             <br/>
             <Row>
                 <Col>
-                    Natureza da Ocorrência: {boletim.natureza} 
+                    <b>Natureza da Ocorrência: </b> {boletim.natureza} 
                 </Col>
                 <Col>
-                    Data :  {boletim.data} 
+                    <b>Data: </b>{boletim.data} 
                 </Col>
                 <Col>
-                    Horário: {boletim.horario}  
+                <b>Horário: </b>{boletim.horario}  
                 </Col>
             </Row>
             <Row>
                 <Col>Local: {boletim.endereco}, {boletim.numeroEndereco}  </Col>
                 <Col>Bairro: {boletim.bairro}</Col>
-                <Col>{boletim.municipio}</Col>
+                <Col>Municipio{boletim.municipio}</Col>
             </Row>
             <Row>
                 <Col >Ponto de Refêrencia : {boletim.referencia}</Col>
@@ -75,7 +75,7 @@ const BoletimDetalhe = ({boletim}) => {
             <hr/>
             <Row>
             
-                <Col className="text-center"><h6>Envolvido(s)<Link className="d-print-none" to="/envolvido">Editar</Link></h6></Col>
+                <Col className="text-center"><h6>ENVOLVIDO(S)<Link className="d-print-none" to="/envolvido">Editar</Link></h6></Col>
                 
             </Row>
 
@@ -91,7 +91,7 @@ const BoletimDetalhe = ({boletim}) => {
             </Row>  */}
 
             <Row>
-                <Col className="text-center"><h6>Armas e Objetos Apreendidos<Link className="d-print-none" to="/material">Editar</Link></h6></Col>
+                <Col className="text-center"><h6>ARMAS E OBJETOS APREENDIDOS<Link className="d-print-none" to="/material">Editar</Link></h6></Col>
             </Row>
            
                 {boletim.materiaisApreendidos.map(material=><MaterialDetalhe key={material.id} material={material}/>)}
@@ -100,7 +100,7 @@ const BoletimDetalhe = ({boletim}) => {
             <hr/>
 
             <Row>
-                <Col className="text-center"><h6>Histórico <Link className="d-print-none" to="/historico">Editar</Link></h6></Col>
+                <Col className="text-center"><h6>HISTÓRICO <Link className="d-print-none" to="/historico">Editar</Link></h6></Col>
             </Row>
 
             <Row>
@@ -111,7 +111,7 @@ const BoletimDetalhe = ({boletim}) => {
             <hr/>
 
             <Row>
-                <Col className="text-center"><h6>Efetivo Empenhado</h6></Col>
+                <Col className="text-center"><h6>EFETIVO EMPREGADO</h6></Col>
             </Row>
             <Row>
 

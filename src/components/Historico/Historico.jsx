@@ -1,13 +1,18 @@
 import React, {useState,useEffect} from "react";
 
-import { Container, Row , Button} from "react-bootstrap";
+import { Container, Row , Col, Button} from "react-bootstrap";
 
-import NavPage from "../NavPage";
 
 import {Editor, EditorState, convertToRaw} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 
 import Cabecalho from "../Cabecalho/Cabecalho";
+
+import {BiSave} from "react-icons/bi"
+import {BsEyeFill}from "react-icons/bs"
+import {BsArrowLeft } from "react-icons/bs"
+
+import { Link } from "react-router-dom";
 
 const Historico = ({boletim,setBoletim}) => {
 
@@ -41,8 +46,37 @@ const Historico = ({boletim,setBoletim}) => {
                 <Editor ref={editor} editorState={editorState} onChange={setEditorState} />
             </Row>
             <br/>
-            <Button onClick={handleSalvarHistorico}>Save</Button>
-            <NavPage prev="/efetivo" next="/resumo"/>
+            <Row>
+                <Col>
+                    <Button  
+                        variant="outline-primary">
+                        <Link 
+                            className="text-decoration-none" 
+                            to="/efetivo">
+                                <BsArrowLeft/> Voltar
+                        </Link>
+                    </Button>
+               </Col>
+
+                <Col>
+                    <Button onClick={handleSalvarHistorico}>
+                        Salvar <BiSave/>
+                    </Button>
+                </Col>
+               
+                <Col>
+                    <Button
+                        variant="success"  
+                        onClick={handleSalvarHistorico}>
+                            <Link to="/resumo"  className="link-light" > 
+                            Ver <BsEyeFill/>
+                            </Link>
+                    </Button>
+                </Col>
+                
+            </Row>
+            
+            {/* <NavPage prev="/efetivo" next="/resumo"/> */}
 
            
         </Container>

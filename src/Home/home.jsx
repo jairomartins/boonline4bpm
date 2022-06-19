@@ -5,6 +5,7 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
 
+
 const Home = ()=>{
     return(
         <>
@@ -23,12 +24,22 @@ const Home = ()=>{
                 <Col sm={12} className="text-center mt-12 mb-12">
                     <Link to="/header">
                         <Button 
-                            size="lg"
-                            variant="dark">
+                            variant="success">
                                 Iniciar
                         </Button>
                     </Link>
                 </Col>
+            </Row>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <Row className="text-center">
+                <Col>Criado por : SD PM  J.Martins </Col>
             </Row>
         </Container>
         </>

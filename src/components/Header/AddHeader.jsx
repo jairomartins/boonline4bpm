@@ -2,6 +2,8 @@ import React  from "react";
 
 import {  Col, Container, Row, Form } from 'react-bootstrap';
 
+import InputMask from 'react-input-mask';
+
 function AddHeader ({boletim,setBoletim}){
 
     
@@ -14,6 +16,7 @@ function AddHeader ({boletim,setBoletim}){
                     <Col sm={4} className="text-center mt-12 mb-12">
                         <Form.Label>Número B.O</Form.Label>
                         <Form.Control 
+                            type="number"
                             size="sm"
                             defaultValue={boletim.numero}
                             placeholder="N° do Boletim"
@@ -51,10 +54,10 @@ function AddHeader ({boletim,setBoletim}){
                     </Col>
                     <Col sm={2}>
                         <Form.Label>Data :  </Form.Label>
-                        <Form.Control
+                        <InputMask 
+                            mask="99/99/9999"
+                            className="form-control form-control-sm"
                             size="sm"
-                            type="date"
-                            format="dd-mm-yyyy"
                             defaultValue={boletim.data}
                             onChange={(e)=>{setBoletim({...boletim, data:e.target.value})}}
                         />

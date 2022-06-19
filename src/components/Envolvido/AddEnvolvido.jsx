@@ -5,7 +5,7 @@ import { v4 as uuidV4 } from "uuid";
 import { Col, Button, Container, Form, Row} from "react-bootstrap";
 import {BsFillPersonPlusFill} from "react-icons/bs"
 
-
+import InputMask from 'react-input-mask';
 
 
 function AddEnvolvido ({boletim, setBoletim}){
@@ -68,7 +68,9 @@ function AddEnvolvido ({boletim, setBoletim}){
                     </Col >
                     <Col sm={3}>
                     <Form.Label>Contato:</Form.Label>
-                    <Form.Control size="sm"
+                    <InputMask 
+                        className="form-control form-control-sm"
+                        mask="(99) 9 9999-9999"
                         onChange={(e)=>{setTelefone(e.target.value)}}
                         placeholder="(99) 9 0000-0000"
                         value={telefone}
@@ -78,7 +80,9 @@ function AddEnvolvido ({boletim, setBoletim}){
                 <Row>
                     <Col sm={4}>
                         <Form.Label>CPF:</Form.Label>
-                        <Form.Control size="sm"
+                        <InputMask 
+                            className="form-control form-control-sm"
+                            mask="999.999.999-99"
                             onChange={(e)=>{setCpf(e.target.value)}}
                             placeholder="CPF"
                             value={cpf}
@@ -96,10 +100,11 @@ function AddEnvolvido ({boletim, setBoletim}){
                         </Col>
                     <Col sm={4}>
                         <Form.Label>Data de Nascimento:</Form.Label>
-                        <Form.Control size="sm"
-                            type="date"
+                        <InputMask 
+                            className="form-control form-control-sm"
+                            mask="99/99/9999"
                             onChange={(e)=>{setNascimento(e.target.value)}}
-                            placeholder="CPF"
+                            placeholder="data de nascimento"
                             value={nascimento}
                         />
                     </Col>

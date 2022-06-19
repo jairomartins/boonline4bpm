@@ -26,8 +26,7 @@ function AddPolicial ({boletim,setBoletim}){
  
 
     return(
-        <>  <br/>
-            
+        <>  <br/> 
             <Container>
                 {/* {menssagem.estado?<Alert variant={menssagem.tipo} size="sm">{menssagem.texto}</Alert>:""} */}
                 <Form onSubmit={handelAddPolicialClick}>
