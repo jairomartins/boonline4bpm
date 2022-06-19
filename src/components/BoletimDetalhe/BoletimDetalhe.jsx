@@ -1,9 +1,11 @@
 import React,{useState, useEffect} from "react";
-import { Col, Row, Container, Button} from "react-bootstrap";
+import { Col, Row, Container, Button, Table} from "react-bootstrap";
 
 import {Editor,EditorState} from "draft-js"
 import 'draft-js/dist/Draft.css';
+
 import { AiFillPrinter } from "react-icons/ai";
+import {BsArrowLeft } from "react-icons/bs"
 
 import BandeiraMaranhao from "../BandeiraMaranhao";
 import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
@@ -16,6 +18,7 @@ import { Link } from "react-router-dom";
 const BoletimDetalhe = ({boletim}) => {
 
     useEffect(() => {
+        
         const state = boletim.historico
           ? EditorState.createWithContent(boletim.historico)
           : EditorState.createEmpty();
@@ -64,12 +67,12 @@ const BoletimDetalhe = ({boletim}) => {
             <Row>
                 <Col>Local: {boletim.endereco}, {boletim.numeroEndereco}  </Col>
                 <Col>Bairro: {boletim.bairro}</Col>
-                <Col>Municipio{boletim.municipio}</Col>
+                <Col>Municipio: {boletim.municipio}</Col>
             </Row>
             <Row>
                 <Col >Ponto de Refêrencia : {boletim.referencia}</Col>
                 
-                <Col >Coordenadas: {boletim.latitude},{boletim.longitude}</Col>
+                <Col>Coordenadas: {boletim.latitude}, {boletim.longitude}</Col>
                 <Col></Col>
             </Row>
             <hr/>
@@ -118,20 +121,48 @@ const BoletimDetalhe = ({boletim}) => {
             {boletim.efetivo.map(policial=><PolicialDetalhe key={policial.id} policial={policial}/>)}
                  
             </Row>
-            <br/>
+            <hr/>
             <Row>
+                <Col className="text-center"><h6>UNIDADE DE ENTREGA</h6></Col>
+            </Row>
+            <Table borderless>
+                <tr>
+                    <td>Unidade ___________________________</td>
+                    <td>Data  _______/________/_______</td>
+                    <td>Hora       _________:_________</td>
+                </tr>
+                <tr>
+                    <td>Matricula ___________________________</td>
+                    <td>Nome ______________________________</td>
+                    <td>Assinatura ___________________________</td>
+                </tr>
+            </Table>
+
+            <Row className="text-center">
+                <Col>
+                    <Button
+                        className="d-print-none"
+                        size="sm"  
+                        variant="outline-primary">
+                        <Link 
+                            className="text-decoration-none" 
+                            to="/historico">
+                                <BsArrowLeft/> Voltar
+                        </Link>
+                    </Button>
+               </Col>
                 <Col className="text-center">
                     {/* d-print-none exclui o botao do pdf*/}
                     <Button 
                         size="sm"
                         variant="success" 
                         className="d-print-none"
-                        onClick={()=>window.print()}>
+                        onClick={()=>{document.title = "BO_"+boletim.numero+"_"+boletim.data;window.print()}}>
                             Imprimir <AiFillPrinter/>
                     </Button>
                 </Col>
             </Row>
-            <br/><br/>
+            <br/>
         </Container>
     
     </> );
