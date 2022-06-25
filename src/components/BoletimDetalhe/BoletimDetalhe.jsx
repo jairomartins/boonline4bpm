@@ -7,11 +7,14 @@ import 'draft-js/dist/Draft.css';
 import { AiFillPrinter } from "react-icons/ai";
 import {BsArrowLeft } from "react-icons/bs"
 
-import BandeiraMaranhao from "../BandeiraMaranhao";
-import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
+// import BandeiraMaranhao from "../BandeiraMaranhao";
+import Logo4BPM from "../Logo4BPM"
+import BrasaoMa from "../Brasao_Maranhao"
 import LogoPMMA from "../Logo_PMMA";
+
 import MaterialDetalhe from "./MaterialDetalhe";
 import PolicialDetalhe from "./PolicialDetalhe";
+import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
 
 import { Link } from "react-router-dom";
 
@@ -32,15 +35,19 @@ const BoletimDetalhe = ({boletim}) => {
             <br></br>
             <Row className="text-center">
                 <Col>
-                    <BandeiraMaranhao/>
+                    <LogoPMMA/>
                 </Col>
                 <Col style={{fontSize:"10px"}}>
-                    <p><b>BOLETIM DE OCORRÊNCIA – PMMA <br/>ESTADO DO MARANHAO</b><br/>
-                    4º Batalhão de Polícia Militar<br/>
-                    Endereço: Av. Contorno, 176, Balsas - MA</p>
+                    <BrasaoMa/>
+                    <p>ESTADO DO MARANHÃO <br/>
+                    SECRETARIA DE ESTADO DA SEGURANÇA PÚBLICA<br/>
+                    POLÍCIA MILITAR DO MARANHÃO<br/>
+                    COMANDO DO POLICIAMENTO DE ÁREA DO INTERIOR – CPAI-6<br/>
+                    4º BATALHÃO DE POLÍCIA MILITAR
+                    </p>
                 </Col>
                 <Col>
-                    <LogoPMMA/>
+                    <Logo4BPM/>
                 </Col>
             </Row>
             <Row>

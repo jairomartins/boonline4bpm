@@ -10,9 +10,11 @@ const Home = ()=>{
     return(
         <>
         <Container fluid>
-            <Row className="justify-content-center">
+            <br/>
+            <Row className="text-center">
                 <Logo4BPM/>
             </Row>
+            <br/>
             <Row> 
                 <Col sm={12} className="text-center">
                 <h3>Boletim de Ocorrencia PMMA 4°BPM - 2022.1</h3>
