@@ -33,18 +33,18 @@ const BoletimDetalhe = ({boletim}) => {
    return ( <>
         <Container  style={{fontSize:"12px"}}>
             <br></br>
-            <Row className="text-center">
+            <Row   className="text-center">
                 <Col>
                     <LogoPMMA/>
                 </Col>
-                <Col style={{fontSize:"10px"}}>
+                <Col  style={{fontSize:"7px"}}>
                     <BrasaoMa/>
-                    <p>ESTADO DO MARANHÃO <br/>
+                   <b> <p>ESTADO DO MARANHÃO <br/>
                     SECRETARIA DE ESTADO DA SEGURANÇA PÚBLICA<br/>
                     POLÍCIA MILITAR DO MARANHÃO<br/>
                     COMANDO DO POLICIAMENTO DE ÁREA DO INTERIOR – CPAI-6<br/>
                     4º BATALHÃO DE POLÍCIA MILITAR
-                    </p>
+                    </p></b>
                 </Col>
                 <Col>
                     <Logo4BPM/>
