@@ -1,6 +1,6 @@
 import React  from "react";
 
-import {  Col, Container, Row, Form } from 'react-bootstrap';
+import {  Col, Container, Row, Form, ProgressBar} from 'react-bootstrap';
 
 import InputMask from 'react-input-mask';
 
@@ -10,7 +10,12 @@ function AddHeader ({boletim,setBoletim}){
     return (
         <>
         <br></br>
-        <Container>
+        <Row>
+            <ProgressBar variant="success" striped now={20} />
+        </Row>
+        <hr/>
+        <Container fluid>
+            
             <Form>
                 <Row>
                     <Col sm={4} className="text-center mt-12 mb-12">

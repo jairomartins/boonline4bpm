@@ -4,8 +4,10 @@ import "./LogoPMMA.css"
 
 import logoPMMA from "./logo_pmma.png"
 const LogoPMMA = () => {
-    return ( <>
-        <img src={logoPMMA} className="Logo-PMMA" alt="Logo da PMMA" />
+    return ( < >
+        
+            <img src={logoPMMA} className="Logo-PMMA" alt="Logo da PMMA" />
+
     </> )
 }
  

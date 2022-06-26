@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 const Home = ()=>{
     return(
         <>
-        <Container fluid>
+        <Container>
             <br/>
             <Row className="text-center">
                 <Logo4BPM/>
