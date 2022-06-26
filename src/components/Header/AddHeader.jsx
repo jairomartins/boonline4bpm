@@ -17,6 +17,8 @@ function AddHeader ({boletim,setBoletim}){
         <Container fluid>
             
             <Form>
+                <Card>
+                <Card.Title>Localização</Card.Title>
                 <Row>
                     <Col sm={4} className="text-center mt-12 mb-12">
                         <Form.Label>Número B.O</Form.Label>
@@ -45,6 +47,7 @@ function AddHeader ({boletim,setBoletim}){
                         onChange={(e)=>{setBoletim({...boletim, longitude:e.target.value})}}/>
                     </Col>
                 </Row>
+                </Card>
                 <Row>
                     <Col sm={8}>
                         <Form.Label>Natureza da Ocorrência : </Form.Label>

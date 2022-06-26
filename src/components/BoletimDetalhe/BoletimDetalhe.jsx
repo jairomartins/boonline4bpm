@@ -9,7 +9,7 @@ import {BsArrowLeft } from "react-icons/bs"
 
 // import BandeiraMaranhao from "../BandeiraMaranhao";
 import Logo4BPM from "../Logo4BPM"
-import BrasaoMa from "../Brasao_Maranhao"
+// import BrasaoMa from "../Brasao_Maranhao"
 import LogoPMMA from "../Logo_PMMA";
 
 import MaterialDetalhe from "./MaterialDetalhe";
@@ -37,9 +37,9 @@ const BoletimDetalhe = ({boletim}) => {
                 <Col>
                     <LogoPMMA/>
                 </Col>
-                <Col  style={{fontSize:"7px"}}>
-                    <BrasaoMa/>
-                   <b> <p>ESTADO DO MARANHÃO <br/>
+                <Col style={{fontSize:"10px"}}>
+                    {/* <BrasaoMa/> */}
+                    <b><p>ESTADO DO MARANHÃO <br/>
                     SECRETARIA DE ESTADO DA SEGURANÇA PÚBLICA<br/>
                     POLÍCIA MILITAR DO MARANHÃO<br/>
                     COMANDO DO POLICIAMENTO DE ÁREA DO INTERIOR – CPAI-6<br/>
