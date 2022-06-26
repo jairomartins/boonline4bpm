@@ -1,6 +1,6 @@
 import React  from "react";
 
-import {  Col, Container, Row, Form } from 'react-bootstrap';
+import { Card, Col, Container, Row, Form } from 'react-bootstrap';
 
 import InputMask from 'react-input-mask';
 
@@ -12,6 +12,8 @@ function AddHeader ({boletim,setBoletim}){
         <br></br>
         <Container>
             <Form>
+                <Card>
+                <Card.Title>Localização</Card.Title>
                 <Row>
                     <Col sm={4} className="text-center mt-12 mb-12">
                         <Form.Label>Número B.O</Form.Label>
@@ -40,6 +42,7 @@ function AddHeader ({boletim,setBoletim}){
                         onChange={(e)=>{setBoletim({...boletim, longitude:e.target.value})}}/>
                     </Col>
                 </Row>
+                </Card>
                 <Row>
                     <Col sm={8}>
                         <Form.Label>Natureza da Ocorrência : </Form.Label>
