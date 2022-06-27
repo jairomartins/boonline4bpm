@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Col,Row,Container, Form} from "react-bootstrap";
+import { Button, Col,Row,Container, Form ,ProgressBar} from "react-bootstrap";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 
 function AddPolicial ({boletim,setBoletim}){
@@ -28,6 +28,8 @@ function AddPolicial ({boletim,setBoletim}){
     return(
         <>  <br/> 
             <Container>
+                <ProgressBar variant="success" striped now={80} />
+                <hr/>
                 {/* {menssagem.estado?<Alert variant={menssagem.tipo} size="sm">{menssagem.texto}</Alert>:""} */}
                 <Form onSubmit={handelAddPolicialClick}>
                     <Row>

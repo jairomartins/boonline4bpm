@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidV4 } from "uuid";
 
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, ProgressBar} from "react-bootstrap";
 import { MdAddBox } from "react-icons/md";
 
 function AddMaterial({boletim,setBoletim}){
@@ -24,6 +24,8 @@ function AddMaterial({boletim,setBoletim}){
         <>
         <Container>
             <br/>
+            <ProgressBar variant="success" striped now={60} />
+            <hr/>
             <Row>
                 <Col md={10} sm={10}>
                     <Form.Label>Descrição: </Form.Label>

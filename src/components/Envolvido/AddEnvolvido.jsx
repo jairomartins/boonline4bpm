@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { v4 as uuidV4 } from "uuid";
 
-import { Col, Button, Container, Form, Row} from "react-bootstrap";
+import { Col, Button, Container, Form, Row, ProgressBar} from "react-bootstrap";
 import {BsFillPersonPlusFill} from "react-icons/bs"
 
 import InputMask from 'react-input-mask';
@@ -42,8 +42,13 @@ function AddEnvolvido ({boletim, setBoletim}){
     }
     return(
         <>  <br/>
+            
             {/* Container dados pessoais */}
             <Container>
+            
+            <ProgressBar variant="success" striped now={40} />
+            
+            <hr/>
                 <Row>
                     <Col sm={3}>
                         <Form.Label>Tipo Envolvimento:</Form.Label>

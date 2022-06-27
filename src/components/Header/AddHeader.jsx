@@ -10,17 +10,14 @@ function AddHeader ({boletim,setBoletim}){
     return (
         <>
         <br></br>
-        <Row>
-            <ProgressBar variant="success" striped now={20} />
-        </Row>
-        <hr/>
-        <Container fluid>
+       
+        <Container>
             
+            <ProgressBar variant="success" striped now={20} />
+            <hr/>
             <Form>
-                <Card>
-                <Card.Title>Localização</Card.Title>
                 <Row>
-                    <Col sm={4} className="text-center mt-12 mb-12">
+                    <Col sm={4}>
                         <Form.Label>Número B.O</Form.Label>
                         <Form.Control 
                             type="number"
@@ -47,7 +44,6 @@ function AddHeader ({boletim,setBoletim}){
                         onChange={(e)=>{setBoletim({...boletim, longitude:e.target.value})}}/>
                     </Col>
                 </Row>
-                </Card>
                 <Row>
                     <Col sm={8}>
                         <Form.Label>Natureza da Ocorrência : </Form.Label>

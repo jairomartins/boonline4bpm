@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from "react";
 
-import { Container, Row , Col, Button} from "react-bootstrap";
+import { Container, Row , Col, Button, ProgressBar} from "react-bootstrap";
 
 
 import {Editor, EditorState, convertToRaw} from 'draft-js';
@@ -40,7 +40,11 @@ const Historico = ({boletim,setBoletim}) => {
 
         <Cabecalho texto={"Histórico da Ocorrência"}/>
         <br/>
+
         <Container className="text-center">
+
+            <ProgressBar variant="success" striped now={100} />
+            <hr/>
             <Row style={{ border: "1px solid black", minHeight: "200px", cursor: "text"}}
                 onClick={focusEditor}>
                 <Editor ref={editor} editorState={editorState} onChange={setEditorState} />
