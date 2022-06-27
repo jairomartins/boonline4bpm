@@ -40,14 +40,15 @@ const Historico = ({boletim,setBoletim}) => {
 
         <Cabecalho texto={"Histórico da Ocorrência"}/>
         <br/>
-
-        <Container className="text-center">
+        <Container className="text-center" fluid>
 
             <ProgressBar variant="success" striped now={100} />
             <hr/>
-            <Row style={{ border: "1px solid black", minHeight: "200px", cursor: "text"}}
+            <Row style={{ border: "1px solid green", minHeight: "200px", cursor: "text", minWidth:"90%"}}
                 onClick={focusEditor}>
-                <Editor ref={editor} editorState={editorState} onChange={setEditorState} />
+                    <Col>
+                        <Editor ref={editor} editorState={editorState} onChange={setEditorState} />
+                    </Col>
             </Row>
             <br/>
             <Row>

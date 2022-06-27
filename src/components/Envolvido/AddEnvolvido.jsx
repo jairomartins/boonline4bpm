@@ -41,13 +41,11 @@ function AddEnvolvido ({boletim, setBoletim}){
         setBoletim({...boletim, envolvidos:newEnvolvidos})
     }
     return(
-        <>  <br/>
-            
+        <>  
             {/* Container dados pessoais */}
-            <Container>
-            
+            <Container fluid>
+            <br/>
             <ProgressBar variant="success" striped now={40} />
-            
             <hr/>
                 <Row>
                     <Col sm={3}>

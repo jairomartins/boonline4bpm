@@ -26,8 +26,9 @@ function AddPolicial ({boletim,setBoletim}){
  
 
     return(
-        <>  <br/> 
-            <Container>
+        <>  
+            <Container fluid>
+                <br/> 
                 <ProgressBar variant="success" striped now={80} />
                 <hr/>
                 {/* {menssagem.estado?<Alert variant={menssagem.tipo} size="sm">{menssagem.texto}</Alert>:""} */}

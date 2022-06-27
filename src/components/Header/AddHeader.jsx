@@ -9,10 +9,8 @@ function AddHeader ({boletim,setBoletim}){
     
     return (
         <>
-        <br></br>
-       
-        <Container>
-            
+        <Container fluid> 
+            <br/>
             <ProgressBar variant="success" striped now={20} />
             <hr/>
             <Form>

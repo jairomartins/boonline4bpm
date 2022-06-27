@@ -22,7 +22,7 @@ function AddMaterial({boletim,setBoletim}){
 
     return (
         <>
-        <Container>
+        <Container fluid>
             <br/>
             <ProgressBar variant="success" striped now={60} />
             <hr/>
