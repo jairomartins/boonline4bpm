@@ -72,7 +72,7 @@ function AddHeader ({boletim,setBoletim}){
                 <br/>
                 <Card>
                     <Card.Header>
-                        <Card.Title><ImLocation/>Localização do Fato</Card.Title>
+                        <Card.Title><ImLocation/> Localização do Fato</Card.Title>
                     </Card.Header>
                     <Card.Body>
                 <Row>
