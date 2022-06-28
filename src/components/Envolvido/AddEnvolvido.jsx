@@ -115,7 +115,7 @@ function AddEnvolvido ({boletim, setBoletim}){
             </Container>
             
             {/* Container dados de Localizacao */}
-            <Container>
+            <Container fluid>
                 <Row>
                 <Col sm={4}>
                     <Form.Label>Endereço:</Form.Label>

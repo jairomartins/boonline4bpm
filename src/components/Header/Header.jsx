@@ -8,7 +8,7 @@ const Header = ({boletim,setBoletim})=>{
     
     return(
         <>
-            <Cabecalho texto={"Dados Gerais"}/>
+            <Cabecalho texto={"Fato Comunicado"}/>
             <AddHeader boletim={boletim} setBoletim={setBoletim} />
             <NavPage prev="/" next="/envolvido"/>
         </>

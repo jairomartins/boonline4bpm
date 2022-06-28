@@ -6,7 +6,7 @@ import Envolvido from "./Envolvido";
 function EnvolvidoList ({boletim,setBoletim}){
     return (
         <>
-        <Container>
+        <Container fluid>
         <Table>
             <thead>
                 <tr>

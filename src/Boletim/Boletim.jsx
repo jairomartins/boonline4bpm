@@ -11,12 +11,13 @@ import {
 
 
 import Home from "../Home/home"
-import Header from "../components/Header/Header";
+import Header from "../components/Header/Header"
 import Envolvidos from "../components/Envolvido/Envolvidos"
-import ItensApreendidos from "../components/Material/ItensApreendidos";
+import ItensApreendidos from "../components/Material/ItensApreendidos"
 import Efetivo from "../components/Efetivo/Efetivo"
-import Historico from "../components/Historico/Historico";
+import Historico from "../components/Historico/Historico"
 import BoletimDetalhe from "../components/BoletimDetalhe/BoletimDetalhe"
+import Page404 from "../components/Page404"
 
 export default function Boletim(){ 
    
@@ -38,6 +39,7 @@ export default function Boletim(){
                     <Route path="/efetivo" element={<Efetivo boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/historico" element={<Historico boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/resumo" element={<BoletimDetalhe boletim={boletim}/>}/>
+                    <Route path="*" element={<Page404/>}/>
                 </Routes>
             </BrowserRouter>
 
