@@ -17,6 +17,8 @@ function AddEnvolvido ({boletim, setBoletim}){
     const [sexo , setSexo]  = useState('Masculino')
     const [nascimento, setNascimento]  = useState('')
     const [endereco, setEndereco] = useState('')
+    const [numero, setNumero] = useState('')
+    const [pontoReferencia, setPontoReferencia] = useState('')
     const [bairro, setBairro] = useState('')
     const [municipio, setMunicipio] = useState('')
     const [telefone, setTelefone] = useState('')
@@ -34,6 +36,8 @@ function AddEnvolvido ({boletim, setBoletim}){
             sexo:sexo,
             nascimento:nascimento,
             endereco: endereco,
+            numero:numero,
+            pontoReferencia:pontoReferencia,
             municipio:municipio,
             telefone:telefone,
             nomeMae:nomeMae,
@@ -125,7 +129,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                             </Col>
                         </Row>
                         <Row>
-                        <Col sm={8}>
+                        <Col sm={6}>
                             <Form.Label>Nome da Mãe:</Form.Label>
                             <Form.Control size="sm"
                                 type="text"
@@ -134,7 +138,15 @@ function AddEnvolvido ({boletim, setBoletim}){
                                 value={nomeMae}
                             />
                         </Col>
-                        
+                        <Col sm={6}>
+                            <Form.Label>OBS:</Form.Label>
+                            <Form.Control size="sm"
+                                type="text"
+                                onChange={(e)=>{setObs(e.target.value)}}
+                                placeholder="Observações"
+                                value={obs}
+                            />
+                        </Col>
                         </Row>
                     </Card.Body>
                 </Card>
@@ -149,43 +161,48 @@ function AddEnvolvido ({boletim, setBoletim}){
                     </Card.Header>
                     <Card.Body>
                     <Row>
-                    <Col sm={4}>
-                        <Form.Label>Endereço:</Form.Label>
-                        <Form.Control size="sm"
-                            type="text"
-                            onChange={(e)=>{setEndereco(e.target.value)}}
-                            placeholder="Nome da Rua -  Número"
-                            value={endereco}
-                        />
-                    </Col>
-                    <Col sm={4}>
-                        <Form.Label>Bairro:</Form.Label>
-                        <Form.Control size="sm"
-                            type="text"
-                            onChange={(e)=>{setBairro(e.target.value)}}
+                        <Col sm={8}>
+                            <Form.Label>Endereço : </Form.Label>
+                            <Form.Control
+                            size="sm"
+                            placeholder="Nome da Rua"
+                           
+                            onChange={(e)=>{setEndereco(e.target.value)}}/>
+                        </Col>
+                        <Col sm={2}>
+                            <Form.Label>Numero : </Form.Label>
+                            <Form.Control
+                            size="sm"
+                            placeholder="Numero"
+                            value={numero}
+                            onChange={(e)=>{setNumero(e.target.value)}}/>
+                        </Col>
+                        <Col sm={2}>
+                            <Form.Label>Bairro : </Form.Label>
+                            <Form.Control
+                            size="sm"
                             placeholder="Nome do Bairro"
-                            value={bairro}
-                        />
-                    </Col>
-                    <Col sm={4}>
-                        <Form.Label>Município:</Form.Label>
-                        <Form.Control size="sm"
-                            type="text"
-                            onChange={(e)=>{setMunicipio(e.target.value)}}
+                            onChange={(e)=>{setBairro(e.target.value)}}/>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col sm={8}>
+                            <Form.Label>Município : </Form.Label>
+                            <Form.Control
+                            size="sm"
                             placeholder="Nome do Município"
-                            value={municipio}
-                        />
-                    </Col>
+                            defaultValue={boletim.municipio}
+                            onChange={(e)=>{setMunicipio(e.target.value)}}/>
+                        </Col>
 
-                    <Col>
-                            <Form.Label>Observações</Form.Label>
-                            <Form.Control size="sm"
-                                type="text"
-                                onChange={(e)=>{setObs(e.target.value)}}
-                                placeholder=""
-                                value={obs}
-                            />
-                        </Col>  
+                        <Col>
+                            <Form.Label>Ponto de Referencia : </Form.Label>
+                            <Form.Control
+                            size="sm"
+                            placeholder="Pronto de referencia"
+                            
+                            onChange={(e)=>{setPontoReferencia(e.target.value)}}/>
+                        </Col>
                     </Row>
                     <br/>
                     <Row className="text-center">
