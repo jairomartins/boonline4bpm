@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from "react";
 
-import { Container, Row , Col, Button, ProgressBar} from "react-bootstrap";
+import { Container, Row , Col, Button, ProgressBar, Card} from "react-bootstrap";
 
 
 import {Editor, EditorState, convertToRaw} from 'draft-js';
@@ -8,9 +8,10 @@ import 'draft-js/dist/Draft.css';
 
 import Cabecalho from "../Cabecalho/Cabecalho";
 
-import {BiSave} from "react-icons/bi"
-import {BsEyeFill}from "react-icons/bs"
+import {BiSave, BiEdit} from "react-icons/bi"
+import {AiOutlineFileDone}from "react-icons/ai"
 import {BsArrowLeft } from "react-icons/bs"
+
 
 import { Link } from "react-router-dom";
 
@@ -40,18 +41,28 @@ const Historico = ({boletim,setBoletim}) => {
 
         <Cabecalho texto={"Histórico da Ocorrência"}/>
         <br/>
-        <Container className="text-center" fluid>
+        <Container fluid>
 
             <ProgressBar variant="success" striped now={100} />
             <hr/>
-            <Row style={{ border: "1px solid green", minHeight: "200px", cursor: "text", minWidth:"90%"}}
-                onClick={focusEditor}>
-                    <Col>
-                        <Editor ref={editor} editorState={editorState} onChange={setEditorState} />
-                    </Col>
-            </Row>
+            <Card>
+                <Card.Header>
+                    <Card.Title>
+                        <BiEdit/> Relato do Fato
+                    </Card.Title>
+                </Card.Header>
+                <Card.Body>
+                    <Row style={{ minHeight: "200px", cursor: "text", minWidth:"90%"}}
+                    onClick={focusEditor}>
+                        <Col>
+                            <Editor ref={editor} editorState={editorState} onChange={setEditorState} />
+                        </Col>
+                    </Row>
+                </Card.Body>
+            </Card>
+            
             <br/>
-            <Row>
+            <Row className="text-center">
                 <Col>
                     <Button  
                         variant="outline-primary">
@@ -71,10 +82,12 @@ const Historico = ({boletim,setBoletim}) => {
                
                 <Col>
                     <Button
-                        variant="success"  
+                        variant="warning"
                         onClick={handleSalvarHistorico}>
-                            <Link to="/resumo"  className="link-light" > 
-                            Ver <BsEyeFill/>
+                            <Link 
+                            className="text-decoration-none"
+                            to="/resumo"> 
+                            Finalizar <AiOutlineFileDone/>
                             </Link>
                     </Button>
                 </Col>
