@@ -17,7 +17,8 @@ const Home = ()=>{
             <br/>
             <Row> 
                 <Col sm={12} className="text-center">
-                <h3>Boletim de Ocorrencia PMMA 4°BPM - 2022.1</h3>
+                <h3>Boletim de Ocorrencia PMMA 4°BPM </h3>
+                <h5>(BETA) 2022</h5>
                 </Col>
             </Row>
             <br/>
@@ -41,7 +42,7 @@ const Home = ()=>{
             <br/>
             <br/>
             <Row className="text-center">
-                <Col>Criado por : SD PM  J.Martins </Col>
+                <Col>Criado por : <a href="https://jairomartins.github.io">SD PM  J.Martins</a> </Col>
             </Row>
         </Container>
         </>
