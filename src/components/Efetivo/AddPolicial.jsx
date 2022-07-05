@@ -11,7 +11,18 @@ function AddPolicial ({boletim,setBoletim}){
     const [numeroBarra, setNumeroBarra] = useState('')
     const [id, setId] = useState('')
 
+
+    /**Limpa os valores nos campos ja preenchidos */
+    const resetaCampos = ()=>{
+        setVtr('')
+        setNome('')
+        setGraduacao('')
+        setNumeroBarra('')
+        setId('')
+    }
+
     const handelAddPolicialClick = (e)=>{
+        
         e.preventDefault()
 
         const newPolicialList = [...boletim.efetivo,{
@@ -22,6 +33,7 @@ function AddPolicial ({boletim,setBoletim}){
         id:id
         }]
         setBoletim ({...boletim, efetivo:newPolicialList})
+        resetaCampos()
     }
     
 

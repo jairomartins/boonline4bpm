@@ -8,7 +8,13 @@ import { FaBoxes } from "react-icons/fa";
 function AddMaterial({boletim,setBoletim}){
 
     const [descricao, setDescricao] = useState('')
-    const [quantidade, setQuantidade] = useState()
+    const [quantidade, setQuantidade] = useState('')
+
+
+    const resetaCampos =()=>{
+        setDescricao('')
+        setQuantidade('')
+    }
 
     const addMaterial = () =>{
         const newMaterial = [...boletim.materiaisApreendidos,{
@@ -18,6 +24,8 @@ function AddMaterial({boletim,setBoletim}){
         }]
 
         setBoletim({...boletim,materiaisApreendidos:newMaterial })
+
+        resetaCampos()
     }
 
 
@@ -37,13 +45,17 @@ function AddMaterial({boletim,setBoletim}){
                             <Form.Label>Descrição: </Form.Label>
                             <Form.Control size="sm"
                             placeholder="Descrição"
+                            value={descricao}
+                            required
                             onChange={(e)=>{setDescricao(e.target.value)}}
                             />
                         </Col>
                         <Col md={2} sm={2}>
                             <Form.Label>Quantidade:</Form.Label>
                             <Form.Control size="sm"
+                            value={quantidade}
                             placeholder="QTD"
+                            required
                             onChange={(e)=>{setQuantidade(e.target.value)}}
                             />
                         </Col>

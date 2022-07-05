@@ -25,6 +25,22 @@ function AddEnvolvido ({boletim, setBoletim}){
     const [nomeMae, setNomeMae] = useState('')
     const [obs, setObs] = useState('')
 
+    const resetaCampos = ()=>{
+        setTipoEnvolvido('')
+        setNome('')
+        setCpf('')
+        setSexo('')
+        setNascimento('')
+        setEndereco('')
+        setNumero('')
+        setPontoReferencia('')
+        setBairro('')
+        setMunicipio('')
+        setTelefone('')
+        setNomeMae('')
+        setObs('')  
+    }
+
     const clickAddEnvolvido = ()=>{
     const newEnvolvidos = [...boletim.envolvidos,
             {
@@ -44,6 +60,7 @@ function AddEnvolvido ({boletim, setBoletim}){
             obs:obs}
         ]
         setBoletim({...boletim, envolvidos:newEnvolvidos})
+        resetaCampos()
     }
     return(
         <>  
