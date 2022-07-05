@@ -41,30 +41,37 @@ function AddEnvolvido ({boletim, setBoletim}){
         setObs('')  
     }
 
-    const clickAddEnvolvido = ()=>{
-    const newEnvolvidos = [...boletim.envolvidos,
-            {
-            id:uuidV4(),
-            tipo:tipoEnvolvido,
-            nome:nome,
-            cpf:cpf,
-            bairro:bairro,
-            sexo:sexo,
-            nascimento:nascimento,
-            endereco: endereco,
-            numero:numero,
-            pontoReferencia:pontoReferencia,
-            municipio:municipio,
-            telefone:telefone,
-            nomeMae:nomeMae,
-            obs:obs}
-        ]
-        setBoletim({...boletim, envolvidos:newEnvolvidos})
+    const clickAddEnvolvido = (e)=>{
+
+        e.preventDefault()
+
+
+        const newEnvolvidos = [...boletim.envolvidos,
+                {
+                id:uuidV4(),
+                tipo:tipoEnvolvido,
+                nome:nome,
+                cpf:cpf,
+                bairro:bairro,
+                sexo:sexo,
+                nascimento:nascimento,
+                endereco: endereco,
+                numero:numero,
+                pontoReferencia:pontoReferencia,
+                municipio:municipio,
+                telefone:telefone,
+                nomeMae:nomeMae,
+                obs:obs}
+            ]
+            setBoletim({...boletim, envolvidos:newEnvolvidos})
+
         resetaCampos()
     }
+
     return(
         <>  
             {/* Container dados pessoais */}
+        <Form onSubmit={clickAddEnvolvido}>
             <Container fluid>
             <br/>
             <ProgressBar variant="success" striped now={40} />
@@ -98,6 +105,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                                     size="sm"
                                     onChange={(e)=>{setNome(e.target.value)}}
                                     placeholder="Nome"
+                                    required
                                     value={nome}
                                 />
                             </Col >
@@ -226,7 +234,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                         <Col>
                             <Button 
                                 variant="success"
-                                onClick={clickAddEnvolvido}
+                                type="submit"
                             >
                                 Adicionar Envolvido  <BsFillPersonPlusFill/> 
                             </Button>
@@ -237,6 +245,7 @@ function AddEnvolvido ({boletim, setBoletim}){
             </Container>
             <br/>
             <br/>
+        </Form>
         </>
     )
 }

@@ -16,7 +16,10 @@ function AddMaterial({boletim,setBoletim}){
         setQuantidade('')
     }
 
-    const addMaterial = () =>{
+    const addMaterial = (e) =>{
+
+        e.preventDefault()
+
         const newMaterial = [...boletim.materiaisApreendidos,{
             id:uuidV4(),
             descricao:descricao,
@@ -40,26 +43,27 @@ function AddMaterial({boletim,setBoletim}){
                     <Card.Subtitle> <FaBoxes/> Descrição dos Objetos Apresentados</Card.Subtitle>
                 </Card.Header>
                 <Card.Body>
+                <Form onSubmit={addMaterial}>
                     <Row>
-                        <Col md={10} sm={10}>
-                            <Form.Label>Descrição: </Form.Label>
-                            <Form.Control size="sm"
-                            placeholder="Descrição"
-                            value={descricao}
-                            required
-                            onChange={(e)=>{setDescricao(e.target.value)}}
-                            />
-                        </Col>
-                        <Col md={2} sm={2}>
-                            <Form.Label>Quantidade:</Form.Label>
-                            <Form.Control size="sm"
-                            value={quantidade}
-                            placeholder="QTD"
-                            required
-                            onChange={(e)=>{setQuantidade(e.target.value)}}
-                            />
-                        </Col>
-                
+                            <Col md={10} sm={10}>
+                                <Form.Label>Descrição: </Form.Label>
+                                <Form.Control size="sm"
+                                placeholder="Descrição"
+                                value={descricao}
+                                required
+                                onChange={(e)=>{setDescricao(e.target.value)}}
+                                />
+                            </Col>
+                            <Col md={2} sm={2}>
+                                <Form.Label>Quantidade:</Form.Label>
+                                <Form.Control size="sm"
+                                value={quantidade}
+                                placeholder="QTD"
+                                required
+                                onChange={(e)=>{setQuantidade(e.target.value)}}
+                                />
+                            </Col>
+                        
                     </Row>
                     <br/>
                     <Row className="text-center">
@@ -67,11 +71,13 @@ function AddMaterial({boletim,setBoletim}){
                             <Button
                                 size="sm"
                                 variant="success"
-                                onClick={addMaterial}>
+                                type="submit"
+                                >
                                     Adicionar Material <MdAddBox/>
                             </Button>
                         </Col>
                     </Row>
+                </Form>
                 </Card.Body>
             </Card>
         </Container>
