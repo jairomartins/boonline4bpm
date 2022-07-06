@@ -51,8 +51,7 @@ const BoletimDetalhe = ({boletim}) => {
                 </Col>
             </Row>
             <Row>
-               
-                <Col className="text-center">Ocorrencia numero:<b> {boletim.numero}</b> - Registrada em <b>11 de Junho de 2022 </b>às <b>18:55h</b></Col>
+                <Col className="text-center">OCORRÊNCIA NUMERO:<b> {boletim.numero} {boletim.dataRegistro}</b></Col>
             </Row>
             <hr/>
             <Row>

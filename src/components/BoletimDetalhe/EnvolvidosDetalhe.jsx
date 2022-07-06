@@ -5,29 +5,26 @@ import { Col, Row } from "react-bootstrap";
 const EnvolvidosDetalhe = ({envolvido}) => {
     return (<>
             <Row>
-                <Col>Tipo de Envolvimento : {envolvido.tipo}</Col>
-                <Col>Nome : {envolvido.nome} </Col>
-                <Col>CPF : {envolvido.cpf}</Col>
+                <Col><b>Tipo de Envolvimento: </b> {envolvido.tipo}</Col>
+                <Col><b>Nome : </b> {envolvido.nome} </Col>
+                <Col><b>CPF : </b>{envolvido.cpf}</Col>
             </Row>
             <Row>
-                <Col>Sexo: {envolvido.sex0} </Col>	
-                <Col>Data de nascimento: {envolvido.nascimento}</Col>
-                <Col>Telefone : {envolvido.telefone}</Col>
+                <Col><b>Sexo: </b>{envolvido.sex0} </Col>	
+                <Col><b>Data de nascimento: </b>{envolvido.nascimento}</Col>
+                <Col><b>Telefone : </b>{envolvido.telefone}</Col>
             </Row>
             <Row>
-                <Col>Nome da Mãe: {envolvido.nomeMae}</Col>	
-            </Row>
+                <Col><b>Nome da Mãe: </b>{envolvido.nomeMae}</Col>	
+                <Col><b>Observações: </b>{envolvido.obs}</Col>
+                <Col><b>Ponto de Referência: </b>{envolvido.pontoReferencia}</Col>	
+            </Row>	
              <Row>
-                 <Col>OBS: {envolvido.obs}</Col>	
-             </Row>
-             <Row>
-                <Col>Endereço: {envolvido.endereco}</Col>
-                <Col>Número: {envolvido.numero} </Col>
-                <Col>Bairro: {envolvido.bairro} </Col>
-                <Col>Município: {envolvido.municipio} </Col>
-                <Col>Ponto de Referência: {envolvido.pontoReferencia}</Col>	
+                <Col><b>Endereço: </b>{envolvido.endereco}, Número: {envolvido.numero} </Col>
+                <Col><b>Bairro: </b>{envolvido.bairro} </Col>
+                <Col><b>Município: </b>{envolvido.municipio} </Col>
             </Row>
-             <br/>
+            <br/>
     </>  )
 }
  
