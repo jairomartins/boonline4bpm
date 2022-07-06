@@ -86,7 +86,7 @@ const Historico = ({boletim,setBoletim}) => {
                         onClick={handleSalvarHistorico}>
                             <Link 
                             className="text-decoration-none"
-                            to="/resumo"> 
+                            to="/VerBoletim"> 
                             Finalizar <AiOutlineFileDone/>
                             </Link>
                     </Button>
