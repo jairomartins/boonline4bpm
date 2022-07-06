@@ -38,7 +38,7 @@ export default function Boletim(){
                     <Route path="/material" element={<ItensApreendidos boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/efetivo" element={<Efetivo boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/historico" element={<Historico boletim={boletim} setBoletim={setBoletim}/>} />
-                    <Route path="/resumo" element={<BoletimDetalhe boletim={boletim}/>}/>
+                    <Route path="/VerBoletim" element={<BoletimDetalhe boletim={boletim}/>}/>
                     <Route path="*" element={<Page404/>}/>
                 </Routes>
             </BrowserRouter>
