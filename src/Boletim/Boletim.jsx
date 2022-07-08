@@ -18,6 +18,8 @@ import Efetivo from "../components/Efetivo/Efetivo"
 import Historico from "../components/Historico/Historico"
 import BoletimDetalhe from "../components/BoletimDetalhe/BoletimDetalhe"
 import Page404 from "../components/Page404"
+import RegisterUser from "../components/User/RegisterUser";
+import LoginUser from "../components/User/LoginUser";
 
 export default function Boletim(){ 
    
@@ -40,6 +42,8 @@ export default function Boletim(){
                     <Route path="/historico" element={<Historico boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/VerBoletim" element={<BoletimDetalhe boletim={boletim}/>}/>
                     <Route path="*" element={<Page404/>}/>
+                    <Route path="adm/registro" element={<RegisterUser/>}/>
+                    <Route path="adm/login" element={<LoginUser/>}/>
                 </Routes>
             </BrowserRouter>
 
