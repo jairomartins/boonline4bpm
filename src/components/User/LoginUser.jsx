@@ -1,6 +1,11 @@
-import React,{useState} from "react";
+import React,{useState, useContext} from "react";
 
 import {Card, Col, Row, Container, Form, Button} from "react-bootstrap"
+
+
+import { Context } from "../../Context/AuthContext";
+
+const axios = require('axios');
 
 
 const LoginUser = () => {
@@ -8,25 +13,34 @@ const LoginUser = () => {
     const [userEmail, setUserEmail] =  useState()
     const [userPassword, setUserPassword] =  useState()
 
+    const {authenticated, handleLogin} = useContext(Context);
 
-    async function handleLogin (e){
+    console.log('adm/loign', authenticated)
+
+
+    async function clickHandleLogin(e){
+
         e.preventDefault()
 
-        const response = await fetch('http://localhost:3000/auth/login',{
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify({
-                userEmail,
-                userPassword
-            }),
-            
+        axios.post("http://localhost:3000/auth/login",{
+                userEmail: userEmail,
+                userPassword: userPassword
         })
+        .then(function (response) {
+            // manipula o sucesso da requisição
+            console.log(response.data.user);
+          })
+          .catch(function (error) {
+            // manipula erros da requisição
+            console.error(error);
+          })
+          .then(function () {
+            // sempre será executado
+          });
 
-        const data = await response.json()
-        console.log(data)
+         handleLogin(userEmail, userPassword)
     }
+
     return (  <>
     <Container className="text-center">
         <br/>
@@ -37,7 +51,7 @@ const LoginUser = () => {
                 <Card.Title>Entrar</Card.Title>
             </Card.Header>
             <Card.Body>
-                <Form onSubmit={handleLogin}>
+                <Form onSubmit={clickHandleLogin}>
                     <Form.Control 
                         autoComplete="off"
                         onChange={(e)=>{setUserEmail(e.target.value)}}

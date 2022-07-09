@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
+
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -21,8 +22,14 @@ import Page404 from "../components/Page404"
 import RegisterUser from "../components/User/RegisterUser";
 import LoginUser from "../components/User/LoginUser";
 
+import { Context } from "../Context/AuthContext";
+
+
+
 export default function Boletim(){ 
    
+    const {authenticated} = useContext(Context);
+
     const [boletim, setBoletim] = useState({
         id:uuidv4(),
         envolvidos:[],
@@ -32,10 +39,17 @@ export default function Boletim(){
 
     return (
         <>
+            
             <BrowserRouter>
+            {/* {authenticated && <Navigate replace to="/home"/>} */}
                 <Routes>
-                    <Route path="/" element={<Home />}/>
-                    <Route path="/header" element={<Header boletim={boletim} setBoletim={setBoletim}/>} />
+                
+                    <Route path="/" 
+                        element={authenticated ? (<Home/>):(<LoginUser/>)}
+                    />
+                    <Route path="/header" 
+                        element={authenticated ? (<Header boletim={boletim} setBoletim={setBoletim}/>):(<LoginUser/>)} 
+                    />
                     <Route path="/envolvido" element={<Envolvidos boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/material" element={<ItensApreendidos boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/efetivo" element={<Efetivo boletim={boletim} setBoletim={setBoletim}/>} />
