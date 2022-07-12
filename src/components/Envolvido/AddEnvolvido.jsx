@@ -94,7 +94,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                                 <option value="Suspeito">Suspeito</option>
                                 <option value="Condutor">Condutor</option>
                                 <option value="Vitima">Vítima</option>
-                                <option value="Testemunha">Tetemunha</option>
+                                <option value="Testemunha">Testemunha</option>
                                 <option value="Comunicante">Comunicante</option>
                                 <option value="Vítima Fatal">Vítima Fatal</option>
                                 </Form.Select>
@@ -164,7 +164,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                             />
                         </Col>
                         <Col sm={6}>
-                            <Form.Label>OBS:</Form.Label>
+                            <Form.Label>Observações:</Form.Label>
                             <Form.Control size="sm"
                                 type="text"
                                 onChange={(e)=>{setObs(e.target.value)}}
@@ -216,7 +216,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                             <Form.Control
                             size="sm"
                             placeholder="Nome do Município"
-                            defaultValue={boletim.municipio}
+                            defaultValue={municipio}
                             onChange={(e)=>{setMunicipio(e.target.value)}}/>
                         </Col>
 
