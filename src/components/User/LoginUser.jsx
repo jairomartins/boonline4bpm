@@ -4,8 +4,7 @@ import {Card, Col, Row, Container, Form, Button} from "react-bootstrap"
 
 
 import { Context } from "../../Context/AuthContext";
-
-const axios = require('axios');
+import { Navigate } from "react-router-dom";
 
 
 const LoginUser = () => {
@@ -19,29 +18,15 @@ const LoginUser = () => {
 
 
     async function clickHandleLogin(e){
-
         e.preventDefault()
-
-        axios.post("http://localhost:3000/auth/login",{
-                userEmail: userEmail,
-                userPassword: userPassword
-        })
-        .then(function (response) {
-            // manipula o sucesso da requisição
-            console.log(response.data.user);
-          })
-          .catch(function (error) {
-            // manipula erros da requisição
-            console.error(error);
-          })
-          .then(function () {
-            // sempre será executado
-          });
-
-         handleLogin(userEmail, userPassword)
+        handleLogin(userEmail, userPassword)
     }
 
     return (  <>
+
+        {authenticated && (
+          <Navigate to="/" replace={true} />
+        )}
     <Container className="text-center">
         <br/>
         <Row  className="justify-content-md-center">
@@ -67,6 +52,9 @@ const LoginUser = () => {
                     </Button>
                 </Form>
             </Card.Body>
+            <Card.Footer>
+                Registre-se <a href="adm/registro">Aqui</a>
+            </Card.Footer>
         </Card>
         </Col>          
         </Row>

@@ -11,9 +11,8 @@ function RegisterUser (){
 
     async function handleRegistar (e){
         e.preventDefault()
-        alert(userName)
 
-        const response = await fetch('http://localhost:3000/auth/register',{
+        const response = await fetch('http://192.168.0.100:3001/auth/register',{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
@@ -27,7 +26,7 @@ function RegisterUser (){
         })
 
         const data = await response.json()
-        console.log(data)
+        alert(data.message)
     }
 
     return ( <>
