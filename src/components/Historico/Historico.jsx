@@ -15,6 +15,8 @@ import {BsArrowLeft } from "react-icons/bs"
 
 import { Link } from "react-router-dom";
 
+import axios from "axios"
+
 const Historico = ({boletim,setBoletim}) => {
 
     useEffect(() => {
@@ -26,10 +28,32 @@ const Historico = ({boletim,setBoletim}) => {
 
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
 
+    const saveToDB = async ()=>{
+        const his = editorState.getCurrentContent()
+        console.log(JSON.stringify(convertToRaw(his)))
+        setBoletim({...boletim, historicojson:JSON.stringify(convertToRaw(his))})
+        axios.post("http://127.0.0.1:3001/savebo",{
+            boletim: boletim,
+        })
+        .then(function (response) {
+            // manipula o sucesso da requisição
+            console.log(response)
+            console.log('tentei mano!')
+        })
+        .catch(function (error) {
+            // manipula erros da requisição
+            console.error(error);
+        })
+        .then(function () {
+            // sempre será executado
+        });
+    }
+
     const handleSalvarHistorico = ()=>{
         const his = editorState.getCurrentContent()
-        console.log(convertToRaw(his))
+        console.log(JSON.stringify(convertToRaw(his)))
         setBoletim({...boletim, historico:editorState.getCurrentContent()})
+        saveToDB()
     }
 
     const editor = React.useRef(null);

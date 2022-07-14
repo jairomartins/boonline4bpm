@@ -38,7 +38,7 @@ const LoginUser = () => {
             <Card.Body>
                 <Form onSubmit={clickHandleLogin}>
                     <Form.Control 
-                        autoComplete="off"
+                        autoComplete="on"
                         onChange={(e)=>{setUserEmail(e.target.value)}}
                         placeholder="E-mail"/>
                     <br/>

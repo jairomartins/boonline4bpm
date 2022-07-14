@@ -28,7 +28,7 @@ import { Context } from "../Context/AuthContext";
 
 export default function Boletim(){ 
    
-    // const {authenticated} = useContext(Context);
+    const {authenticated} = useContext(Context);
 
     const [boletim, setBoletim] = useState({
         id:uuidv4(),
@@ -44,18 +44,18 @@ export default function Boletim(){
             {/* {authenticated && <Navigate replace to="/home"/>} */}
                 <Routes>
                 
-                    {/* <Route path="/" 
+                    <Route path="/" 
                         element={authenticated ? (<Home/>):(<LoginUser/>)}
                     />
                     <Route path="/header" 
                         element={authenticated ? (<Header boletim={boletim} setBoletim={setBoletim}/>):(<LoginUser/>)} 
-                    /> */}
-                    <Route path="/" 
+                    />
+                    {/* <Route path="/" 
                         element={<Home/>}
                     />
                     <Route path="/header" 
                         element={<Header boletim={boletim} setBoletim={setBoletim}/>} 
-                    />
+                    /> */}
                     <Route path="/envolvido" element={<Envolvidos boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/material" element={<ItensApreendidos boletim={boletim} setBoletim={setBoletim}/>} />
                     <Route path="/efetivo" element={<Efetivo boletim={boletim} setBoletim={setBoletim}/>} />
