@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react";
 import { Col, Row, Container, Button, Table} from "react-bootstrap";
 
-import {Editor,EditorState} from "draft-js"
+import {convertFromRaw, Editor,EditorState} from "draft-js"
 import 'draft-js/dist/Draft.css';
 
 import { AiFillPrinter } from "react-icons/ai";
@@ -22,11 +22,11 @@ const BoletimDetalhe = ({boletim}) => {
 
     useEffect(() => {
         
-        const state = boletim.historico
-          ? EditorState.createWithContent(boletim.historico)
+        const state = boletim.historicojson
+          ? EditorState.createWithContent(convertFromRaw(JSON.parse(boletim.historicojson)))
           : EditorState.createEmpty();
         setEditorState(state);
-      }, [boletim.historico]);
+      }, [boletim.historicojson]);
 
       const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
 

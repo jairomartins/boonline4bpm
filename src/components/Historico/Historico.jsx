@@ -3,7 +3,7 @@ import React, {useState,useEffect} from "react";
 import { Container, Row , Col, Button, ProgressBar, Card} from "react-bootstrap";
 
 
-import {Editor, EditorState, convertToRaw} from 'draft-js';
+import {Editor, EditorState, convertToRaw, convertFromRaw} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 
 import Cabecalho from "../Cabecalho/Cabecalho";
@@ -20,17 +20,17 @@ import axios from "axios"
 const Historico = ({boletim,setBoletim}) => {
 
     useEffect(() => {
-        const state = boletim.historico
-          ? EditorState.createWithContent(boletim.historico)
+        const state = boletim.historicojson // verifica se existe o historico do boletim, se exister incia editor com conteudo, caso contrario cria um vazio
+          ? EditorState.createWithContent(convertFromRaw(JSON.parse(boletim.historicojson)))
           : EditorState.createEmpty();
         setEditorState(state);
-      }, [boletim.historico]);
+      }, [boletim.historicojson]);
 
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
 
     const saveToDB = async ()=>{
         const his = editorState.getCurrentContent()
-        console.log(JSON.stringify(convertToRaw(his)))
+        // console.log(JSON.stringify(convertToRaw(his)))
         setBoletim({...boletim, historicojson:JSON.stringify(convertToRaw(his))})
         axios.post("http://127.0.0.1:3001/savebo",{
             boletim: boletim,
@@ -51,8 +51,9 @@ const Historico = ({boletim,setBoletim}) => {
 
     const handleSalvarHistorico = ()=>{
         const his = editorState.getCurrentContent()
-        console.log(JSON.stringify(convertToRaw(his)))
-        setBoletim({...boletim, historico:editorState.getCurrentContent()})
+        // console.log(JSON.stringify(convertToRaw(his)))
+        // setBoletim({...boletim, historico:editorState.getCurrentContent()})
+        setBoletim({...boletim, historicojson:JSON.stringify(convertToRaw(his))})
         saveToDB()
     }
 
