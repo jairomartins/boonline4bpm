@@ -21,9 +21,8 @@ const ListaBoletim = () => {
     
     return ( <>
         
-        {/* <a href="/">  */}
-        {bos.map((bo)=><li key={bo._id}>{bo._id}</li>)}
-        {/* </a> */}
+        
+        {bos.map((bo)=><li key={bo._id}><a href={`http://localhost:3001/listByID/${bo._id}`}>{bo._id}</a></li>)}
 
         <button>Atualizar</button>
     </> );
