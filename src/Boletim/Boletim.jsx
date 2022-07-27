@@ -22,7 +22,10 @@ import Page404 from "../components/Page404"
 import RegisterUser from "../components/User/RegisterUser";
 import LoginUser from "../components/User/LoginUser";
 
+import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD"
+
 import { Context } from "../Context/AuthContext";
+import ListaBoletim from "../Pages/Boletim/ListaBoletim";
 
 
 
@@ -64,6 +67,8 @@ export default function Boletim(){
                     <Route path="*" element={<Page404/>}/>
                     <Route path="adm/registro" element={<RegisterUser/>}/>
                     <Route path="adm/login" element={<LoginUser/>}/>
+                    <Route path="adm/listaBoletim" element={<ListaBoletim/>}/>
+                    <Route path="adm/listaByID" element={<BoletimDetalheFromBD/>}/>
                 </Routes>
             </BrowserRouter>
 

@@ -3,8 +3,15 @@ import React, {useState,useEffect} from "react";
 import { Container, Row , Col, Button, ProgressBar, Card} from "react-bootstrap";
 
 
-import {Editor, EditorState, convertToRaw, convertFromRaw} from 'draft-js';
+import {Editor, EditorState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
+
+
+//modulo que converte conteudo do editor draft-js para html 
+import {stateToHTML} from 'draft-js-export-html';
+// modulo que converte 
+import {stateFromHTML} from 'draft-js-import-html';
+
 
 import Cabecalho from "../Cabecalho/Cabecalho";
 
@@ -19,26 +26,26 @@ import axios from "axios"
 
 const Historico = ({boletim,setBoletim}) => {
 
-    useEffect(() => {
-        const state = boletim.historicojson // verifica se existe o historico do boletim, se exister incia editor com conteudo, caso contrario cria um vazio
-          ? EditorState.createWithContent(convertFromRaw(JSON.parse(boletim.historicojson)))
-          : EditorState.createEmpty();
-        setEditorState(state);
-      }, [boletim.historicojson]);
-
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
 
+
+    useEffect(() => {
+        const state = boletim.historicohtml
+          ? EditorState.createWithContent(stateFromHTML(boletim.historicohtml))
+          : EditorState.createEmpty();
+        setEditorState(state);
+    }, [boletim.historicohtml]);
+
+
     const saveToDB = async ()=>{
-        const his = editorState.getCurrentContent()
-        // console.log(JSON.stringify(convertToRaw(his)))
-        setBoletim({...boletim, historicojson:JSON.stringify(convertToRaw(his))})
-        axios.post("http://127.0.0.1:3001/savebo",{
+        console.log("----- historico  ----- \n"+boletim.historicojson)
+        await axios.post("http://127.0.0.1:3001/savebo",{
             boletim: boletim,
         })
         .then(function (response) {
             // manipula o sucesso da requisição
             console.log(response)
-            console.log('tentei mano!')
+            // console.log('tentei mano!')
         })
         .catch(function (error) {
             // manipula erros da requisição
@@ -49,15 +56,20 @@ const Historico = ({boletim,setBoletim}) => {
         });
     }
 
-    const handleSalvarHistorico = ()=>{
-        const his = editorState.getCurrentContent()
-        // console.log(JSON.stringify(convertToRaw(his)))
-        // setBoletim({...boletim, historico:editorState.getCurrentContent()})
-        setBoletim({...boletim, historicojson:JSON.stringify(convertToRaw(his))})
-        saveToDB()
+    const handleSalvarHistorico =async ()=>{
+        // const his = editorState.getCurrentContent()
+
+        let html = stateToHTML(editorState.getCurrentContent());
+        console.log(html)
+        // setBoletim({...boletim, historicojson:editorState.getCurrentContent()})
+  
+       
+         setBoletim({...boletim, historicohtml:html})
+       
     }
 
     const editor = React.useRef(null);
+
     const focusEditor = ()=> {
         editor.current.focus()
     }
@@ -108,7 +120,7 @@ const Historico = ({boletim,setBoletim}) => {
                 <Col>
                     <Button
                         variant="warning"
-                        onClick={handleSalvarHistorico}>
+                        onClick={saveToDB}>
                             <Link 
                             className="text-decoration-none"
                             to="/VerBoletim"> 

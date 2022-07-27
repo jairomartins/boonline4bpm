@@ -1,6 +1,8 @@
 import React,{useState, useEffect} from "react";
 import { Col, Row, Container, Button, Table} from "react-bootstrap";
 
+import axios from "axios"
+
 import {Editor,EditorState} from "draft-js"
 import 'draft-js/dist/Draft.css';
 
@@ -11,26 +13,35 @@ import { AiFillPrinter } from "react-icons/ai";
 import {BsArrowLeft } from "react-icons/bs"
 
 // import BandeiraMaranhao from "../BandeiraMaranhao";
-import Logo4BPM from "../Logo4BPM"
+import Logo4BPM from "../../components/Logo4BPM"
 // import BrasaoMa from "../Brasao_Maranhao"
-import LogoPMMA from "../Logo_PMMA";
+import LogoPMMA from "../../components/Logo_PMMA";
 
-import MaterialDetalhe from "./MaterialDetalhe";
-import PolicialDetalhe from "./PolicialDetalhe";
-import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
+import MaterialDetalhe from "../../components/BoletimDetalhe/MaterialDetalhe";
+import PolicialDetalhe from "../../components/BoletimDetalhe/PolicialDetalhe";
+import EnvolvidosDetalhe from "../../components/BoletimDetalhe/EnvolvidosDetalhe";
 
 import { Link } from "react-router-dom";
 
-const BoletimDetalhe = ({boletim}) => {
+const BoletimDetalheFromBD = () => {
 
+    const [boletim, setBoletim] = useState([]);
     useEffect(() => {
-        const state = boletim.historicohtml
-          ? EditorState.createWithContent(stateFromHTML(boletim.historicohtml))
-          : EditorState.createEmpty();
-        setEditorState(state);
-      }, [boletim.historicohtml]);
+        axios.get('http://192.168.0.100:3001/listaByID')
+        .then(function (response) {
+            setBoletim(response.data[0])
+            setEditorState(EditorState.createWithContent(stateFromHTML(boletim.historicohtml)));
+        })
+    }, [boletim]);
 
-    const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
+    // useEffect(() => {
+    //     const state = boletim.historicohtml
+    //       ? EditorState.createWithContent(stateFromHTML(boletim.historicohtml))
+    //       : EditorState.createEmpty();
+    //     setEditorState(state);
+    //   }, [boletim.historicohtml]);
+
+    const [editorState, setEditorState] = useState(()=>EditorState.createWithContent(stateFromHTML(boletim.historicohtml)))
 
    return ( <>
         <Container  style={{fontSize:"12px"}}>
@@ -90,7 +101,7 @@ const BoletimDetalhe = ({boletim}) => {
                 
             </Row>
 
-            {boletim.envolvidos.map(envolvido=><EnvolvidosDetalhe key={envolvido.id} envolvido={envolvido}/>)}
+            {/* {boletim.envolvidos.map(envolvido=><EnvolvidosDetalhe key={envolvido.id} envolvido={envolvido}/>)} */}
            
             
             <hr/>
@@ -105,7 +116,7 @@ const BoletimDetalhe = ({boletim}) => {
                 <Col className="text-center"><h6>ARMAS E OBJETOS APREENDIDOS<Link className="d-print-none" to="/material">Editar</Link></h6></Col>
             </Row>
            
-                {boletim.materiaisApreendidos.map(material=><MaterialDetalhe key={material.id} material={material}/>)}
+                {/* {boletim.materiaisApreendidos.map(material=><MaterialDetalhe key={material.id} material={material}/>)} */}
                    
 
             <hr/>
@@ -125,7 +136,7 @@ const BoletimDetalhe = ({boletim}) => {
             </Row>
             <Row>
 
-            {boletim.efetivo.map(policial=><PolicialDetalhe key={policial.id} policial={policial}/>)}
+            {/* {boletim.efetivo.map(policial=><PolicialDetalhe key={policial.id} policial={policial}/>)} */}
                  
             </Row>
             <hr/>
@@ -175,4 +186,4 @@ const BoletimDetalhe = ({boletim}) => {
     </> );
 }
  
-export default BoletimDetalhe
+export default BoletimDetalheFromBD
