@@ -26,6 +26,7 @@ import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD"
 
 import { Context } from "../Context/AuthContext";
 import ListaBoletim from "../Pages/Boletim/ListaBoletim";
+import Dashboard from "../Pages/Admin/Dashboard";
 
 
 
@@ -67,6 +68,10 @@ export default function Boletim(){
                     <Route path="*" element={<Page404/>}/>
                     <Route path="adm/registro" element={<RegisterUser/>}/>
                     <Route path="adm/login" element={<LoginUser/>}/>
+                    <Route path="adm/dashboard" element={<Dashboard/>}/>
+
+
+
                     <Route path="adm/listaBoletim" element={<ListaBoletim/>}/>
                     <Route path="adm/listaByID" element={<BoletimDetalheFromBD/>}/>
                 </Routes>
