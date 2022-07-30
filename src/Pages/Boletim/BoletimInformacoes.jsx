@@ -1,6 +1,6 @@
 import { Table } from "react-bootstrap";
 
-const BoletimInformacoes = () => {
+const BoletimInformacoes = ({boletim}) => {
     return ( 
         <>
             <Table size="sm">
@@ -12,11 +12,14 @@ const BoletimInformacoes = () => {
                     </tr>
                 </thead>
                 <tbody>
+                    {(boletim)?
                     <tr>
-                        <td>2012</td>
-                        <td>Furto</td>
+                        <td>{boletim.numero}</td>
+                        <td>{boletim.natureza}</td>
                         <td><a href="/">Abrir</a></td>
                     </tr>
+                    :""
+                    }
                 </tbody>
             </Table>
         
