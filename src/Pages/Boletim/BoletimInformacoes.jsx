@@ -1,28 +1,35 @@
-import { Table } from "react-bootstrap";
+import {Alert, Table} from "react-bootstrap";
 
 const BoletimInformacoes = ({boletim}) => {
     return ( 
-        <>
-            <Table size="sm">
-                <thead>
-                    <tr>
-                        <th>N°</th>
-                        <th>Natureza</th>
-                        <th>Ação</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {(boletim)?
-                    <tr>
-                        <td>{boletim.numero}</td>
-                        <td>{boletim.natureza}</td>
-                        <td><a href="/">Abrir</a></td>
-                    </tr>
-                    :""
-                    }
-                </tbody>
+        <> 
+        {(boletim===undefined)?
+            <Alert variant="danger">
+                Boletim não encontrado!
+            </Alert>
+        
+        :
+        <Table size="sm">
+            <thead>
+                <tr>
+                    
+                    <th>Natureza</th>
+                    <th>Data</th>
+                    <th>Número</th>
+                    <th>Opção</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{boletim.natureza}</td>
+                    <td>{boletim.data}</td>
+                    <td>{boletim.numero}</td>
+                    <td><a href="/">Ver</a></td>
+                </tr>
+            </tbody>
             </Table>
         
+        }
         </>
      );
 }

@@ -1,75 +1,46 @@
 // Pagina que exibe todos os menus do sistema, de acordo com o nível do usuário
+// Menu de Boletins: Registrar boletim -  Buscar Boletins - Apagar Boletim - Editar Boletim
+// Menu de Usuarios: Registar usuario - Buscar usuario - Apagar Usuario - Editar Usuario 
+// Menu de Estatísticas - Futuramente 
+
+import React  from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
+// Import icons
 //
 //
 //
 
-import axios from "axios";
-import React, {useState} from "react";
-import { Alert, Col, Container, Row } from "react-bootstrap";
+import { ImFileText } from "react-icons/im";
+import {BiUserCircle} from "react-icons/bi"
+
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
-import FormBuscarBo from "../../components/Form/FormBuscarBo";
-import BoletimInformacoes from "../Boletim/BoletimInformacoes";
 
 const Dashboard = () => {
-            
-    const [showMessagemErro, setshowMessagemErro] = useState(false);
-
-    const [boletim, setBoletim] = useState()
-
-    const [idBusca, setIdBusca] = useState('')
-
-
-
-    // faz requisição GET que verifica se o boletim esta cadastrado no banco de dados
-    // se encontrar usa o objeto de retorno para setar o boletim e exibir detalhes
-    //
-    //
-    const checkBoletim = async () =>{
-        axios.get(`http://127.0.0.1:3001/adm/listByID/${idBusca}`)
-        .then((response)=>{
-            setshowMessagemErro(false)
-            setBoletim(response.data[0])
-            console.log(boletim.data)
-        }).catch(function (error) {
-            // manipula erros da requisição
-           
-            console.error(error);
-            console.log('nao foi possivel localzar')
-            if(error){
-                setshowMessagemErro(true)
-            }
-            
-        })
-        .then(function () {
-            // sempre será executado
-        });
-    }
-
 
     return ( 
-
     <>
-        <Cabecalho texto={"Gerenciador de Boletins Digitais: versão(beta)"}/>
-            
+        <Cabecalho texto={"Gerenciador de Boletins Digitais: versão(2022.1)"}/>
+
         <Container>
             <br/>
             <Row className="justify-content-md-center">
-                <Col md={6}>
-                    <FormBuscarBo setIdBusca={setIdBusca} checkBoletim={checkBoletim}/>
+                <Col sm={3} md={3} className="justify-content-md-center d-grid gap-2">
+                    <Link to={"boletim"}>
+                        <Button className="mt-2">Boletim <ImFileText/>
+                        </Button>
+                    </Link>
+                </Col>
+                <Col sm={3} md={3} className="justify-content-md-center d-grid gap-2">
+                    <Link to={"usuarios"}>
+                        <Button className="mt-2">Usuarios <BiUserCircle/>
+                        </Button>
+                    </Link>
                 </Col>
             </Row>
-            <hr/>
-            <Row className="justify-content-md-center">
-                <Col md={6}>
 
-                    {(showMessagemErro && !boletim)?<Alert variant="danger">
-                        Boletim não encontrado !
-                    </Alert>:
-                    <BoletimInformacoes boletim={boletim}/>
-                    }
-                </Col>
-            </Row>
         </Container>
 
     </> );
