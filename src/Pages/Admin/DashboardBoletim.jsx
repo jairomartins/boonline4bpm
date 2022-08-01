@@ -9,11 +9,11 @@ import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import FormBuscarBo from "../../components/Form/FormBuscarBo";
 import BoletimInformacoes from "../Boletim/BoletimInformacoes";
 
-const DashboardBoletim = () => {
+const DashboardBoletim = ({boletim, setBoletim}) => {
             
     const [exibeBoletim, setExibeBoletim] = useState(false);
 
-    const [boletim, setBoletim] = useState({})
+    // const [boletim, setBoletim] = useState({})
 
     const [idBusca, setIdBusca] = useState('')
 
@@ -24,7 +24,7 @@ const DashboardBoletim = () => {
     //
     //
     const buscarBoletim = async () =>{
-        axios.get(`http://192.168.0.100:3001/adm/listByID/${idBusca}`)
+        axios.get(`http://192.168.0.100:3001/adm/listByNumero/${idBusca}`)
         .then((response)=>{
             setBoletim(response.data[0])
             setExibeBoletim(true)
@@ -54,7 +54,7 @@ const DashboardBoletim = () => {
             <Row className="justify-content-md-center">
                 <Col md={6} sm={12}>
                     {(exibeBoletim)?
-                        <BoletimInformacoes boletim={boletim}/>
+                        <BoletimInformacoes boletim={boletim} setBoletim={setBoletim}/>
                         :
                         ""
                     }

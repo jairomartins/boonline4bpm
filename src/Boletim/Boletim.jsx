@@ -74,11 +74,11 @@ export default function Boletim(){
                     <Route path="adm/login" element={<LoginUser/>}/>
 
                     <Route path="adm/dashboard" element={<Dashboard/>}/>
-                    <Route path="adm/dashboard/boletim" element={<DashboardBoletim/>}/>
+                    <Route path="adm/dashboard/boletim" element={<DashboardBoletim boletim={boletim} setBoletim={setBoletim}/>}/>
                     <Route path="adm/dashboard/usuarios" element={<DashboardUsuario/>}/>
                     
                     <Route path="adm/listaBoletim" element={<ListaBoletim/>}/>
-                    <Route path="adm/listaByID" element={<BoletimDetalheFromBD/>}/>
+                    <Route path="/adm/BoFromBD" element={<BoletimDetalhe boletim={boletim} setBoletim={setBoletim}/>}/>
                 </Routes>
             </BrowserRouter>
 

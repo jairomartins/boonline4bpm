@@ -17,9 +17,9 @@ import Logo4BPM from "../../components/Logo4BPM"
 // import BrasaoMa from "../Brasao_Maranhao"
 import LogoPMMA from "../../components/Logo_PMMA";
 
-import MaterialDetalhe from "../../components/BoletimDetalhe/MaterialDetalhe";
-import PolicialDetalhe from "../../components/BoletimDetalhe/PolicialDetalhe";
-import EnvolvidosDetalhe from "../../components/BoletimDetalhe/EnvolvidosDetalhe";
+// import MaterialDetalhe from "../../components/BoletimDetalhe/MaterialDetalhe";
+// import PolicialDetalhe from "../../components/BoletimDetalhe/PolicialDetalhe";
+// import EnvolvidosDetalhe from "../../components/BoletimDetalhe/EnvolvidosDetalhe";
 
 import { Link } from "react-router-dom";
 

@@ -1,6 +1,18 @@
-import {Alert, Table} from "react-bootstrap";
+import axios from "axios";
+import {Alert, Button, Table} from "react-bootstrap";
+import { Link } from "react-router-dom";
 
-const BoletimInformacoes = ({boletim}) => {
+const BoletimInformacoes = ({boletim, setBoletim}) => {
+
+    const CarregarBoletim = async (numero)=>{
+      
+            axios.get(`http://192.168.0.100:3001/adm/listByNumero/${numero}`)
+            .then(function (response) {
+                setBoletim(response.data[0])
+                console.log(response)
+            })
+    }
+
     return ( 
         <> 
         {(boletim===undefined)?
@@ -24,7 +36,7 @@ const BoletimInformacoes = ({boletim}) => {
                     <td>{boletim.natureza}</td>
                     <td>{boletim.data}</td>
                     <td>{boletim.numero}</td>
-                    <td><a href="/">Ver</a></td>
+                    <td><Button variant="warning" onClick={(e)=>CarregarBoletim(boletim.numero)}><Link to={"/adm/BoFromBD"}>Detalhe</Link></Button></td>
                 </tr>
             </tbody>
             </Table>
