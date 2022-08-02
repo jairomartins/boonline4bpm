@@ -1,8 +1,16 @@
+//  Registro de novos usuarios 
+//  Conforme definido na api, email deve ser unico no banco de dados
+//
+//
 import React, {useState} from "react";
 
+import { useNavigate } from 'react-router-dom';
+
+import axios from "axios";
+
 import {Card, Col, Row, Container, Form, Button} from "react-bootstrap"
+
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
-import NavUser from "../../components/nav/NavUser";
 
 function RegisterUser (){
 
@@ -10,30 +18,35 @@ function RegisterUser (){
     const [userEmail, setUserEmail] =  useState()
     const [userPassword, setUserPassword] =  useState()
 
+    const navigate = useNavigate()
 
+
+    //Faz a conexão via axios para registrar o usuario
+    //Depois de registrado redireciona para tela de login
+ 
     async function handleRegistar (e){
+        
         e.preventDefault()
 
-        const response = await fetch('http://127.0.0.1:3001/auth/register',{
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body:JSON.stringify({
-                userName,
-                userEmail,
-                userPassword
-            }),
-            
+        axios.post('http://10.100.48.136:3001/auth/register',{
+            userName:userName,
+            userEmail:userEmail,
+            userPassword:userPassword
         })
+        .then(function (response){
+            console.log(response.data)
+            alert(response.data.message)
+            navigate('/login')
 
-        const data = await response.json()
-        alert(data.message)
+        }).catch(function(error){
+            console.log(error)
+           
+        })
     }
 
     return ( <>
-    <Cabecalho texto={"Gerenciador de Boletins Digitais: versão(beta)"}/>
-    <NavUser/>
+    <Cabecalho texto={"Boletim Digital 4°BPM - Balsas  (2022.1)"}/>
+
     <Container className="text-center">
         <br/>
         <Row  className="justify-content-md-center">
@@ -44,20 +57,11 @@ function RegisterUser (){
             </Card.Header>
             <Card.Body>
                 <Form onSubmit={handleRegistar}>
-                    <Form.Label>Tipo Usuário </Form.Label>
-                    <Form.Select size="sm">
-                        <option value="comum" >Comum</option>
-                        <option value="Gerenciador">Gerenciador</option>
-                        <option value="Admininstrador">Admininstrador</option>
-                    </Form.Select>
-                    <br/>
                     <Form.Control
-                        autoComplete="false"
                         onChange={(e)=>{setUserName(e.target.value)}}
                         placeholder="Nome"/>
                     <br/>
                     <Form.Control 
-                        autoComplete="off"
                         onChange={(e)=>{setUserEmail(e.target.value)}}
                         placeholder="E-mail"/>
                     <br/>
@@ -67,7 +71,7 @@ function RegisterUser (){
                         type="password"/>
                     <br/>
                     <Button variant="success" type="submit">
-                        Registrar
+                        Registrar-se
                     </Button>
                 </Form>
             </Card.Body>

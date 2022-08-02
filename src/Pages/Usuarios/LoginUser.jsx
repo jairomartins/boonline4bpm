@@ -14,51 +14,49 @@ const LoginUser = () => {
 
     const {authenticated, handleLogin} = useContext(Context);
 
-    console.log('adm/loign', authenticated)
-
-
     async function clickHandleLogin(e){
         e.preventDefault()
         handleLogin(userEmail, userPassword)
     }
 
     return (  <>
-
+        {/* Se o usuário ja estiver autenticado redireciona para o / */}
         {authenticated && (
           <Navigate to="/" replace={true} />
         )}
-    <Container className="text-center">
-        <br/>
-        <Row  className="justify-content-md-center">
-        <Col sm={12} md={6}>
-        <Card>
-            <Card.Header>
-                <Card.Title>Entrar</Card.Title>
-            </Card.Header>
-            <Card.Body>
-                <Form onSubmit={clickHandleLogin}>
-                    <Form.Control 
-                        autoComplete="on"
-                        onChange={(e)=>{setUserEmail(e.target.value)}}
-                        placeholder="E-mail"/>
-                    <br/>
-                    <Form.Control
-                        placeholder="senha"
-                        onChange={(e)=>{setUserPassword(e.target.value)}}
-                        type="password"/>
-                    <br/>
-                    <Button variant="success" type="submit">
-                        Entrar
-                    </Button>
-                </Form>
-            </Card.Body>
-            <Card.Footer>
-                Registre-se <a href="adm/registro">Aqui</a>
-            </Card.Footer>
-        </Card>
-        </Col>          
-        </Row>
-    </Container>
+
+        <Container className="text-center">
+            <br/>
+            <Row  className="justify-content-md-center">
+            <Col sm={12} md={6}>
+            <Card>
+                <Card.Header>
+                    <Card.Title>Entrar</Card.Title>
+                </Card.Header>
+                <Card.Body>
+                    <Form onSubmit={clickHandleLogin}>
+                        <Form.Control 
+                            autoComplete="on"
+                            onChange={(e)=>{setUserEmail(e.target.value)}}
+                            placeholder="E-mail"/>
+                        <br/>
+                        <Form.Control
+                            placeholder="senha"
+                            onChange={(e)=>{setUserPassword(e.target.value)}}
+                            type="password"/>
+                        <br/>
+                        <Button variant="success" type="submit">
+                            Entrar
+                        </Button>
+                    </Form>
+                </Card.Body>
+                <Card.Footer>
+                    Registre-se <a href="/registro">Aqui</a>
+                </Card.Footer>
+            </Card>
+            </Col>          
+            </Row>
+        </Container>
     </>);
 }
  
