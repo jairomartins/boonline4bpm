@@ -9,11 +9,11 @@ const axios = require('axios');
 function AuthProvider({children}){
 
     //usado para fazer a authenticação do login 
-    const [authenticated, setAuthenticated] =  useState(true) //
+    const [authenticated, setAuthenticated] =  useState(false) //
 
      async function  handleLogin(userEmail, userPassword){
         
-        axios.post("http://127.0.0.1:3001/auth/login",{
+        axios.post("http://192.168.0.100:3001/auth/login",{
             userEmail: userEmail,
             userPassword: userPassword
     })

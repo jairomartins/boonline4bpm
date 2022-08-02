@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 
 import {Card, Col, Row, Container, Form, Button} from "react-bootstrap"
+import Cabecalho from "../../components/Cabecalho/Cabecalho";
+import NavUser from "../../components/nav/NavUser";
 
 function RegisterUser (){
 
@@ -30,7 +32,8 @@ function RegisterUser (){
     }
 
     return ( <>
-    
+    <Cabecalho texto={"Gerenciador de Boletins Digitais: versão(beta)"}/>
+    <NavUser/>
     <Container className="text-center">
         <br/>
         <Row  className="justify-content-md-center">
@@ -41,6 +44,13 @@ function RegisterUser (){
             </Card.Header>
             <Card.Body>
                 <Form onSubmit={handleRegistar}>
+                    <Form.Label>Tipo Usuário </Form.Label>
+                    <Form.Select size="sm">
+                        <option value="comum" >Comum</option>
+                        <option value="Gerenciador">Gerenciador</option>
+                        <option value="Admininstrador">Admininstrador</option>
+                    </Form.Select>
+                    <br/>
                     <Form.Control
                         autoComplete="false"
                         onChange={(e)=>{setUserName(e.target.value)}}
