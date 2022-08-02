@@ -12,7 +12,7 @@ function RegisterUser (){
     async function handleRegistar (e){
         e.preventDefault()
 
-        const response = await fetch('http://192.168.0.100:3001/auth/register',{
+        const response = await fetch('http://127.0.0.1:3001/auth/register',{
             method:'POST',
             headers:{
                 'Content-Type': 'application/json'
