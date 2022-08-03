@@ -1,4 +1,6 @@
 import React from "react";
+
+
 import { createContext, useState } from "react";
 
 const Context = createContext()
@@ -13,7 +15,7 @@ function AuthProvider({children}){
 
      async function  handleLogin(userEmail, userPassword){
         
-        axios.post("http://192.168.0.113:3001/auth/login",{
+        axios.post("http://10.100.48.136:3001/auth/login",{
             userEmail: userEmail,
             userPassword: userPassword
     })

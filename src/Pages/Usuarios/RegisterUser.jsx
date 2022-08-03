@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router-dom';
 
 import axios from "axios";
 
+import InputMask from 'react-input-mask';
+
 import {Card, Col, Row, Container, Form, Button} from "react-bootstrap"
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
@@ -17,6 +19,7 @@ function RegisterUser (){
     const [userName, setUserName] =  useState()
     const [userEmail, setUserEmail] =  useState()
     const [userPassword, setUserPassword] =  useState()
+    const [userContato, setUserContato] =  useState()
 
     const navigate = useNavigate()
 
@@ -31,7 +34,8 @@ function RegisterUser (){
         axios.post('http://10.100.48.136:3001/auth/register',{
             userName:userName,
             userEmail:userEmail,
-            userPassword:userPassword
+            userPassword:userPassword,
+            userContato:userContato
         })
         .then(function (response){
             console.log(response.data)
@@ -47,24 +51,35 @@ function RegisterUser (){
     return ( <>
     <Cabecalho texto={"Boletim Digital 4°BPM - Balsas  (2022.1)"}/>
 
-    <Container className="text-center">
+    <Container>
         <br/>
         <Row  className="justify-content-md-center">
         <Col  sm={12} md={6}>
         <Card>
-            <Card.Header>
+            <Card.Header className="text-center">
                 <Card.Title>Registar Usuário</Card.Title>
             </Card.Header>
             <Card.Body>
                 <Form onSubmit={handleRegistar}>
+                    <Form.Label>Usuário:</Form.Label>
                     <Form.Control
                         onChange={(e)=>{setUserName(e.target.value)}}
                         placeholder="Nome"/>
                     <br/>
+                    <Form.Label>E-mail:</Form.Label>
                     <Form.Control 
                         onChange={(e)=>{setUserEmail(e.target.value)}}
                         placeholder="E-mail"/>
                     <br/>
+                    <Form.Label>Contato:</Form.Label>
+                    <InputMask 
+                        className="form-control "
+                        mask="(99) 9 9999-9999"
+                        onChange={(e)=>{setUserContato(e.target.value)}}
+                        placeholder="(99) 9 0000-0000"
+                        />
+                    <br/>
+                    <Form.Label>Senha:</Form.Label>
                     <Form.Control
                         placeholder="senha"
                         onChange={(e)=>{setUserPassword(e.target.value)}}
