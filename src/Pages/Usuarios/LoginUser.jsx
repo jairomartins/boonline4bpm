@@ -4,14 +4,14 @@ import {Card, Col, Row, Container, Form, Button} from "react-bootstrap"
 
 
 import { Context } from "../../Context/AuthContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 const LoginUser = () => {
 
     const [userEmail, setUserEmail] =  useState()
     const [userPassword, setUserPassword] =  useState()
-
+    const navigate = useNavigate()
     const {authenticated, handleLogin} = useContext(Context);
 
     async function clickHandleLogin(e){
@@ -51,7 +51,7 @@ const LoginUser = () => {
                     </Form>
                 </Card.Body>
                 <Card.Footer>
-                    Registre-se <a href="/registro">Aqui</a>
+                    <Button variant="link" onClick={(e)=>navigate('/registro')}>Registre-se  Aqui</Button>
                 </Card.Footer>
             </Card>
             </Col>          

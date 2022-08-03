@@ -13,7 +13,7 @@ import InputMask from 'react-input-mask';
 import {Card, Col, Row, Container, Form, Button} from "react-bootstrap"
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
-
+const BASE_URL = window.location.hostname
 function RegisterUser (){
 
     const [userName, setUserName] =  useState()
@@ -31,7 +31,7 @@ function RegisterUser (){
         
         e.preventDefault()
 
-        axios.post('http://10.100.48.136:3001/auth/register',{
+        axios.post(`http://${BASE_URL}:3001/auth/register`,{
             userName:userName,
             userEmail:userEmail,
             userPassword:userPassword,

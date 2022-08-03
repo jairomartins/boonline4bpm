@@ -1,9 +1,13 @@
 import React from "react";
 
 
+
 import { createContext, useState } from "react";
 
 const Context = createContext()
+
+const BASE_URL = window.location.hostname
+console.log(BASE_URL)
 
 const axios = require('axios');
 
@@ -15,7 +19,7 @@ function AuthProvider({children}){
 
      async function  handleLogin(userEmail, userPassword){
         
-        axios.post("http://10.100.48.136:3001/auth/login",{
+      axios.post(`http://${BASE_URL}:3001/auth/login`,{
             userEmail: userEmail,
             userPassword: userPassword
     })
