@@ -29,7 +29,7 @@ const Home = ()=>{
                     <Link to="/login">
                         <Button 
                             variant="success">
-                                Fazer Login <BiLogInCircle/>
+                                Entrar <BiLogInCircle/>
                         </Button>
                     </Link>
                 </Col>
@@ -43,7 +43,7 @@ const Home = ()=>{
             <br/>
             <br/>
             <Row className="text-center">
-                <Col>Criado por : <a href="/">SD PM  J.Martins</a> </Col>
+                <Col>Criado por : <b>SD PM  J.Martins </b></Col>
             </Row>
         </Container>
         </>

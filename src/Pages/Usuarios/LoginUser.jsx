@@ -46,7 +46,7 @@ const LoginUser = () => {
                             type="password"/>
                         <br/>
                         <Button variant="success" type="submit">
-                            Entrar
+                            Login
                         </Button>
                     </Form>
                 </Card.Body>

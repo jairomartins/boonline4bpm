@@ -73,14 +73,14 @@ const BoletimDetalhe = ({boletim}) => {
                 </Col>
             </Row>
             <Row>
-                <Col>Local: {boletim.endereco}, {boletim.numeroEndereco}  </Col>
-                <Col>Bairro: {boletim.bairro}</Col>
-                <Col>Municipio: {boletim.municipio}</Col>
+                <Col><b>Local:</b> {boletim.endereco} {boletim.numeroEndereco}  </Col>
+                <Col><b>Bairro:</b> {boletim.bairro}</Col>
+                <Col><b>Municipio:</b> {boletim.municipio}</Col>
             </Row>
             <Row>
-                <Col >Ponto de Refêrencia : {boletim.referencia}</Col>
+                <Col><b>Ponto de Refêrencia :</b> {boletim.referencia}</Col>
                 
-                <Col>Coordenadas: {boletim.latitude}, {boletim.longitude}</Col>
+                <Col><b>Coordenadas:</b> {boletim.latitude} {boletim.longitude}</Col>
                 <Col></Col>
             </Row>
             <hr/>
@@ -121,7 +121,7 @@ const BoletimDetalhe = ({boletim}) => {
             <hr/>
 
             <Row>
-                <Col className="text-center"><h6>EFETIVO EMPREGADO</h6></Col>
+                <Col className="text-center"><h6>EFETIVO EMPREGADO <Link className="d-print-none" to="/efetivo">Editar</Link></h6></Col>
             </Row>
             <Row>
 
@@ -133,6 +133,7 @@ const BoletimDetalhe = ({boletim}) => {
                 <Col className="text-center"><h6>UNIDADE DE ENTREGA</h6></Col>
             </Row>
             <Table borderless>
+                <tbody>
                 <tr>
                     <td>Unidade ___________________________</td>
                     <td>Data  _______/________/_______</td>
@@ -143,6 +144,7 @@ const BoletimDetalhe = ({boletim}) => {
                     <td>Nome ______________________________</td>
                     <td>Assinatura ___________________________</td>
                 </tr>
+                </tbody>
             </Table>
 
             <Row className="text-center">
