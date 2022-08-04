@@ -52,7 +52,7 @@ export default function Boletim(){
                 <Routes>
                 
                     <Route path="/" 
-                        element={authenticated ? (<Home/>):(<LoginUser/>)}
+                        element={<Home/>}
                     />
                     <Route path="/header" 
                         element={authenticated ? (<Header boletim={boletim} setBoletim={setBoletim}/>):(<LoginUser/>)} 

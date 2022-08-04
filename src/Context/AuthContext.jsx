@@ -6,9 +6,6 @@ import { createContext, useState } from "react";
 
 const Context = createContext()
 
-const BASE_URL = window.location.hostname
-console.log(BASE_URL)
-
 const axios = require('axios');
 
 

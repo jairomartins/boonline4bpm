@@ -22,7 +22,7 @@ const LoginUser = () => {
     return (  <>
         {/* Se o usuário ja estiver autenticado redireciona para o / */}
         {authenticated && (
-          <Navigate to="/" replace={true} />
+          <Navigate to="/header" replace={true} />
         )}
 
         <Container className="text-center">

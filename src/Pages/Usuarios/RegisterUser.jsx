@@ -13,7 +13,7 @@ import InputMask from 'react-input-mask';
 import {Card, Col, Row, Container, Form, Button} from "react-bootstrap"
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
-const BASE_URL = window.location.hostname
+
 function RegisterUser (){
 
     const [userName, setUserName] =  useState()

@@ -4,6 +4,7 @@ import Logo4BPM from '../components/Logo4BPM';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 
+import {BiLogInCircle} from "react-icons/bi"
 
 
 const Home = ()=>{
@@ -25,10 +26,10 @@ const Home = ()=>{
             <br/>
             <Row>
                 <Col sm={12} className="text-center mt-12 mb-12">
-                    <Link to="/header">
+                    <Link to="/login">
                         <Button 
                             variant="success">
-                                Iniciar
+                                Fazer Login <BiLogInCircle/>
                         </Button>
                     </Link>
                 </Col>
@@ -42,7 +43,7 @@ const Home = ()=>{
             <br/>
             <br/>
             <Row className="text-center">
-                <Col>Criado por : <a href="https://jairomartins.github.io">SD PM  J.Martins</a> </Col>
+                <Col>Criado por : <a href="/">SD PM  J.Martins</a> </Col>
             </Row>
         </Container>
         </>
