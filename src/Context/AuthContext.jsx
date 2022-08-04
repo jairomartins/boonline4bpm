@@ -19,7 +19,7 @@ function AuthProvider({children}){
 
      async function  handleLogin(userEmail, userPassword){
         
-      axios.post(`http://${BASE_URL}:3001/auth/login`,{
+      axios.post(`http://jmartins.vps-kinghost.net:3001/auth/login`,{
             userEmail: userEmail,
             userPassword: userPassword
     })

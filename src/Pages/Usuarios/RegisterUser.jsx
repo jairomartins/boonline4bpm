@@ -31,7 +31,7 @@ function RegisterUser (){
         
         e.preventDefault()
 
-        axios.post(`http://${BASE_URL}:3001/auth/register`,{
+        axios.post(`http://jmartins.vps-kinghost.net:3001/auth/register`,{
             userName:userName,
             userEmail:userEmail,
             userPassword:userPassword,
