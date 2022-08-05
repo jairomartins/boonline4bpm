@@ -26,7 +26,7 @@ function AddEnvolvido ({boletim, setBoletim}){
     const [obs, setObs] = useState('')
 
     const resetaCampos = ()=>{
-        setTipoEnvolvido('')
+        // setTipoEnvolvido('')
         setNome('')
         setCpf('')
         setSexo('')
@@ -191,7 +191,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                             <Form.Control
                             size="sm"
                             placeholder="Nome da Rua"
-                           
+                            value={endereco}
                             onChange={(e)=>{setEndereco(e.target.value)}}/>
                         </Col>
                         <Col sm={2}>
@@ -207,6 +207,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                             <Form.Control
                             size="sm"
                             placeholder="Nome do Bairro"
+                            value={bairro}
                             onChange={(e)=>{setBairro(e.target.value)}}/>
                         </Col>
                     </Row>
@@ -216,7 +217,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                             <Form.Control
                             size="sm"
                             placeholder="Nome do Município"
-                            defaultValue={municipio}
+                            value={municipio}
                             onChange={(e)=>{setMunicipio(e.target.value)}}/>
                         </Col>
 
@@ -225,7 +226,7 @@ function AddEnvolvido ({boletim, setBoletim}){
                             <Form.Control
                             size="sm"
                             placeholder="Pronto de referencia"
-                            
+                            value={pontoReferencia}
                             onChange={(e)=>{setPontoReferencia(e.target.value)}}/>
                         </Col>
                     </Row>

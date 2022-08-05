@@ -10,7 +10,7 @@ const EnvolvidosDetalhe = ({envolvido}) => {
                 <Col><b>CPF : </b>{envolvido.cpf}</Col>
             </Row>
             <Row>
-                <Col><b>Sexo: </b>{envolvido.sex0} </Col>	
+                <Col><b>Sexo: </b>{envolvido.sexo} </Col>	
                 <Col><b>Data de nascimento: </b>{envolvido.nascimento}</Col>
                 <Col><b>Telefone : </b>{envolvido.telefone}</Col>
             </Row>
@@ -24,6 +24,7 @@ const EnvolvidosDetalhe = ({envolvido}) => {
                 <Col><b>Bairro: </b>{envolvido.bairro} </Col>
                 <Col><b>Município: </b>{envolvido.municipio} </Col>
             </Row>
+            <br/>
             <br/>
     </>  )
 }
