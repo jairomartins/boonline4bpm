@@ -12,7 +12,7 @@ const axios = require('axios');
 function AuthProvider({children}){
 
     //usado para fazer a authenticação do login 
-    const [authenticated, setAuthenticated] =  useState(true) //
+    const [authenticated, setAuthenticated] =  useState(false) //
 
      async function  handleLogin(userEmail, userPassword){
         

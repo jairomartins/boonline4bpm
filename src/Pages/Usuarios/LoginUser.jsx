@@ -5,6 +5,7 @@ import {Card, Col, Row, Container, Form, Button} from "react-bootstrap"
 
 import { Context } from "../../Context/AuthContext";
 import { Navigate, useNavigate } from "react-router-dom";
+import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
 
 
 const LoginUser = () => {
@@ -14,7 +15,10 @@ const LoginUser = () => {
     const navigate = useNavigate()
     const {authenticated, handleLogin} = useContext(Context);
 
+    const [isLoagding, setIsLoagding] = useState(false)
+
     async function clickHandleLogin(e){
+        setIsLoagding(true)
         e.preventDefault()
         handleLogin(userEmail, userPassword)
     }
@@ -32,6 +36,9 @@ const LoginUser = () => {
             <Card>
                 <Card.Header>
                     <Card.Title>Entrar</Card.Title>
+
+                    <LoadSpinner visible={isLoagding}/>
+
                 </Card.Header>
                 <Card.Body>
                     <Form onSubmit={clickHandleLogin}>
