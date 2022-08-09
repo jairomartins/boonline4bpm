@@ -1,9 +1,10 @@
+import  React, { useState } from "react";
+import { useEffect } from "react";
+
 
 import load_gif from "./loading.gif"
 
 import "./loading.css"
-import  React, { useState } from "react";
-import { useEffect } from "react";
 
 const LoadSpinner = (props) => {   
    
@@ -16,7 +17,7 @@ const LoadSpinner = (props) => {
 
 
     return ( 
-        <> 
+        <>  {isVisible && "Carregando..."}
             {isVisible ?<img src={load_gif} alt="carregando ..." className="container-spinner"/> : ""}
         </> 
     );
