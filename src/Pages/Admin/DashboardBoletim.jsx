@@ -24,7 +24,11 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
     //
     //
     const buscarBoletim = async () =>{
-        axios.get(`http://192.168.0.100:3001/adm/listByNumero/${idBusca}`)
+        axios.get(`http://192.168.0.100:433/adm/listByNumero/${idBusca}`,{
+            headers:{
+                "x-access-token":"eysJhbGciOiJIUzI1NiJ9.amFpcm83bWFydGluc0BnbWFpbC5jb20.4f3MfxnBQNBG_mCPpESW7zQOn-zALpR9f2dXAlW_JyI"
+            }
+        })
         .then((response)=>{
             setBoletim(response.data[0])
             setExibeBoletim(true)
