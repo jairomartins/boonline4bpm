@@ -1,5 +1,6 @@
 import React from "react";
-import Cabecalho from "../Cabecalho/Cabecalho";
+
+import CabecalhoBoletim from "../Cabecalho/CabecalhoBoletim";
 import NavPage from "../NavPage";
 import AddHeader from "./AddHeader";
 
@@ -8,9 +9,9 @@ const Header = ({boletim,setBoletim})=>{
     
     return(
         <>
-            <Cabecalho texto={"Fato Comunicado"}/>
+            <CabecalhoBoletim texto={"Fato Comunicado"}/>
             <AddHeader boletim={boletim} setBoletim={setBoletim} />
-            <NavPage prev="/" next="/envolvido"/>
+            <NavPage prev="/dashboard" next="/envolvido"/>
         </>
     )
 }

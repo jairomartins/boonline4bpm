@@ -35,7 +35,7 @@ const LoginUser = () => {
     .then(function (response) {
         // manipula o sucesso da requisição
         setAuthenticated(response.data.authenticated)
-        localStorage.setItem("access-token",response.data.token)
+        localStorage.setItem("x-access-token",response.data.token)
         setIsLoading(false) 
         
     })
@@ -55,7 +55,7 @@ const LoginUser = () => {
     return (  <>
         {/* Se o usuário ja estiver autenticado redireciona para o / */}
         {authenticated && (
-          <Navigate to="/header" replace={true} />
+          <Navigate to="/dashboard" replace={true} />
         )}
 
         <Container className="text-center">

@@ -1,14 +1,16 @@
 import React,{useState, useEffect} from "react";
 import { Col, Row, Container, Button, Table} from "react-bootstrap";
+import axios from "axios"
 
 import {Editor,EditorState} from "draft-js"
 import 'draft-js/dist/Draft.css';
 
 import {stateFromHTML} from 'draft-js-import-html';
+import { v4 as uuidv4 } from "uuid";
 
-
-import { AiFillPrinter } from "react-icons/ai";
-import {BsArrowLeft } from "react-icons/bs"
+import { AiFillPrinter } from "react-icons/ai"
+import {BsArrowLeft,BsFillPlusCircleFill } from "react-icons/bs"
+import {BiSave} from "react-icons/bi"
 
 // import BandeiraMaranhao from "../BandeiraMaranhao";
 import Logo4BPM from "../Logo4BPM"
@@ -19,9 +21,9 @@ import MaterialDetalhe from "./MaterialDetalhe";
 import PolicialDetalhe from "./PolicialDetalhe";
 import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const BoletimDetalhe = ({boletim}) => {
+const BoletimDetalhe = ({boletim, setBoletim}) => {
 
     useEffect(() => {
         const state = boletim.historicohtml
@@ -31,6 +33,41 @@ const BoletimDetalhe = ({boletim}) => {
       }, [boletim.historicohtml]);
 
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
+    
+    const navigate = useNavigate()
+      
+    const saveToDB = async ()=>{
+        console.log("----- historico  ----- \n"+boletim.historicohtml)
+        await axios.post("http://192.168.0.100:433/adm/salvarBoletim",{
+            boletim: boletim,
+        })
+        .then(function (response) {
+            // manipula o sucesso da requisição
+            console.log(response)
+            alert('Boletim salvo com sucesso !')
+            // console.log('tentei mano!')
+        })
+        .catch(function (error) {
+            // manipula erros da requisição
+            alert('Erro ao salvar o boletim ')
+            console.error(error);
+        })
+        .then(function () {
+            // sempre será executado
+        });
+    }
+
+    const novoBoletim = async()=>{
+        const newboletim = ({
+            id:uuidv4(),
+            envolvidos:[],
+            materiaisApreendidos:[],
+            efetivo:[],
+        })
+        setBoletim(newboletim)
+        navigate('/dashboard')
+    }
+
 
    return ( <>
         <Container  style={{fontSize:"12px"}}>
@@ -164,14 +201,43 @@ const BoletimDetalhe = ({boletim}) => {
                     {/* d-print-none exclui o botao do pdf*/}
                     <Button 
                         size="sm"
-                        variant="success" 
+                        variant="warning" 
                         className="d-print-none"
                         onClick={()=>{document.title = "BO_"+boletim.numero+"_"+boletim.data;window.print()}}>
                             Imprimir <AiFillPrinter/>
                     </Button>
                 </Col>
+                <Col>
+                    <Button
+
+                        onClick={saveToDB}
+                        className="d-print-none"
+                        size="sm"  
+                        variant="success">
+                        
+                        Salvar <BiSave/>
+                        
+                    </Button>
+               </Col>
+                <Col>
+                    <Button
+
+                        onClick={novoBoletim}
+                        className="d-print-none"
+                        size="sm"  
+                        variant="danger">
+                        
+                        Novo B.O <BsFillPlusCircleFill/>
+                        
+                    </Button>
+               </Col>
             </Row>
             <br/>
+            <hr/>
+            <p className="d-print-none"><b>OBS:</b></p>
+            <p className="d-print-none"><b>I -  Salvar</b> -  Para salvar o boletim no banco de dados;</p>
+            <p className="d-print-none"><b>II - Imprimir</b> -  Para imprimir o boletim ou salvar PDF;</p>
+            <p className="d-print-none"><b>III -  Novo B.O</b> -  Para Iniciar um novo boletim, todos os dados preenchidos serão apagados</p>
         </Container>
     
     </> );

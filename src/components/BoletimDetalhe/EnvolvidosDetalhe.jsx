@@ -12,7 +12,7 @@ const EnvolvidosDetalhe = ({envolvido}) => {
             <Row>
                 <Col><b>Sexo: </b>{envolvido.sexo} </Col>	
                 <Col><b>Data de nascimento: </b>{envolvido.nascimento}</Col>
-                <Col><b>Telefone : </b>{envolvido.telefone}</Col>
+                <Col><b>Telefone: </b>{envolvido.telefone}</Col>
             </Row>
             <Row>
                 <Col><b>Nome da Mãe: </b>{envolvido.nomeMae}</Col>	
@@ -20,7 +20,7 @@ const EnvolvidosDetalhe = ({envolvido}) => {
                 <Col><b>Ponto de Referência: </b>{envolvido.pontoReferencia}</Col>	
             </Row>	
              <Row>
-                <Col><b>Endereço: </b>{envolvido.endereco}, Número: {envolvido.numero} </Col>
+                <Col><b>Endereço: </b>{envolvido.endereco}, <b>Número: </b> {envolvido.numero} </Col>
                 <Col><b>Bairro: </b>{envolvido.bairro} </Col>
                 <Col><b>Município: </b>{envolvido.municipio} </Col>
             </Row>

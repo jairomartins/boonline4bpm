@@ -5,9 +5,9 @@ const MaterialDetalhe = ({material}) => {
     return (
         <>
         <Row>
-            <Col>Descrição : {material.descricao}</Col>
+            <Col><b>Descrição: </b>{material.descricao}</Col>
             <Col></Col>
-            <Col>Quantidade : {material.quantidade}</Col>
+            <Col><b>Quantidade: </b> {material.quantidade}</Col>
         </Row>
         </>
       );

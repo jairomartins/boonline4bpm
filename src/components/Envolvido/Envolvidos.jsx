@@ -1,17 +1,18 @@
 import React from "react";
 
 
+
 import NavPage from "../NavPage";
 
 import AddEnvolvido from "./AddEnvolvido";
 import EnvolvidoList from "./EnvolvidoList";
-import Cabecalho from "../Cabecalho/Cabecalho";
+import CabecalhoBoletim from "../Cabecalho/CabecalhoBoletim";
 
 function Envolvidos ({boletim,setBoletim}){
 
     return (
         <>
-            <Cabecalho texto={"Adicionar Envolvidos "}/>
+            <CabecalhoBoletim texto={"Adicionar Envolvidos "}/>
             <AddEnvolvido boletim={boletim} setBoletim={setBoletim} />
             <EnvolvidoList boletim={boletim} setBoletim={setBoletim}/>
             <NavPage prev="/header" next="/material"/>

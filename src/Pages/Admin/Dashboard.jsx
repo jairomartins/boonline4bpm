@@ -5,12 +5,8 @@
 
 import React  from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
-// Import icons
-//
-//
-//
 
 import { ImFileText } from "react-icons/im";
 import {BiUserCircle} from "react-icons/bi"
@@ -19,6 +15,11 @@ import {BiUserCircle} from "react-icons/bi"
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 
 const Dashboard = () => {
+    const navigate = useNavigate()
+
+    const handleClickBoletim = ()=>{
+        navigate('boletim')
+    }
 
     return ( 
     <>
@@ -28,16 +29,16 @@ const Dashboard = () => {
             <br/>
             <Row className="justify-content-md-center">
                 <Col sm={3} md={3} className="justify-content-md-center d-grid gap-2">
-                    <Link to={"boletim"}>
-                        <Button className="mt-2">Boletim <ImFileText/>
+                    {/* <Link to={"boletim"}> */}
+                        <Button onClick={handleClickBoletim} className="mt-2">Boletins <ImFileText/>
                         </Button>
-                    </Link>
+                    {/* </Link> */}
                 </Col>
                 <Col sm={3} md={3} className="justify-content-md-center d-grid gap-2">
-                    <Link to={"usuarios"}>
-                        <Button className="mt-2">Usuarios <BiUserCircle/>
+                    {/* <Link to={"usuarios"}> */}
+                        <Button disabled className="mt-2">Meu Perfil <BiUserCircle/>
                         </Button>
-                    </Link>
+                    {/* </Link> */}
                 </Col>
             </Row>
 

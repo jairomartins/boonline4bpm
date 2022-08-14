@@ -6,13 +6,13 @@ import NavPage from "../NavPage"
 
 
 import { Container, Row, Col } from "react-bootstrap";
-import Cabecalho from "../Cabecalho/Cabecalho";
+import CabecalhoBoletim from "../Cabecalho/CabecalhoBoletim";
 
 function ItensApreendidos ({boletim,setBoletim}){
     
     return(
         <>
-            <Cabecalho texto={"Materiais Apreendidos"}/>
+            <CabecalhoBoletim texto={"Materiais Apreendidos"}/>
 
             <AddMaterial boletim={boletim} setBoletim={setBoletim}/>
 

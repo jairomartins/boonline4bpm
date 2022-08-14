@@ -21,6 +21,7 @@ function RegisterUser (){
     const [userEmail, setUserEmail] =  useState()
     const [userPassword, setUserPassword] =  useState()
     const [userContato, setUserContato] =  useState()
+    const [userMatriculaId, setUserMatriculaId] = useState()
 
     const [isLoading, setIsLoading] = useState(false)
     const [erroShow, setErroShow] = useState(false)
@@ -43,7 +44,8 @@ function RegisterUser (){
             userName:userName,
             userEmail:userEmail,
             userPassword:userPassword,
-            userContato:userContato
+            userContato:userContato,
+            userMatriculaId: userMatriculaId
         })
         .then(function (response){
             console.log(response.data)
@@ -85,6 +87,15 @@ function RegisterUser (){
                         onChange={(e)=>{setUserName(e.target.value)}}
                         placeholder="Nome"/>
                     <br/>
+                    <Form.Label>Matrícula ou ID:</Form.Label>
+                    <InputMask 
+                        required
+                        className="form-control "
+                        type="number"
+                        onChange={(e)=>{setUserMatriculaId(e.target.value)}}
+                        placeholder="Mátricula ou ID"
+                        />
+                    <br/>
                     <Form.Label>E-mail:</Form.Label>
                     <Form.Control 
                         required
@@ -100,6 +111,7 @@ function RegisterUser (){
                         placeholder="(99) 9 0000-0000"
                         />
                     <br/>
+                    
                     <Form.Label>Senha:</Form.Label>
                     <Form.Control
                         required

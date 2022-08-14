@@ -1,21 +1,28 @@
 
 import axios from "axios";
 import React, {useState} from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { VscNewFile } from 'react-icons/vsc';
-import { Link } from "react-router-dom";
+import {BsArrowLeft} from 'react-icons/bs'
+import { useNavigate } from "react-router-dom";
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import FormBuscarBo from "../../components/Form/FormBuscarBo";
 import BoletimInformacoes from "../Boletim/BoletimInformacoes";
+// import BoletimInformacoesList from "../Boletim/BoletimInformacoesList";
 
 const DashboardBoletim = ({boletim, setBoletim}) => {
-            
+    const navigate = useNavigate()       
     const [exibeBoletim, setExibeBoletim] = useState(false);
+    // const [exibeBoletimList, setExibeBoletimList] = useState(false)
 
     // const [boletim, setBoletim] = useState({})
 
     const [idBusca, setIdBusca] = useState('')
+
+    // const [listaBoletim, setListaBoletim] = useState([{}])
 
 
 
@@ -26,7 +33,7 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
     const buscarBoletim = async () =>{
         axios.get(`http://192.168.0.100:433/adm/listByNumero/${idBusca}`,{
             headers:{
-                "x-access-token":"eysJhbGciOiJIUzI1NiJ9.amFpcm83bWFydGluc0BnbWFpbC5jb20.4f3MfxnBQNBG_mCPpESW7zQOn-zALpR9f2dXAlW_JyI"
+                "x-access-token":localStorage.getItem("x-access-token")
             }
         })
         .then((response)=>{
@@ -40,6 +47,41 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
         .then(function () {
             // sempre será executado
         });
+    }
+
+    // const buscarListaBoletins = async () =>{
+        
+    //     axios.get(`http://192.168.0.100:433/adm/listaMeusBos/871110`,{
+    //         headers:{
+    //             "x-access-token":localStorage.getItem("x-access-token")
+    //         }
+    //     })
+    //     .then((response)=>{
+    //         setListaBoletim(response.data)
+    //         setExibeBoletimList(true)
+    //         setExibeBoletim(false)
+    //     }).catch(function (error) {
+    //         // manipula erros da requisição
+    //         console.error(error);
+    //         console.log('nao foi possivel localzar')
+    //     })
+    //     .then(function () {
+    //         // sempre será executado
+    //     });
+    // }
+    const handleClickNovoBoletim = ()=>{
+        const newboletim = ({
+            id:uuidv4(),
+            envolvidos:[],
+            materiaisApreendidos:[],
+            efetivo:[],
+        })
+        setBoletim(newboletim)
+        navigate('/header')
+    }
+
+    const handleClickVoltar = ()=>{
+        navigate('/dashboard')
     }
 
     return ( 
@@ -66,14 +108,40 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
             </Row>
 
             <Row className="justify-content-md-center">
-                <br/>
-                <Col md={6} className="text-center">
-                    <Link to={"/header"}>
-                        <Button variant="success"> Novo Boletim <VscNewFile/>
-                        </Button>
-                    </Link>
+                <Col sm={3} className="justify-content-md-center d-grid gap-2 mt-3">   
+                    <Button onClick={handleClickVoltar} variant="outline-primary" size="sm" > 
+                    <BsArrowLeft/>Voltar 
+                    </Button>   
+                </Col>
+                <Col sm={3} className="justify-content-md-center d-grid gap-2 mt-3">
+                    <Button onClick={handleClickNovoBoletim} variant="success" size="sm"> 
+                        Novo Boletim <VscNewFile/>
+                    </Button>
                 </Col>
             </Row>
+
+            {/* <Row className="justify-content-md-center">
+                <Col md={6} sm={12} >
+                    {(exibeBoletimList)?
+                        <Table size="sm">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>Natureza</th>
+                                    <th>Data</th>
+                                    <th>Número</th>
+                                    <th>Opção</th>
+                                </tr>
+                            </thead>
+                            <tbody>    
+                                {listaBoletim.map(boletim=><BoletimInformacoesList key={boletim.numero} boletim={boletim} setBoletim={setBoletim}/>)}
+                            </tbody>
+                        </Table>
+                        :
+                        ""
+                    }
+                </Col>
+            </Row> */}
         </Container>
 
     </> );

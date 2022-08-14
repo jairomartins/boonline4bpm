@@ -30,6 +30,7 @@ import ListaBoletim from "../Pages/Boletim/ListaBoletim";
 import Dashboard from "../Pages/Admin/Dashboard";
 import DashboardBoletim from "../Pages/Admin/DashboardBoletim";
 import DashboardUsuario from "../Pages/Admin/DashboardUsuario";
+import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
 
 
 
@@ -72,7 +73,7 @@ export default function Boletim(){
                         element={authenticated  ? <Historico boletim={boletim} setBoletim={setBoletim}/>:<LoginUser/>} />
                     
                     <Route path="/VerBoletim" 
-                        element={authenticated ? <BoletimDetalhe boletim={boletim}/>:<LoginUser/>}/>
+                        element={authenticated ? <BoletimDetalhe boletim={boletim} setBoletim={setBoletim}/>:<LoginUser/>}/>
                     
                     
                     <Route path="*" element={<Page404/>}/>
@@ -81,12 +82,12 @@ export default function Boletim(){
                     <Route path="/login" element={<LoginUser/>}/>
 
 
-                    <Route path="adm/dashboard" element={<Dashboard/>}/>
-                    <Route path="adm/dashboard/boletim" element={<DashboardBoletim boletim={boletim} setBoletim={setBoletim}/>}/>
-                    <Route path="adm/dashboard/usuarios" element={<DashboardUsuario/>}/>
+                    <Route path="/dashboard" element={<Dashboard/>}/>
+                    <Route path="/dashboard/boletim" element={<DashboardBoletim boletim={boletim} setBoletim={setBoletim}/>}/>
+                    <Route path="/dashboard/usuarios" element={<DashboardUsuario/>}/>
                     
                     <Route path="adm/listaBoletim" element={<ListaBoletim/>}/>
-                    <Route path="/adm/BoFromBD" element={<BoletimDetalhe boletim={boletim} setBoletim={setBoletim}/>}/>
+                    <Route path="/BoFromBD" element={<BoletimDetalheFromBD boletim={boletim} setBoletim={setBoletim}/>}/>
                 </Routes>
             </BrowserRouter>
 

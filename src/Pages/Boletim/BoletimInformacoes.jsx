@@ -6,7 +6,7 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
 
     const CarregarBoletim = async (numero)=>{
       
-            axios.get(`http://192.168.0.100:3001/adm/listByNumero/${numero}`)
+            axios.get(`http://192.168.0.100:433/adm/listByNumero/${numero}`)
             .then(function (response) {
                 setBoletim(response.data[0])
                 console.log(response)
@@ -36,7 +36,7 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
                     <td>{boletim.natureza}</td>
                     <td>{boletim.data}</td>
                     <td>{boletim.numero}</td>
-                    <td><Button variant="warning" onClick={(e)=>CarregarBoletim(boletim.numero)}><Link to={"/adm/BoFromBD"}>Detalhe</Link></Button></td>
+                    <td><Button variant="warning" onClick={(e)=>CarregarBoletim(boletim.numero)}><Link to={"/BoFromBD"}>Detalhe</Link></Button></td>
                 </tr>
             </tbody>
             </Table>
