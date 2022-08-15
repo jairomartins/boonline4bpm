@@ -11,7 +11,7 @@ const ListaBoletim = () => {
     // }
 
     useEffect(() => {
-        axios.get('http://192.168.0.100:3001/listbo')
+        axios.get('http://177.153.59.153:433/listbo')
         .then(function (response) {
             setbos(response.data)
         })
@@ -22,7 +22,7 @@ const ListaBoletim = () => {
     return ( <>
         
         
-        {bos.map((bo)=><li key={bo._id}><a href={`http://localhost:3001/listByID/${bo._id}`}>{bo._id}</a></li>)}
+        {bos.map((bo)=><li key={bo._id}><a href={`http://177.153.59.153:433/listByID/${bo._id}`}>{bo._id}</a></li>)}
 
         <button>Atualizar</button>
     </> );

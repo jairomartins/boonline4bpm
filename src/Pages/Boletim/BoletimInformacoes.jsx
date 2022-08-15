@@ -6,11 +6,24 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
 
     const CarregarBoletim = async (numero)=>{
       
-            axios.get(`http://192.168.0.100:433/adm/listByNumero/${numero}`)
-            .then(function (response) {
-                setBoletim(response.data[0])
-                console.log(response)
+            axios.get(`http://177.153.59.153:433/adm/listByNumero/${numero}`,{
+                headers:{
+                    "x-access-token":localStorage.getItem("x-access-token")
+                }
             })
+            .then(function (response) {
+                const bo = response.data
+                console.log(bo.length)
+                setBoletim(response.data[bo.length-1])
+                console.log(response)
+            }).catch(function (error) {
+                // manipula erros da requisição
+                console.error(error);
+                console.log('nao foi possivel localzar')
+            })
+            .then(function () {
+                // sempre será executado
+            });
     }
 
     return ( 

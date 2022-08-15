@@ -6,11 +6,18 @@ const BoletimInformacoesList = ({boletim, setBoletim}) => {
 
     const CarregarBoletim = async (numero)=>{
       
-        axios.get(`http://192.168.0.100:433/adm/listByNumero/${numero}`)
+        axios.get(`http://177.153.59.153:433/adm/listByNumero/${numero}`,{
+            headers:{
+                "x-access-token":localStorage.getItem("x-access-token")
+            }
+        })
         .then(function (response) {
             setBoletim(response.data[0])
             console.log(response)
+        }).catch(function(err){
+            console.log(err)
         })
+
     }
 
     return ( 

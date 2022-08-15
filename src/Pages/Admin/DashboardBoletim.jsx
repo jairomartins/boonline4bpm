@@ -31,7 +31,7 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
     //
     //
     const buscarBoletim = async () =>{
-        axios.get(`http://192.168.0.100:433/adm/listByNumero/${idBusca}`,{
+        axios.get(`http://177.153.59.153:433/adm/listByNumero/${idBusca}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
