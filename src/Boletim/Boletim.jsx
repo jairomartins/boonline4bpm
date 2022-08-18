@@ -39,6 +39,7 @@ export default function Boletim(){
     const {authenticated} = useContext(Context);
 
     const [boletim, setBoletim] = useState({
+        natureza:"",
         id:uuidv4(),
         envolvidos:[],
         materiaisApreendidos:[],

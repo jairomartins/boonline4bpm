@@ -10,6 +10,7 @@ const FormBuscarBo = ({setIdBusca, checkBoletim}) => {
             <Form>
                 <InputGroup>
                     <Form.Control
+                    required
                     placeholder="Digite o n° do boletim"
                     type="number"
                     onChange={(e)=>setIdBusca(e.target.value)}

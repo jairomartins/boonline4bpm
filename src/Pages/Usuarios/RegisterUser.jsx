@@ -1,21 +1,16 @@
-//  Registro de novos usuarios 
-//  Conforme definido na api, email deve ser unico no banco de dados
-//
-//
-import React, {useState} from "react";
-
-import { useNavigate } from 'react-router-dom';
-
-import axios from "axios";
-
-import InputMask from 'react-input-mask';
-
+import React, {useState, useContext} from "react"
+import { useNavigate } from 'react-router-dom'
+import axios from "axios"
+import InputMask from 'react-input-mask'
 import {Card, Col, Row, Container, Form, Button, Alert} from "react-bootstrap"
 
+import { Context } from "../../Context/AuthContext";
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
-import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
+import LoadSpinner from "../../components/LoadSpinner/LoadSpinner"
 
 function RegisterUser (){
+
+    const {BASE_URL} = useContext(Context)
 
     const [userName, setUserName] =  useState()
     const [userEmail, setUserEmail] =  useState()
@@ -40,7 +35,7 @@ function RegisterUser (){
         
         setIsLoading(true)
         
-        axios.post(`http://177.153.59.153:433/auth/register`,{
+        axios.post(`http://${BASE_URL}:433/auth/register`,{
             userName:userName,
             userEmail:userEmail,
             userPassword:userPassword,
@@ -132,7 +127,7 @@ function RegisterUser (){
         </Row>
     </Container>
     
-    </> );
+    </> )
 }
  
 export default RegisterUser;

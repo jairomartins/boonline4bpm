@@ -2,8 +2,6 @@
 import React from "react";
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
-import NavUser from "../../components/nav/NavUser";
-
 
 const DashboardUsuario = () => {
             
@@ -12,7 +10,6 @@ const DashboardUsuario = () => {
 
     <>
         <Cabecalho texto={"Gerenciador de Boletins Digitais: versão(beta)"}/>
-        <NavUser/>
     </> 
     
     );

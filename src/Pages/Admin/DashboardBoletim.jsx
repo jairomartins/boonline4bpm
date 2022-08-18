@@ -11,11 +11,13 @@ import { useNavigate } from "react-router-dom";
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import FormBuscarBo from "../../components/Form/FormBuscarBo";
 import BoletimInformacoes from "../Boletim/BoletimInformacoes";
+import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
 // import BoletimInformacoesList from "../Boletim/BoletimInformacoesList";
 
 const DashboardBoletim = ({boletim, setBoletim}) => {
     const navigate = useNavigate()       
     const [exibeBoletim, setExibeBoletim] = useState(false);
+    const [isLoading, setIsLoading] = useState(false)
     // const [exibeBoletimList, setExibeBoletimList] = useState(false)
 
     // const [boletim, setBoletim] = useState({})
@@ -31,18 +33,24 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
     //
     //
     const buscarBoletim = async () =>{
+        console.log("buscarBoletim boletim dashboard")
+        setIsLoading(true)
         axios.get(`http://177.153.59.153:433/adm/listByNumero/${idBusca}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
         })
         .then((response)=>{
-            setBoletim(response.data[0])
+            console.log("respostar  >"+response.data)
+            setBoletim(response.data)
             setExibeBoletim(true)
+            setIsLoading(false)
         }).catch(function (error) {
             // manipula erros da requisição
+            setBoletim({})
             console.error(error);
             console.log('nao foi possivel localzar')
+            setIsLoading(false)
         })
         .then(function () {
             // sempre será executado
@@ -91,6 +99,7 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
             
         <Container>
             <br/>
+            <LoadSpinner visible={isLoading}/>
             <Row className="justify-content-md-center">
                 <Col md={6} sm={12}>
                     <FormBuscarBo setIdBusca={setIdBusca} checkBoletim={buscarBoletim}/>
