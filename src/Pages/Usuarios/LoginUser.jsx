@@ -56,13 +56,17 @@ const LoginUser = () => {
           
     }
 
+    const handleSetCidade = (cidade)=>{
+        localStorage.setItem("cidade",cidade)
+    }
+
     return (  <>
         {/* Se o usuário ja estiver autenticado redireciona para o / */}
         {authenticated && (
           <Navigate to="/dashboard" replace={true} />
         )}
 
-        <Container className="text-center">
+        <Container >
             <br/>
             <Row  className="justify-content-md-center">
                 <Col sm={12} md={6}>
@@ -76,6 +80,21 @@ const LoginUser = () => {
                     </Card.Header>
                     <Card.Body>
                         <Form onSubmit={clickHandleLogin}>
+                            <Form.Label>Selecione sua cidade :</Form.Label>
+                            <Form.Select aria-label="Default select example" 
+                            onChange={(e)=>{handleSetCidade(e.target.value)}}
+                            >
+                                <option value="Balsas">Balsas</option>
+                                <option value="Riachão">Riachão</option>
+                                <option value="Fortaleza dos Nogueiras">Fortaleza dos Nogueiras</option>
+                                <option value="Nova Colinas">Nova Colinas</option>
+                                <option value="Feira Nova">Feira Nova</option>
+                                <option value="São Pedro dos Crentes">São Pedro dos Crentes</option>
+                                <option value="Alto Parnaíba">Alto Parnaíba</option>
+                                <option value="Tasso Fragoso">Tasso Fragoso</option>
+                                <option value="Batavo">Batavo</option>
+                                </Form.Select>
+                            <br/>
                             <Form.Control
                                 required 
                                 autoComplete="on"

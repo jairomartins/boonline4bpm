@@ -151,7 +151,7 @@ const BoletimDetalhe = ({boletim, setBoletim}) => {
                 <Col className="text-center"><h6>HISTÓRICO <Link className="d-print-none" to="/historico">Editar</Link></h6></Col>
             </Row>
 
-            <Row>
+            <Row className="text-justify">
                 <Editor editorState={editorState} onChange={setEditorState} readOnly={true}/>
               
             </Row>
