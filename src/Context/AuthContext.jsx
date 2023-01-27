@@ -11,7 +11,7 @@ function AuthProvider({children}){
 
     //usado para fazer a authenticação do login 
     const [authenticated, setAuthenticated] =  useState(false) //
-    const BASE_URL ="177.153.59.153"//URL DO SERVIDOR 
+    const BASE_URL ="127.0.0.1"//URL DO SERVIDOR 177.153.59.153
 
     return(<>
         <Context.Provider value={{authenticated, setAuthenticated, BASE_URL}}>
