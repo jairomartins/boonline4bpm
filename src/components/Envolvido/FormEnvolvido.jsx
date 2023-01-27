@@ -9,7 +9,7 @@ import { ImLocation } from "react-icons/im";
 import InputMask from 'react-input-mask';
 
 
-function AddEnvolvido ({boletim, setBoletim}){
+function FormEnvolvido ({boletim, setBoletim}){
 
     const [tipoEnvolvido, setTipoEnvolvido] = useState('Autor')
     const [nome, setNome] = useState('')
@@ -251,4 +251,4 @@ function AddEnvolvido ({boletim, setBoletim}){
     )
 }
 
-export default AddEnvolvido
+export default FormEnvolvido
