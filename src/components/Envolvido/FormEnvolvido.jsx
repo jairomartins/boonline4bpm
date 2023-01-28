@@ -1,5 +1,4 @@
 import React from "react";
-
 import { v4 as uuidV4 } from "uuid";
 import { Col, Button, Container, Form, Row, ProgressBar, Card} from "react-bootstrap";
 import {BsFillPersonPlusFill,BsPersonLinesFill, BsPersonCheckFill} from "react-icons/bs"
@@ -12,7 +11,7 @@ import InputMask from 'react-input-mask';
 //modoEdicao = false : exibe botao que confirma inserção de um envolvido 
 function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdicao, setModoEdicao}){
 
-    //limpa os campos dos inputs no formulário após inserir ou editar um envolvido
+    //limpa os campos do  formulário após inserir ou editar um envolvido
     const resetaCampos = ()=>{
         setEnvolvido({
             id:"",
@@ -38,7 +37,7 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdica
 
         e.preventDefault()
 
-       // setModoEdicao(false)//configura modo de exibição do botao enviar dados do formularido de envolvidos
+       setModoEdicao(false)//configura modo de exibição do botao enviar dados do formularido de envolvidos
 
         const newEnvolvidos = [...boletim.envolvidos,
                 {
@@ -59,7 +58,7 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdica
             ]
             setBoletim({...boletim, envolvidos:newEnvolvidos})
 
-        resetaCampos()
+        resetaCampos() 
     }
 
     return(
@@ -70,7 +69,6 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdica
             <br/>
             <ProgressBar variant="success" striped now={40} />
             <hr/>
-
                 <Card>
                     <Card.Header>
                         <Card.Title>
@@ -232,7 +230,7 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdica
                     <br/>
                     <Row className="text-center">
                         <Col>
-                            {!modoEdicao ?<Button 
+                            {!modoEdicao ?<Button // se estiver no modo edicao exibe  botao de finalizar edição, senao exibe botao e adicionar novo envolvido: modoEdição = false - default value
                                 variant="success"
                                 type="submit"
                             >
