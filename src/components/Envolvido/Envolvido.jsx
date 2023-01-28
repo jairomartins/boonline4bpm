@@ -4,7 +4,7 @@ import { MdEdit } from "react-icons/md";
 import { Button } from "react-bootstrap";
 
 
-function Envolvido({Envolvido,boletim,setBoletim}){
+function Envolvido({Envolvido,boletim,setBoletim, setEnvolvido, setModoEdicao}){
     
     
     const handleRemoveEnvolvido = (id)=>{
@@ -12,6 +12,11 @@ function Envolvido({Envolvido,boletim,setBoletim}){
         setBoletim({...boletim,envolvidos:newEnvolvidosList})
     }
 
+    const handleClickEditar = (envolvido)=>{
+        handleRemoveEnvolvido(envolvido.id)
+        setModoEdicao(true)
+        setEnvolvido(envolvido)
+    }
 
 
     return(
@@ -19,15 +24,16 @@ function Envolvido({Envolvido,boletim,setBoletim}){
         <tr>
             <td>{Envolvido.tipo}</td>
             <td>{Envolvido.nome}</td>
-            <td>{Envolvido.telefone}</td>
             <td >
             <Button variant="danger"
                 onClick={()=>{handleRemoveEnvolvido(Envolvido.id)}}>
                 Excluir
                 <MdDeleteForever/>
-                </Button>
-
-            <Button variant="info">
+            </Button>
+            {' '}
+            <Button variant="info"
+                onClick={()=>{handleClickEditar(Envolvido)}                }
+                >
                 Editar
                 <MdEdit></MdEdit>
             </Button>

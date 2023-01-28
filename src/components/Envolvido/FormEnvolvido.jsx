@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 
 import { v4 as uuidV4 } from "uuid";
-
+import { useEffect } from "react";
 import { Col, Button, Container, Form, Row, ProgressBar, Card} from "react-bootstrap";
-import {BsFillPersonPlusFill,BsPersonLinesFill} from "react-icons/bs"
+import {BsFillPersonPlusFill,BsPersonLinesFill, BsPersonCheckFill} from "react-icons/bs"
 import { ImLocation } from "react-icons/im";
 
 import InputMask from 'react-input-mask';
 
 
-function FormEnvolvido ({boletim, setBoletim}){
+function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdicao}){
+
+    useEffect(() => {
+       carregarEnvolvido(envolvido)
+    },[envolvido]);
 
     const [tipoEnvolvido, setTipoEnvolvido] = useState('Autor')
     const [nome, setNome] = useState('')
@@ -26,7 +30,7 @@ function FormEnvolvido ({boletim, setBoletim}){
     const [obs, setObs] = useState('')
 
     const resetaCampos = ()=>{
-        // setTipoEnvolvido('')
+        // setTipoEnvolvido(envolvido.tipoEnvolvido)
         setNome('')
         setCpf('')
         setSexo('')
@@ -44,6 +48,8 @@ function FormEnvolvido ({boletim, setBoletim}){
     const clickAddEnvolvido = (e)=>{
 
         e.preventDefault()
+
+        setModoEdicao(false)//configura modo de exibição do botao enviar dados do formularido de envolvidos
 
 
         const newEnvolvidos = [...boletim.envolvidos,
@@ -66,6 +72,25 @@ function FormEnvolvido ({boletim, setBoletim}){
             setBoletim({...boletim, envolvidos:newEnvolvidos})
 
         resetaCampos()
+    }
+
+
+    // carrega os dados do envolvido, na ocorrencia, que irão ser editados 
+    // recebe como parametro um modelo do tipo envolvido e usa seus dados para preencher o formulario para editar
+    const carregarEnvolvido = (envolvido)=>{
+        setTipoEnvolvido(envolvido.tipoEnvolvido)
+        setNome(envolvido.nome)
+        setCpf(envolvido.cpf)
+        setSexo(envolvido.bairro)
+        setNascimento(envolvido.nascimento)
+        setEndereco(envolvido.endereco)
+        setNumero(envolvido.numero)
+        setPontoReferencia(envolvido.pontoReferencia)
+        setBairro(envolvido.bairro)
+        setMunicipio(envolvido.municipio)
+        setTelefone(envolvido.telefone)
+        setNomeMae(envolvido.nomeMae)
+        setObs(envolvido.obs)  
     }
 
     return(
@@ -233,12 +258,20 @@ function FormEnvolvido ({boletim, setBoletim}){
                     <br/>
                     <Row className="text-center">
                         <Col>
-                            <Button 
+                            {!modoEdicao ?<Button 
                                 variant="success"
                                 type="submit"
                             >
                                 Adicionar Envolvido  <BsFillPersonPlusFill/> 
                             </Button>
+                            :
+                            <Button 
+                                variant="warning"
+                                type="submit"
+                            >
+                                Finalizar edição  <BsPersonCheckFill/> 
+                            </Button>
+                            }
                         </Col>
                     </Row>
                     </Card.Body>
