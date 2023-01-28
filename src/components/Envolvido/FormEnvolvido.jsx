@@ -1,54 +1,44 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { v4 as uuidV4 } from "uuid";
-import { useEffect } from "react";
 import { Col, Button, Container, Form, Row, ProgressBar, Card} from "react-bootstrap";
 import {BsFillPersonPlusFill,BsPersonLinesFill, BsPersonCheckFill} from "react-icons/bs"
 import { ImLocation } from "react-icons/im";
 
 import InputMask from 'react-input-mask';
 
-
+//formulario para inserir e/ou editar um envolvido na ocorrencia
+//modoEdicao = true : exibe botao que confirma e edição
+//modoEdicao = false : exibe botao que confirma inserção de um envolvido 
 function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdicao, setModoEdicao}){
 
-
-    // dados dos envolvidos na ocorrencia, os dados previsto para o preencimento de envolvidos na ocorrencia
-    // const [tipoEnvolvido, setTipoEnvolvido] = useState('Autor')
-    // const [nome, setNome] = useState('')
-    // const [cpf, setCpf] = useState('')
-    // const [sexo , setSexo]  = useState('Masculino')
-    // const [nascimento, setNascimento]  = useState('')
-    // const [endereco, setEndereco] = useState('')
-    // const [numero, setNumero] = useState('')
-    // const [pontoReferencia, setPontoReferencia] = useState('')
-    // const [bairro, setBairro] = useState('')
-    // const [municipio, setMunicipio] = useState('')
-    // const [telefone, setTelefone] = useState('')
-    // const [nomeMae, setNomeMae] = useState('')
-    // const [obs, setObs] = useState('')
-
+    //limpa os campos dos inputs no formulário após inserir ou editar um envolvido
     const resetaCampos = ()=>{
-        // setTipoEnvolvido(envolvido.tipoEnvolvido)
-        // setNome('')
-        // setCpf('')
-        // setSexo('')
-        // setNascimento('')
-        // setEndereco('')
-        // setNumero('')
-        // setPontoReferencia('')
-        // setBairro('')
-        // setMunicipio('')
-        // setTelefone('')
-        // setNomeMae('')
-        // setObs('')  
+        setEnvolvido({
+            id:"",
+            tipo:"Autor",//Tipo padrao
+            nome:"",
+            cpf:"",
+            bairro:"",
+            sexo:"",
+            nascimento:"",
+            endereco: "",
+            numero:"",
+            pontoReferencia:"",
+            municipio:"",
+            telefone:"",
+            nomeMae:"",
+            obs:""}
+        )
     }
 
-    const clickAddEnvolvido = (e)=>{
+
+    //inseri um envolvido no array de envolvidos 
+    const submitForm = (e)=>{
 
         e.preventDefault()
 
-        setModoEdicao(false)//configura modo de exibição do botao enviar dados do formularido de envolvidos
-
+       // setModoEdicao(false)//configura modo de exibição do botao enviar dados do formularido de envolvidos
 
         const newEnvolvidos = [...boletim.envolvidos,
                 {
@@ -68,34 +58,14 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdica
                 obs:envolvido.obs}
             ]
             setBoletim({...boletim, envolvidos:newEnvolvidos})
+
         resetaCampos()
-    }
-
-
-    // carrega os dados do envolvido, na ocorrencia, que irão ser editados 
-    // recebe como parametro um modelo do tipo envolvido e usa seus dados para preencher o formulario para editar
-    console.log(envolvido)
-
-    const carregarEnvolvido = (envolvido)=>{
-        // setTipoEnvolvido(envolvido.tipo)
-        // setNome(envolvido.nome)
-        // setCpf(envolvido.cpf)
-        // setSexo(envolvido.bairro)
-        // setNascimento(envolvido.nascimento)
-        // setEndereco(envolvido.endereco)
-        // setNumero(envolvido.numero)
-        // setPontoReferencia(envolvido.pontoReferencia)
-        // setBairro(envolvido.bairro)
-        // setMunicipio(envolvido.municipio)
-        // setTelefone(envolvido.telefone)
-        // setNomeMae(envolvido.nomeMae)
-        // setObs(envolvido.obs)  
     }
 
     return(
         <>  
             {/* Container dados pessoais */}
-        <Form onSubmit={clickAddEnvolvido}>
+        <Form onSubmit={submitForm}>
             <Container fluid>
             <br/>
             <ProgressBar variant="success" striped now={40} />
@@ -116,13 +86,14 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdica
                                 <Form.Select size="sm" name="tipoEnvolvido"
                                 defaultValue={envolvido.tipo} 
                                 onChange={(e)=>{setEnvolvido({...envolvido, tipo:e.target.value})}}>
-                                <option   value="Autor" >Autor</option>
-                                <option value="Suspeito">Suspeito</option>
-                                <option value="Condutor">Condutor</option>
-                                <option value="Vitima">Vítima</option>
-                                <option value="Testemunha">Testemunha</option>
-                                <option value="Comunicante">Comunicante</option>
-                                <option value="Vítima Fatal">Vítima Fatal</option>
+                                <option selected={envolvido.tipo ==='Autor'} value="Autor" >Autor</option>
+                                <option selected={envolvido.tipo ==='Suspeito'} value="Suspeito">Suspeito</option>
+                                <option selected={envolvido.tipo ==='Condutor'} value="Condutor">Condutor</option>
+                                <option selected={envolvido.tipo ==='Vítima'} value="Vítima">Vítima</option>
+                                <option selected={envolvido.tipo ==='Testemunha'} value="Testemunha">Testemunha</option>
+                                <option selected={envolvido.tipo ==='Comunicante'} value="Comunicante">Comunicante</option>
+                                <option selected={envolvido.tipo ==='Vítima Fatal'} value="Vítima Fatal">Vítima Fatal</option>
+                                <option selected={envolvido.tipo ==='Outro'} value="Outro">Outro</option>
                                 </Form.Select>
                             </Col>
                             <Col sm={6}>
@@ -136,13 +107,15 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdica
                                 />
                             </Col >
                             <Col sm={3}>
-                                <Form.Label>Sexo:</Form.Label>
+                                <Form.Label>Gênero:</Form.Label>
                                     <Form.Select
                                         defaultValue={envolvido.sexo}
-                                        onChange={(e)=>{setEnvolvido({...envolvido, sexto:e.target.value})}}
+                                        onChange={(e)=>{setEnvolvido({...envolvido, sexo:e.target.value})}}
                                         size="sm">
-                                        <option value="Masculino">Masculino</option>
-                                        <option value="Feminino">Feminino</option>
+                                        <option selected={envolvido.sexo ==='Masculino'} value="Masculino">Masculino</option>
+                                        <option selected={envolvido.sexo ==='Feminino'}value="Feminino">Feminino</option>
+                                        <option selected={envolvido.sexo ==='Outro'}value="Outro">Outro</option>
+                                        <option selected={envolvido.sexo ==='Prefiro não dizer'}value="Prefiro não dizer">Prefiro não dizer</option>
                                     </Form.Select>
                             </Col>
                         </Row>

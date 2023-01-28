@@ -21,7 +21,7 @@ function Envolvidos ({boletim,setBoletim}){
     const [envolvido, setEnvolvido] = useState(
         {
         id:"",
-        tipo:"",
+        tipo:"Autor",//Tipo padrao
         nome:"",
         cpf:"",
         bairro:"",
