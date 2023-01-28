@@ -19,7 +19,7 @@ const LoginUser = () => {
     const [erroShow, setErroShow] = useState(false)
     const [erroMessage, setErroMessage] = useState("")
 
-    const {authenticated, setAuthenticated, BASE_URL} = useContext(Context)
+    const {authenticated, setAuthenticated, BASE_URL, cidade, setCidade} = useContext(Context)
 
     async function clickHandleLogin(e){
            
@@ -57,7 +57,7 @@ const LoginUser = () => {
     }
 
     const handleSetCidade = (cidade)=>{
-        localStorage.setItem("cidade",cidade)
+        setCidade(cidade)
     }
 
     return (  <>
@@ -81,7 +81,9 @@ const LoginUser = () => {
                     <Card.Body>
                         <Form onSubmit={clickHandleLogin}>
                             <Form.Label>Selecione sua cidade :</Form.Label>
-                            <Form.Select aria-label="Default select example" 
+                            <Form.Select aria-label="Default select example"
+                            defaultValue={cidade}
+                            
                             onChange={(e)=>{handleSetCidade(e.target.value)}}
                             >
                                 <option value="Balsas">Balsas</option>
