@@ -9,40 +9,38 @@ import { ImLocation } from "react-icons/im";
 import InputMask from 'react-input-mask';
 
 
-function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdicao}){
+function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdicao, setModoEdicao}){
 
-    useEffect(() => {
-       carregarEnvolvido(envolvido)
-    },[envolvido]);
 
-    const [tipoEnvolvido, setTipoEnvolvido] = useState('Autor')
-    const [nome, setNome] = useState('')
-    const [cpf, setCpf] = useState('')
-    const [sexo , setSexo]  = useState('Masculino')
-    const [nascimento, setNascimento]  = useState('')
-    const [endereco, setEndereco] = useState('')
-    const [numero, setNumero] = useState('')
-    const [pontoReferencia, setPontoReferencia] = useState('')
-    const [bairro, setBairro] = useState('')
-    const [municipio, setMunicipio] = useState('')
-    const [telefone, setTelefone] = useState('')
-    const [nomeMae, setNomeMae] = useState('')
-    const [obs, setObs] = useState('')
+    // dados dos envolvidos na ocorrencia, os dados previsto para o preencimento de envolvidos na ocorrencia
+    // const [tipoEnvolvido, setTipoEnvolvido] = useState('Autor')
+    // const [nome, setNome] = useState('')
+    // const [cpf, setCpf] = useState('')
+    // const [sexo , setSexo]  = useState('Masculino')
+    // const [nascimento, setNascimento]  = useState('')
+    // const [endereco, setEndereco] = useState('')
+    // const [numero, setNumero] = useState('')
+    // const [pontoReferencia, setPontoReferencia] = useState('')
+    // const [bairro, setBairro] = useState('')
+    // const [municipio, setMunicipio] = useState('')
+    // const [telefone, setTelefone] = useState('')
+    // const [nomeMae, setNomeMae] = useState('')
+    // const [obs, setObs] = useState('')
 
     const resetaCampos = ()=>{
         // setTipoEnvolvido(envolvido.tipoEnvolvido)
-        setNome('')
-        setCpf('')
-        setSexo('')
-        setNascimento('')
-        setEndereco('')
-        setNumero('')
-        setPontoReferencia('')
-        setBairro('')
-        setMunicipio('')
-        setTelefone('')
-        setNomeMae('')
-        setObs('')  
+        // setNome('')
+        // setCpf('')
+        // setSexo('')
+        // setNascimento('')
+        // setEndereco('')
+        // setNumero('')
+        // setPontoReferencia('')
+        // setBairro('')
+        // setMunicipio('')
+        // setTelefone('')
+        // setNomeMae('')
+        // setObs('')  
     }
 
     const clickAddEnvolvido = (e)=>{
@@ -55,42 +53,43 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdic
         const newEnvolvidos = [...boletim.envolvidos,
                 {
                 id:uuidV4(),
-                tipo:tipoEnvolvido,
-                nome:nome,
-                cpf:cpf,
-                bairro:bairro,
-                sexo:sexo,
-                nascimento:nascimento,
-                endereco: endereco,
-                numero:numero,
-                pontoReferencia:pontoReferencia,
-                municipio:municipio,
-                telefone:telefone,
-                nomeMae:nomeMae,
-                obs:obs}
+                tipo:envolvido.tipo,
+                nome:envolvido.nome,
+                cpf:envolvido.cpf,
+                bairro:envolvido.bairro,
+                sexo:envolvido.sexo,
+                nascimento:envolvido.nascimento,
+                endereco: envolvido.endereco,
+                numero:envolvido.numero,
+                pontoReferencia:envolvido.pontoReferencia,
+                municipio:envolvido.municipio,
+                telefone:envolvido.telefone,
+                nomeMae:envolvido.nomeMae,
+                obs:envolvido.obs}
             ]
             setBoletim({...boletim, envolvidos:newEnvolvidos})
-
         resetaCampos()
     }
 
 
     // carrega os dados do envolvido, na ocorrencia, que irão ser editados 
     // recebe como parametro um modelo do tipo envolvido e usa seus dados para preencher o formulario para editar
+    console.log(envolvido)
+
     const carregarEnvolvido = (envolvido)=>{
-        setTipoEnvolvido(envolvido.tipoEnvolvido)
-        setNome(envolvido.nome)
-        setCpf(envolvido.cpf)
-        setSexo(envolvido.bairro)
-        setNascimento(envolvido.nascimento)
-        setEndereco(envolvido.endereco)
-        setNumero(envolvido.numero)
-        setPontoReferencia(envolvido.pontoReferencia)
-        setBairro(envolvido.bairro)
-        setMunicipio(envolvido.municipio)
-        setTelefone(envolvido.telefone)
-        setNomeMae(envolvido.nomeMae)
-        setObs(envolvido.obs)  
+        // setTipoEnvolvido(envolvido.tipo)
+        // setNome(envolvido.nome)
+        // setCpf(envolvido.cpf)
+        // setSexo(envolvido.bairro)
+        // setNascimento(envolvido.nascimento)
+        // setEndereco(envolvido.endereco)
+        // setNumero(envolvido.numero)
+        // setPontoReferencia(envolvido.pontoReferencia)
+        // setBairro(envolvido.bairro)
+        // setMunicipio(envolvido.municipio)
+        // setTelefone(envolvido.telefone)
+        // setNomeMae(envolvido.nomeMae)
+        // setObs(envolvido.obs)  
     }
 
     return(
@@ -110,12 +109,14 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdic
                     </Card.Header>
                     <Card.Body>
                         <Row>
+
+                            {/* comparar valor do tipo do envovido, se ele for igual ao da opção exibir selecte, senao usar default */}
                             <Col sm={3}>
                                 <Form.Label>Tipo de Envolvimento:</Form.Label>
                                 <Form.Select size="sm" name="tipoEnvolvido"
-                                defaultValue={tipoEnvolvido} 
-                                onChange={(e)=>{setTipoEnvolvido(e.target.value)}}>
-                                <option value="Autor" >Autor</option>
+                                defaultValue={envolvido.tipo} 
+                                onChange={(e)=>{setEnvolvido({...envolvido, tipo:e.target.value})}}>
+                                <option   value="Autor" >Autor</option>
                                 <option value="Suspeito">Suspeito</option>
                                 <option value="Condutor">Condutor</option>
                                 <option value="Vitima">Vítima</option>
@@ -128,17 +129,17 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdic
                                 <Form.Label>Nome:</Form.Label>
                                 <Form.Control 
                                     size="sm"
-                                    onChange={(e)=>{setNome(e.target.value)}}
+                                    onChange={(e)=>{setEnvolvido({...envolvido, nome:e.target.value})}}
                                     placeholder="Nome"
                                     required
-                                    value={nome}
+                                    value={envolvido.nome}
                                 />
                             </Col >
                             <Col sm={3}>
                                 <Form.Label>Sexo:</Form.Label>
                                     <Form.Select
-                                        defaultValue={sexo}
-                                        onChange={(e)=>{setSexo(e.target.value)}}
+                                        defaultValue={envolvido.sexo}
+                                        onChange={(e)=>{setEnvolvido({...envolvido, sexto:e.target.value})}}
                                         size="sm">
                                         <option value="Masculino">Masculino</option>
                                         <option value="Feminino">Feminino</option>
@@ -151,9 +152,9 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdic
                                 <InputMask 
                                     className="form-control form-control-sm"
                                     mask="999.999.999-99"
-                                    onChange={(e)=>{setCpf(e.target.value)}}
+                                    onChange={(e)=>{setEnvolvido({...envolvido, cpf:e.target.value})}}
                                     placeholder="CPF"
-                                    value={cpf}
+                                    value={envolvido.cpf}
                                 />
                             </Col>
                             
@@ -162,9 +163,9 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdic
                                 <InputMask 
                                     className="form-control form-control-sm"
                                     mask="99/99/9999"
-                                    onChange={(e)=>{setNascimento(e.target.value)}}
+                                    onChange={(e)=>{setEnvolvido({...envolvido, nascimento:e.target.value})}}
                                     placeholder="data de nascimento"
-                                    value={nascimento}
+                                    value={envolvido.nascimento}
                                 />
                             </Col>
                             <Col sm={3}>
@@ -172,9 +173,9 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdic
                             <InputMask 
                                 className="form-control form-control-sm"
                                 mask="(99) 9 9999-9999"
-                                onChange={(e)=>{setTelefone(e.target.value)}}
+                                onChange={(e)=>{setEnvolvido({...envolvido, telefone:e.target.value})}}
                                 placeholder="(99) 9 0000-0000"
-                                value={telefone}
+                                value={envolvido.telefone}
                             />
                             </Col>
                         </Row>
@@ -183,18 +184,18 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdic
                             <Form.Label>Nome da Mãe:</Form.Label>
                             <Form.Control size="sm"
                                 type="text"
-                                onChange={(e)=>{setNomeMae(e.target.value)}}
+                                onChange={(e)=>{setEnvolvido({...envolvido, nomeMae:e.target.value})}}
                                 placeholder="Nome da Mãe"
-                                value={nomeMae}
+                                value={envolvido.nomeMae}
                             />
                         </Col>
                         <Col sm={6}>
                             <Form.Label>Observações:</Form.Label>
                             <Form.Control size="sm"
                                 type="text"
-                                onChange={(e)=>{setObs(e.target.value)}}
+                                onChange={(e)=>{setEnvolvido({...envolvido, obs:e.target.value})}}
                                 placeholder="Observações"
-                                value={obs}
+                                value={envolvido.obs}
                             />
                         </Col>
                         </Row>
@@ -216,24 +217,24 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdic
                             <Form.Control
                             size="sm"
                             placeholder="Nome da Rua"
-                            value={endereco}
-                            onChange={(e)=>{setEndereco(e.target.value)}}/>
+                            value={envolvido.endereco}
+                            onChange={(e)=>{setEnvolvido({...envolvido, endereco:e.target.value})}}/>
                         </Col>
                         <Col sm={2}>
                             <Form.Label>Numero : </Form.Label>
                             <Form.Control
                             size="sm"
                             placeholder="Numero"
-                            value={numero}
-                            onChange={(e)=>{setNumero(e.target.value)}}/>
+                            value={envolvido.numero}
+                            onChange={(e)=>{setEnvolvido({...envolvido, numero:e.target.value})}}/>
                         </Col>
                         <Col sm={2}>
                             <Form.Label>Bairro : </Form.Label>
                             <Form.Control
                             size="sm"
                             placeholder="Nome do Bairro"
-                            value={bairro}
-                            onChange={(e)=>{setBairro(e.target.value)}}/>
+                            value={envolvido.bairro}
+                            onChange={(e)=>{setEnvolvido({...envolvido, bairro:e.target.value})}}/>
                         </Col>
                     </Row>
                     <Row>
@@ -242,8 +243,8 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdic
                             <Form.Control
                             size="sm"
                             placeholder="Nome do Município"
-                            value={municipio}
-                            onChange={(e)=>{setMunicipio(e.target.value)}}/>
+                            value={envolvido.municipio}
+                            onChange={(e)=>{setEnvolvido({...envolvido, municipio:e.target.value})}}/>
                         </Col>
 
                         <Col>
@@ -251,8 +252,8 @@ function FormEnvolvido ({boletim, setBoletim, envolvido, modoEdicao, setModoEdic
                             <Form.Control
                             size="sm"
                             placeholder="Pronto de referencia"
-                            value={pontoReferencia}
-                            onChange={(e)=>{setPontoReferencia(e.target.value)}}/>
+                            value={envolvido.pontoReferencia}
+                            onChange={(e)=>{setEnvolvido({...envolvido, pontoReferencia:e.target.value})}}/>
                         </Col>
                     </Row>
                     <br/>

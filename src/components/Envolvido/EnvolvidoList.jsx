@@ -3,7 +3,7 @@ import { Container, Table } from "react-bootstrap";
 import Envolvido from "./Envolvido";
 
 
-function EnvolvidoList ({boletim,setBoletim,envolvido, setEnvolvido, setModoEdicao}){
+function EnvolvidoList ({boletim,setBoletim, setEnvolvido, setModoEdicao}){
     return (
         <>
         <Container fluid>
