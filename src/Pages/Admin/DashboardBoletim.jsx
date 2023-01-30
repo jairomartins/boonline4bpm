@@ -14,7 +14,7 @@ import BoletimInformacoes from "../Boletim/BoletimInformacoes";
 import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
 // import BoletimInformacoesList from "../Boletim/BoletimInformacoesList";
 
-const DashboardBoletim = ({boletim, setBoletim}) => {
+const DashboardBoletim = ({boletim, setBoletim, cidadeLogin}) => {
     const navigate = useNavigate()       
     const [exibeBoletim, setExibeBoletim] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
@@ -26,7 +26,7 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
 
     // const [listaBoletim, setListaBoletim] = useState([{}])
 
-
+    console.log(cidadeLogin)
 
     // faz requisição GET que verifica se o boletim esta cadastrado no banco de dados
     // se encontrar usa o objeto de retorno para setar o boletim e exibir detalhes
@@ -35,7 +35,7 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
     const buscarBoletim = async () =>{
         console.log("buscarBoletim boletim dashboard")
         setIsLoading(true)
-        axios.get(`http://localhost:433/adm/listByNumeroECidade/${idBusca}/Batavo`,{
+        axios.get(`http://177.153.59.153:433/adm/listByNumeroECidade/${idBusca}/${cidadeLogin}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }

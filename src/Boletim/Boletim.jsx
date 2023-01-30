@@ -36,8 +36,7 @@ import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
 
 export default function Boletim(){ 
    
-    const {authenticated} = useContext(Context);
-
+    const {authenticated, cidade} = useContext(Context);
     const [boletim, setBoletim] = useState({
         cidade:"Balsas", //valor padrão para cidade  = Balsas 
         natureza:"",
@@ -85,7 +84,7 @@ export default function Boletim(){
 
 
                     <Route path="/dashboard" element={authenticated ? <Dashboard/>:<LoginUser/>}/>
-                    <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletim boletim={boletim} setBoletim={setBoletim}/>:<LoginUser/>}/>
+                    <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletim boletim={boletim} setBoletim={setBoletim} cidadeLogin={cidade}/>:<LoginUser/>}/>
                     <Route path="/dashboard/usuarios" element={authenticated ?<DashboardUsuario/>:<LoginUser/>}/>
                     
                     {/* <Route path="adm/listaBoletim" element={<ListaBoletim/>}/> */}
