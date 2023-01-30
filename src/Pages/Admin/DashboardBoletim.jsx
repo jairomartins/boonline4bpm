@@ -30,12 +30,12 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
 
     // faz requisição GET que verifica se o boletim esta cadastrado no banco de dados
     // se encontrar usa o objeto de retorno para setar o boletim e exibir detalhes
-    //
+    //  
     //
     const buscarBoletim = async () =>{
         console.log("buscarBoletim boletim dashboard")
         setIsLoading(true)
-        axios.get(`http://177.153.59.153:433/adm/listByNumero/${idBusca}`,{
+        axios.get(`http://localhost:433/adm/listByNumeroECidade/${idBusca}/Batavo`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
@@ -95,7 +95,7 @@ const DashboardBoletim = ({boletim, setBoletim}) => {
     return ( 
 
     <>
-        <Cabecalho texto={"Gerenciador de Boletins Digitais: versão(beta)"}/>
+        <Cabecalho/>
             
         <Container>
             <br/>

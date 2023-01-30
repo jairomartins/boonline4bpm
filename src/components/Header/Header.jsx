@@ -2,7 +2,7 @@ import React from "react";
 
 import CabecalhoBoletim from "../Cabecalho/CabecalhoBoletim";
 import NavPage from "../NavPage";
-import AddHeader from "./AddHeader";
+import FormCabecalho from "./FormCabecalho";
 
 
 const Header = ({boletim,setBoletim})=>{
@@ -10,7 +10,7 @@ const Header = ({boletim,setBoletim})=>{
     return(
         <>
             <CabecalhoBoletim texto={"Fato Comunicado"}/>
-            <AddHeader boletim={boletim} setBoletim={setBoletim} />
+            <FormCabecalho boletim={boletim} setBoletim={setBoletim} />
             <NavPage prev="/dashboard" next="/envolvido"/>
         </>
     )

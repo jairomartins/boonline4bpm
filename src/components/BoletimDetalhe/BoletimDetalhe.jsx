@@ -38,7 +38,7 @@ const BoletimDetalhe = ({boletim, setBoletim}) => {
       
     const saveToDB = async ()=>{
         console.log("----- historico  ----- \n"+boletim.historicohtml)
-        await axios.post("http://177.153.59.153:433/adm/salvarBoletim",{
+        await axios.post("http://localhost:433/adm/salvarBoletim",{
             boletim: boletim,
         })
         .then(function (response) {

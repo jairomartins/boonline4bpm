@@ -7,7 +7,7 @@ import InputMask from 'react-input-mask';
 import { GrDocumentTime } from 'react-icons/gr';
 import { ImLocation } from 'react-icons/im';
 
-function AddHeader ({boletim,setBoletim}){
+function FormCabecalho ({boletim,setBoletim}){
 
     
     return (
@@ -125,11 +125,21 @@ function AddHeader ({boletim,setBoletim}){
                 <Row>
                     <Col sm={8}>
                         <Form.Label>Município : </Form.Label>
-                        <Form.Control
-                        size="sm"
-                        placeholder="Nome do Município"
-                        defaultValue={boletim.municipio}
-                        onChange={(e)=>{setBoletim({...boletim, municipio:e.target.value})}}/>
+                        <Form.Select aria-label="Default select example"
+                            defaultValue={boletim.municipio}
+                            size="sm"
+                            onChange={(e)=>{setBoletim({...boletim, municipio:e.target.value})}}
+                            >
+                                <option value="Balsas">Balsas</option>
+                                <option value="Riachão">Riachão</option>
+                                <option value="Fortaleza dos Nogueiras">Fortaleza dos Nogueiras</option>
+                                <option value="Nova Colinas">Nova Colinas</option>
+                                <option value="Feira Nova">Feira Nova</option>
+                                <option value="São Pedro dos Crentes">São Pedro dos Crentes</option>
+                                <option value="Alto Parnaíba">Alto Parnaíba</option>
+                                <option value="Tasso Fragoso">Tasso Fragoso</option>
+                                <option value="Batavo">Distrito Batavo (Balsas)</option>
+                            </Form.Select>
                     </Col>
 
                     <Col>
@@ -150,4 +160,4 @@ function AddHeader ({boletim,setBoletim}){
     )
 }
 
-export default AddHeader
+export default FormCabecalho

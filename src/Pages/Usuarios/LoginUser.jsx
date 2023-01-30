@@ -94,7 +94,7 @@ const LoginUser = () => {
                                 <option value="São Pedro dos Crentes">São Pedro dos Crentes</option>
                                 <option value="Alto Parnaíba">Alto Parnaíba</option>
                                 <option value="Tasso Fragoso">Tasso Fragoso</option>
-                                <option value="Batavo">Batavo</option>
+                                <option value="Batavo">Distrito Batavo (Balsas)</option>
                                 </Form.Select>
                             <br/>
                             <Form.Control

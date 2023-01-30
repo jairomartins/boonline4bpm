@@ -29,7 +29,8 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
 
     return ( 
         <> 
-        {(boletim==undefined)?
+        {console.log(boletim)}
+        {(boletim===null)?
             <Alert variant="danger">
                 Boletim não encontrado!
             </Alert>
@@ -42,6 +43,7 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
                     <th>Natureza</th>
                     <th>Data</th>
                     <th>Número</th>
+                    <th>Município</th>
                     <th>Opção</th>
                 </tr>
             </thead>
@@ -50,6 +52,7 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
                     <td>{boletim.natureza}</td>
                     <td>{boletim.data}</td>
                     <td>{boletim.numero}</td>
+                    <td>{boletim.municipio}</td>
                     <td><Button variant="warning" onClick={(e)=>CarregarBoletim(boletim.numero)}><Link to={"/BoFromBD"}>Detalhe</Link></Button></td>
                 </tr>
             </tbody>
