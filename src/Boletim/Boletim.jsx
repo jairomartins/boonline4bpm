@@ -38,7 +38,7 @@ export default function Boletim(){
    
     const {authenticated, cidade} = useContext(Context);
     const [boletim, setBoletim] = useState({
-        cidade:"Balsas", //valor padrão para cidade  = Balsas 
+        municipio:"Balsas", //valor padrão para cidade  = Balsas 
         natureza:"",
         id:uuidv4(),
         envolvidos:[],
