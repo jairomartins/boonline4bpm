@@ -7,8 +7,12 @@ import InputMask from 'react-input-mask';
 import { GrDocumentTime } from 'react-icons/gr';
 import { ImLocation } from 'react-icons/im';
 
-function FormCabecalho ({boletim,setBoletim}){
 
+function FormCabecalho ({boletim,setBoletim, cidadeLogin}){
+
+   
+    boletim.municipio = cidadeLogin;
+   
     
     return (
         <>
@@ -122,16 +126,18 @@ function FormCabecalho ({boletim,setBoletim}){
                         onChange={(e)=>{setBoletim({...boletim, bairro:e.target.value})}}/>
                     </Col>
                 </Row>
+                {console.log(boletim.municipio +" form cabecalho")}
                 <Row>
                     <Col sm={8}>
                         <Form.Label>Município : </Form.Label>
                         <Form.Select aria-label="Default select example"
-                            defaultValue={boletim.municipio}
+                            // defaultValue={boletim.municipio}
                             size="sm"
                             onChange={(e)=>{setBoletim({...boletim, municipio:e.target.value})}}
                             >
-                                <option value="Balsas">Balsas</option>
-                                <option value="Riachão">Riachão</option>
+                                <option >Escolha uma opção</option>
+                                <option selected={boletim.municipio ==="Balsas"}value="Balsas">Balsas</option>
+                                <option selected={boletim.municipio ==="Riachão"}value="Riachão">Riachão</option>
                                 <option value="Fortaleza dos Nogueiras">Fortaleza dos Nogueiras</option>
                                 <option value="Nova Colinas">Nova Colinas</option>
                                 <option value="Feira Nova">Feira Nova</option>

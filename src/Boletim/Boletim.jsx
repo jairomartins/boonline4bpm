@@ -37,6 +37,7 @@ import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
 export default function Boletim(){ 
    
     const {authenticated, cidade} = useContext(Context);
+
     const [boletim, setBoletim] = useState({
         municipio:"Balsas", //valor padrão para cidade  = Balsas 
         natureza:"",
@@ -57,7 +58,7 @@ export default function Boletim(){
                         element={<Home/>}
                     />
                     <Route path="/header" 
-                        element={authenticated ? (<Header boletim={boletim} setBoletim={setBoletim}/>):(<LoginUser/>)} 
+                        element={authenticated ? (<Header boletim={boletim} setBoletim={setBoletim} cidadeLogin={cidade}/>):(<LoginUser/>)} 
                     />
 
                     <Route path="/envolvido" 
