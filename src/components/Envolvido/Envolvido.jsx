@@ -8,8 +8,10 @@ function Envolvido({Envolvido,boletim,setBoletim, setEnvolvido, setModoEdicao}){
     
     
     const handleRemoveEnvolvido = (id)=>{
+      
         const newEnvolvidosList = boletim.envolvidos.filter(envolvido=>envolvido.id!==id)
         setBoletim({...boletim,envolvidos:newEnvolvidosList})
+     
     }
 
     const handleClickEditar = (envolvido)=>{
@@ -26,13 +28,15 @@ function Envolvido({Envolvido,boletim,setBoletim, setEnvolvido, setModoEdicao}){
             <td>{Envolvido.nome}</td>
             <td >
             <Button variant="danger"
+                size="sm"
                 onClick={()=>{handleRemoveEnvolvido(Envolvido.id)}}>
                 Excluir
                 <MdDeleteForever/>
             </Button>
-            {' '}
+            <br/><br/>
             <Button variant="info"
-                onClick={()=>{handleClickEditar(Envolvido)}                }
+                size="sm"
+                onClick={()=>{handleClickEditar(Envolvido)}}
                 >
                 Editar
                 <MdEdit></MdEdit>
