@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 
 import AddPolicial from "./AddPolicial";
@@ -6,11 +6,14 @@ import PolicialList from "./PolicialList";
 import NavPage from "../NavPage";
 import { Col, Container, Row } from "react-bootstrap";
 
-
+import { BoletimContext } from "../../Context/BoletimContext";
 import CabecalhoBoletim from "../Cabecalho/CabecalhoBoletim";
 
-function Efetivo  ({boletim,setBoletim}){
+function Efetivo  (){
 
+
+    const {boletim, setBoletim} = useContext(BoletimContext)
+    
     return(
         <>
         <CabecalhoBoletim texto={"Adicionar Efetivo"}/>
@@ -23,7 +26,7 @@ function Efetivo  ({boletim,setBoletim}){
             </Row>
         </Container>
         <PolicialList policiais={boletim.efetivo} boletim={boletim} setBoletim={setBoletim} />
-        <NavPage prev="/material" next="/historico"/>
+        <NavPage prev="../material" next="../historico"/>
         </>
     )
 }

@@ -96,7 +96,7 @@ const DashboardBoletim = (cidadeLogin) => {
             efetivo:[],
         })
         setBoletim(newboletim)
-        navigate('/header')
+        navigate('../boletim/header')
     }
 
     const handleClickVoltar = ()=>{

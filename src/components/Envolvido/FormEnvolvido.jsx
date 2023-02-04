@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { v4 as uuidV4 } from "uuid";
 import { Col, Button, Container, Form, Row, ProgressBar, Card} from "react-bootstrap";
 import {BsFillPersonPlusFill,BsPersonLinesFill, BsPersonCheckFill} from "react-icons/bs"
@@ -6,10 +6,14 @@ import { ImLocation } from "react-icons/im";
 
 import InputMask from 'react-input-mask';
 
+import { BoletimContext } from "../../Context/BoletimContext";
+
 //formulario para inserir e/ou editar um envolvido na ocorrencia
 //modoEdicao = true : exibe botao que confirma e edição
 //modoEdicao = false : exibe botao que confirma inserção de um envolvido 
-function FormEnvolvido ({boletim, setBoletim, envolvido, setEnvolvido, modoEdicao, setModoEdicao}){
+function FormEnvolvido ({envolvido, setEnvolvido, modoEdicao, setModoEdicao}){
+    
+    const {boletim, setBoletim} = useContext(BoletimContext)
 
     //limpa os campos do  formulário após inserir ou editar um envolvido
     const resetaCampos = ()=>{

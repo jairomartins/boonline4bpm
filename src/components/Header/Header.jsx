@@ -11,7 +11,7 @@ const Header = ()=>{
         <>
             <CabecalhoBoletim texto={"Fato Comunicado"}/>
             <FormCabecalho />
-            <NavPage prev="/dashboard" next="/envolvido"/>
+            <NavPage prev="/dashboard" next="../envolvido"/>
         </>
     )
 }

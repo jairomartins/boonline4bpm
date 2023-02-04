@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import MaterialList from "./MaterialList";
 import AddMaterial from "./AddMaterial"
 import NavPage from "../NavPage"
 
-
+import { BoletimContext } from "../../Context/BoletimContext";
 import { Container, Row, Col } from "react-bootstrap";
 import CabecalhoBoletim from "../Cabecalho/CabecalhoBoletim";
 
-function ItensApreendidos ({boletim,setBoletim}){
+function ItensApreendidos (){
     
+    const {boletim, setBoletim} = useContext(BoletimContext)
+
     return(
         <>
             <CabecalhoBoletim texto={"Materiais Apreendidos"}/>
@@ -26,7 +28,7 @@ function ItensApreendidos ({boletim,setBoletim}){
 
             <MaterialList 
                 boletim={boletim} setBoletim={setBoletim}/>
-            <NavPage prev="/envolvido" next="/efetivo"/>
+            <NavPage prev="../envolvido" next="../efetivo"/>
         </>
     )
 

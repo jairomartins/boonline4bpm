@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Container, Table } from "react-bootstrap";
 import Envolvido from "./Envolvido";
 
+import { BoletimContext } from "../../Context/BoletimContext";
 
-function EnvolvidoList ({boletim,setBoletim, setEnvolvido, setModoEdicao}){
+function EnvolvidoList ({setEnvolvido, setModoEdicao}){
+
+    const {boletim, setBoletim} = useContext(BoletimContext)
     return (
         <>
         <Container fluid>

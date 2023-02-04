@@ -1,7 +1,7 @@
-import React, {useState,useEffect} from "react";
+import React, {useState,useEffect, useContext} from "react";
 
 import { Container, Row , Col, Button, ProgressBar, Card} from "react-bootstrap";
-
+import { BoletimContext } from "../../Context/BoletimContext";
 
 import {Editor, EditorState} from 'draft-js';
 import 'draft-js/dist/Draft.css';
@@ -24,7 +24,9 @@ import CabecalhoBoletim from "../Cabecalho/CabecalhoBoletim";
 
 
 
-const Historico = ({boletim,setBoletim}) => {
+const Historico = () => {
+
+    const {boletim, setBoletim} = useContext(BoletimContext)
 
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
     const [revisar, setRevisar] = useState(false)
@@ -90,7 +92,7 @@ const Historico = ({boletim,setBoletim}) => {
                         variant="outline-primary">
                         <Link 
                             className="text-decoration-none" 
-                            to="/efetivo">
+                            to="../efetivo">
                                 <BsArrowLeft/> Voltar
                         </Link>
                     </Button>
@@ -109,7 +111,7 @@ const Historico = ({boletim,setBoletim}) => {
                         variant="warning">
                             <Link 
                             className="text-decoration-none"
-                            to="/VerBoletim"> 
+                            to="../VerBoletim"> 
                             Revisar <AiOutlineFileDone/>
                             </Link>
                     </Button>

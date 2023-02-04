@@ -47,28 +47,39 @@ export default function Boletim(){
                 {/* {authenticated && <Navigate replace to="/home"/>} */}
                     <Routes>
                     
+
                         <Route path="/" 
                             element={<Home/>}
                         />
-                        <Route path="/header" 
-                            element={authenticated ? (<Header cidadeLogin={cidade}/>):(<LoginUser/>)} 
-                        />
 
-                        <Route path="/envolvido" 
-                            element={authenticated ? (<Envolvidos/>):(<LoginUser/>)} 
-                        />
+                        <Route path="/boletim">
+                            <Route path="header" 
+                                element={authenticated ? (<Header cidadeLogin={cidade}/>):(<LoginUser/>)} 
+                            />
+
+                            <Route path="envolvido" 
+                                element={authenticated ? (<Envolvidos/>):(<LoginUser/>)} 
+                            />
+                            
+                            <Route path="material" 
+                                element={ authenticated ? <ItensApreendidos/>:<LoginUser/>} 
+                                />
+                            
+                            <Route path="efetivo" 
+                                element={authenticated ? <Efetivo/>:<LoginUser/>} 
+                                />
+                            
+                            <Route path="historico" 
+                                element={authenticated  ? <Historico/>:<LoginUser/>} 
+                                />
+                            
+                            <Route path="VerBoletim" 
+                                element={authenticated ? <BoletimDetalhe/>:<LoginUser/>}
+                            />
+                            
+                        </Route>
                         
-                        <Route path="/material" 
-                            element={ authenticated ? <ItensApreendidos/>:<LoginUser/>} />
-                        
-                        <Route path="/efetivo" 
-                            element={authenticated ? <Efetivo/>:<LoginUser/>} />
-                        
-                        <Route path="/historico" 
-                            element={authenticated  ? <Historico/>:<LoginUser/>} />
-                        
-                        <Route path="/VerBoletim" 
-                            element={authenticated ? <BoletimDetalhe/>:<LoginUser/>}/>
+
                         
                         
                         <Route path="*" element={<Page404/>}/>
