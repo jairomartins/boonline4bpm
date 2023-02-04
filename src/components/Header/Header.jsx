@@ -1,19 +1,18 @@
 import React from "react";
 
 import CabecalhoBoletim from "../Cabecalho/CabecalhoBoletim";
-import NavPage from "../NavPage";
 import FormCabecalho from "./FormCabecalho";
+import NavPage from "../NavPage";
 
 
-const Header = ({boletim,setBoletim, cidadeLogin})=>{
+const Header = ()=>{
     
     return(
         <>
             <CabecalhoBoletim texto={"Fato Comunicado"}/>
-            <FormCabecalho boletim={boletim} setBoletim={setBoletim} cidadeLogin={cidadeLogin} />
+            <FormCabecalho />
             <NavPage prev="/dashboard" next="/envolvido"/>
         </>
     )
 }
-
 export default Header

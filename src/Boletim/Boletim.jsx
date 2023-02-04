@@ -1,7 +1,7 @@
-import React, {useState, useContext} from "react";
+import React, {useContext} from "react";
 
 
-import { v4 as uuidv4 } from "uuid";
+
 
 import {
     BrowserRouter,
@@ -14,6 +14,7 @@ import {
 //
 //
 import { Context } from "../Context/AuthContext";
+import { BoletimProvider } from "../Context/BoletimContext";
 
 import Home from "../Home/home"
 import Header from "../components/Header/Header"
@@ -37,61 +38,54 @@ import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
 export default function Boletim(){ 
    
     const {authenticated, cidade} = useContext(Context);
-
-    const [boletim, setBoletim] = useState({
-        municipio:"Balsas", //valor padrão para cidade  = Balsas 
-        natureza:"",
-        id:uuidv4(),
-        envolvidos:[],
-        materiaisApreendidos:[],
-        efetivo:[],
-    })
+ 
 
     return (
         <>
-            
-            <BrowserRouter>
-            {/* {authenticated && <Navigate replace to="/home"/>} */}
-                <Routes>
-                
-                    <Route path="/" 
-                        element={<Home/>}
-                    />
-                    <Route path="/header" 
-                        element={authenticated ? (<Header boletim={boletim} setBoletim={setBoletim} cidadeLogin={cidade}/>):(<LoginUser/>)} 
-                    />
+            <BoletimProvider>
+                <BrowserRouter>
+                {/* {authenticated && <Navigate replace to="/home"/>} */}
+                    <Routes>
+                    
+                        <Route path="/" 
+                            element={<Home/>}
+                        />
+                        <Route path="/header" 
+                            element={authenticated ? (<Header cidadeLogin={cidade}/>):(<LoginUser/>)} 
+                        />
 
-                    <Route path="/envolvido" 
-                        element={authenticated ? (<Envolvidos boletim={boletim} setBoletim={setBoletim}/>):(<LoginUser/>)} 
-                    />
-                    
-                    <Route path="/material" 
-                        element={ authenticated ? <ItensApreendidos boletim={boletim} setBoletim={setBoletim}/>:<LoginUser/>} />
-                    
-                    <Route path="/efetivo" 
-                        element={authenticated ? <Efetivo boletim={boletim} setBoletim={setBoletim}/>:<LoginUser/>} />
-                    
-                    <Route path="/historico" 
-                        element={authenticated  ? <Historico boletim={boletim} setBoletim={setBoletim}/>:<LoginUser/>} />
-                    
-                    <Route path="/VerBoletim" 
-                        element={authenticated ? <BoletimDetalhe boletim={boletim} setBoletim={setBoletim}/>:<LoginUser/>}/>
-                    
-                    
-                    <Route path="*" element={<Page404/>}/>
+                        <Route path="/envolvido" 
+                            element={authenticated ? (<Envolvidos/>):(<LoginUser/>)} 
+                        />
+                        
+                        <Route path="/material" 
+                            element={ authenticated ? <ItensApreendidos/>:<LoginUser/>} />
+                        
+                        <Route path="/efetivo" 
+                            element={authenticated ? <Efetivo/>:<LoginUser/>} />
+                        
+                        <Route path="/historico" 
+                            element={authenticated  ? <Historico/>:<LoginUser/>} />
+                        
+                        <Route path="/VerBoletim" 
+                            element={authenticated ? <BoletimDetalhe/>:<LoginUser/>}/>
+                        
+                        
+                        <Route path="*" element={<Page404/>}/>
 
-                    <Route path="/registro" element={<RegisterUser/>}/>
-                    <Route path="/login" element={<LoginUser/>}/>
+                        <Route path="/registro" element={<RegisterUser/>}/>
+                        <Route path="/login" element={<LoginUser/>}/>
 
 
-                    <Route path="/dashboard" element={authenticated ? <Dashboard/>:<LoginUser/>}/>
-                    <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletim boletim={boletim} setBoletim={setBoletim} cidadeLogin={cidade}/>:<LoginUser/>}/>
-                    <Route path="/dashboard/usuarios" element={authenticated ?<DashboardUsuario/>:<LoginUser/>}/>
-                    
-                    {/* <Route path="adm/listaBoletim" element={<ListaBoletim/>}/> */}
-                    <Route path="/BoFromBD"  element={<BoletimDetalheFromBD boletim={boletim} setBoletim={setBoletim}/>} />
-                </Routes>
-            </BrowserRouter>
+                        <Route path="/dashboard" element={authenticated ? <Dashboard/>:<LoginUser/>}/>
+                        <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletim cidadeLogin={cidade}/>:<LoginUser/>}/>
+                        <Route path="/dashboard/usuarios" element={authenticated ?<DashboardUsuario/>:<LoginUser/>}/>
+                        
+                        {/* <Route path="adm/listaBoletim" element={<ListaBoletim/>}/> */}
+                        <Route path="/BoFromBD"  element={<BoletimDetalheFromBD/>} />
+                    </Routes>
+                </BrowserRouter>
+            </BoletimProvider>
 
         </>
     )

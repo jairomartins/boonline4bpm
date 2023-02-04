@@ -1,6 +1,6 @@
 
 import axios from "axios";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import { v4 as uuidv4 } from "uuid";
 
 import { Button, Col, Container, Row } from "react-bootstrap";
@@ -12,21 +12,32 @@ import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import FormBuscarBo from "../../components/Form/FormBuscarBo";
 import BoletimInformacoes from "../Boletim/BoletimInformacoes";
 import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
+
+import { Context } from "../../Context/AuthContext";
+import { BoletimContext } from "../../Context/BoletimContext";
+
 // import BoletimInformacoesList from "../Boletim/BoletimInformacoesList";
 
-const DashboardBoletim = ({boletim, setBoletim, cidadeLogin}) => {
+const DashboardBoletim = (cidadeLogin) => {
+
+    const {cidade} = useContext(Context)
+    
+    const {boletim, setBoletim} = useContext(BoletimContext)
+
+
     const navigate = useNavigate()       
     const [exibeBoletim, setExibeBoletim] = useState(false);
     const [isLoading, setIsLoading] = useState(false)
     // const [exibeBoletimList, setExibeBoletimList] = useState(false)
 
-    // const [boletim, setBoletim] = useState({})
+    
 
     const [idBusca, setIdBusca] = useState('')
+    
 
     // const [listaBoletim, setListaBoletim] = useState([{}])
 
-    console.log(cidadeLogin)
+    console.log(cidade+" - cidade auth context - DashboardBoletim  - linha 40")
 
     // faz requisição GET que verifica se o boletim esta cadastrado no banco de dados
     // se encontrar usa o objeto de retorno para setar o boletim e exibir detalhes

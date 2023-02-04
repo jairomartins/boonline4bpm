@@ -1,4 +1,6 @@
-import React  from "react";
+import React, { useContext }  from "react";
+
+import { BoletimContext } from "../../Context/BoletimContext";
 
 import {  Col, Container, Row, Form, ProgressBar, Card} from 'react-bootstrap';
 
@@ -8,11 +10,10 @@ import { GrDocumentTime } from 'react-icons/gr';
 import { ImLocation } from 'react-icons/im';
 
 
-function FormCabecalho ({boletim,setBoletim, cidadeLogin}){
+function FormCabecalho (){
 
-   
-    boletim.municipio = cidadeLogin;
-   
+    const {boletim, setBoletim} = useContext(BoletimContext)
+
     
     return (
         <>
@@ -131,20 +132,20 @@ function FormCabecalho ({boletim,setBoletim, cidadeLogin}){
                     <Col sm={8}>
                         <Form.Label>Município : </Form.Label>
                         <Form.Select aria-label="Default select example"
-                            // defaultValue={boletim.municipio}
+                            defaultValue={boletim.municipio}
                             size="sm"
                             onChange={(e)=>{setBoletim({...boletim, municipio:e.target.value})}}
                             >
                                 <option >Escolha uma opção</option>
                                 <option selected={boletim.municipio ==="Balsas"}value="Balsas">Balsas</option>
                                 <option selected={boletim.municipio ==="Riachão"}value="Riachão">Riachão</option>
-                                <option value="Fortaleza dos Nogueiras">Fortaleza dos Nogueiras</option>
-                                <option value="Nova Colinas">Nova Colinas</option>
-                                <option value="Feira Nova">Feira Nova</option>
-                                <option value="São Pedro dos Crentes">São Pedro dos Crentes</option>
-                                <option value="Alto Parnaíba">Alto Parnaíba</option>
-                                <option value="Tasso Fragoso">Tasso Fragoso</option>
-                                <option value="Batavo">Distrito Batavo (Balsas)</option>
+                                <option selected={boletim.municipio ==="Fortaleza dos Nogueiras"}value="Fortaleza dos Nogueiras">Fortaleza dos Nogueiras</option>
+                                <option selected={boletim.municipio ==="Nova Colinas"}value="Nova Colinas">Nova Colinas</option>
+                                <option selected={boletim.municipio ==="Feira Nova"}value="Feira Nova">Feira Nova</option>
+                                <option selected={boletim.municipio ==="São Pedro dos Crentes"}value="São Pedro dos Crentes">São Pedro dos Crentes</option>
+                                <option selected={boletim.municipio ==="Alto Parnaíba"}value="Alto Parnaíba">Alto Parnaíba</option>
+                                <option selected={boletim.municipio ==="Tasso Fragoso"}value="Tasso Fragoso">Tasso Fragoso</option>
+                                <option selected={boletim.municipio ==="Batavo"}value="Batavo">Distrito Batavo (Balsas)</option>
                             </Form.Select>
                     </Col>
 
