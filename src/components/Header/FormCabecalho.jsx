@@ -1,6 +1,5 @@
-import React, { useContext }  from "react";
+import React from "react";
 
-import { BoletimContext } from "../../Context/BoletimContext";
 
 import {  Col, Container, Row, Form, ProgressBar, Card} from 'react-bootstrap';
 
@@ -10,9 +9,10 @@ import { GrDocumentTime } from 'react-icons/gr';
 import { ImLocation } from 'react-icons/im';
 
 
-function FormCabecalho (){
+function FormCabecalho ({boletim, setBoletim}){
+    
 
-    const {boletim, setBoletim} = useContext(BoletimContext)
+    console.log(boletim.municipio)
 
     
     return (
@@ -132,12 +132,13 @@ function FormCabecalho (){
                 <Row>
                     <Col sm={8}>
                         <Form.Label>Município : </Form.Label>
-                        <Form.Select aria-label="Default select example"
-                            defaultValue={boletim.municipio}
+                        <Form.Select
+                            name="cidadeOcorrencia"
+                            defaultValue={" "}
                             size="sm"
                             onChange={(e)=>{setBoletim({...boletim, municipio:e.target.value})}}
                             >
-                                <option >Escolha uma opção</option>
+                                <option value={boletim.municipio}>Escolha uma opção</option>
                                 <option selected={boletim.municipio ==="Balsas"}value="Balsas">Balsas</option>
                                 <option selected={boletim.municipio ==="Riachão"}value="Riachão">Riachão</option>
                                 <option selected={boletim.municipio ==="Fortaleza dos Nogueiras"}value="Fortaleza dos Nogueiras">Fortaleza dos Nogueiras</option>

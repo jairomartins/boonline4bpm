@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, useContext} from "react";
 import { Col, Row, Container, Button, Table} from "react-bootstrap";
 import axios from "axios"
 
@@ -22,8 +22,11 @@ import PolicialDetalhe from "./PolicialDetalhe";
 import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
 
 import { Link, useNavigate } from "react-router-dom";
+import { BoletimContext } from "../../Context/BoletimContext";
 
-const BoletimDetalhe = ({boletim, setBoletim}) => {
+const BoletimDetalhe = () => {
+
+    const {boletim, setBoletim} = useContext(BoletimContext)
 
     useEffect(() => {
         const state = boletim.historicohtml
@@ -192,7 +195,7 @@ const BoletimDetalhe = ({boletim, setBoletim}) => {
                         variant="outline-primary">
                         <Link 
                             className="text-decoration-none" 
-                            to="/historico">
+                            to="../historico">
                                 <BsArrowLeft/> Voltar
                         </Link>
                     </Button>

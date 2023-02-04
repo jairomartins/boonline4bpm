@@ -52,7 +52,7 @@ const Historico = () => {
   
        
         setBoletim({...boletim, historicohtml:html})
-        navigate('/VerBoletim')
+        navigate('../VerBoletim')
     }
 
     const editor = React.useRef(null);

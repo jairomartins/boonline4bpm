@@ -44,9 +44,9 @@ const DashboardBoletim = (cidadeLogin) => {
     //  
     //
     const buscarBoletim = async () =>{
-        console.log("buscarBoletim boletim dashboard")
+        console.log("buscarBoletim boletim dashboard id : "+idBusca)
         setIsLoading(true)
-        axios.get(`http://177.153.59.153:433/adm/listByNumeroECidade/${idBusca}/${cidadeLogin}`,{
+        axios.get(`http://177.153.59.153:433/adm/listByNumeroECidade/${idBusca}/${cidade}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }

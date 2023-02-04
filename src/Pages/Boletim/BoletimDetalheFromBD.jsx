@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from "react";
+import React,{useState, useEffect, useContext} from "react";
 import { Col, Row, Container, Button, Table} from "react-bootstrap"
 
 
@@ -22,9 +22,11 @@ import PolicialDetalhe from "../../components/BoletimDetalhe/PolicialDetalhe"
 import EnvolvidosDetalhe from "../../components/BoletimDetalhe/EnvolvidosDetalhe"
 
 import { Link} from "react-router-dom";
+import { BoletimContext } from "../../Context/BoletimContext";
 
-const BoletimDetalhe = ({boletim}) => {
+const BoletimDetalhe = () => {
 
+    const {boletim} = useContext(BoletimContext)
     useEffect(() => {
         const state = boletim.historicohtml
           ? EditorState.createWithContent(stateFromHTML(boletim.historicohtml))

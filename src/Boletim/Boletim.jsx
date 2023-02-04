@@ -89,7 +89,7 @@ export default function Boletim(){
 
 
                         <Route path="/dashboard" element={authenticated ? <Dashboard/>:<LoginUser/>}/>
-                        <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletim cidadeLogin={cidade}/>:<LoginUser/>}/>
+                        <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletim />:<LoginUser/>}/>
                         <Route path="/dashboard/usuarios" element={authenticated ?<DashboardUsuario/>:<LoginUser/>}/>
                         
                         {/* <Route path="adm/listaBoletim" element={<ListaBoletim/>}/> */}
