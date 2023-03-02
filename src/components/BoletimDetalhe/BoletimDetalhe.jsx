@@ -38,16 +38,19 @@ const BoletimDetalhe = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
     
     const navigate = useNavigate()
-      
+     
+    
+
+    //Salva o boletim no servidor 
     const saveToDB = async ()=>{
-        console.log("----- historico  ----- \n"+boletim.historicohtml)
-        await axios.post("http://177.153.59.153:433/adm/salvarBoletim",{
+        
+        await axios.post("http://127.0.0.1:433/adm/boletim/create",{
             boletim: boletim,
         })
         .then(function (response) {
             // manipula o sucesso da requisição
-            console.log(response)
-            alert('Boletim salvo com sucesso !')
+            console.log(response.data.message)
+            alert(response.data.message)
             // console.log('tentei mano!')
         })
         .catch(function (error) {
@@ -58,6 +61,11 @@ const BoletimDetalhe = () => {
         .then(function () {
             // sempre será executado
         });
+    }
+
+    const printPage = async ()=>{
+        saveToDB()//salva o boletim antes de gerar o pdf
+        document.title = "BO_"+boletim.numero+"_"+boletim.data;window.print() //define o nome do arquivo quando gera o pdf
     }
 
     const novoBoletim = async()=>{
@@ -97,7 +105,7 @@ const BoletimDetalhe = () => {
             </Row>
             <hr/>
             <Row>
-                <Col className="text-center"><h6>FATO COMUNICADO<Link className="d-print-none" to="/header">Editar</Link></h6></Col>
+                <Col className="text-center"><h6>FATO COMUNICADO<Link className="d-print-none" to="/boletim/header">Editar</Link></h6></Col>
                 
             </Row>
             <br/>
@@ -126,7 +134,7 @@ const BoletimDetalhe = () => {
             <hr/>
             <Row>
             
-                <Col className="text-center"><h6>ENVOLVIDO(S)<Link className="d-print-none" to="/envolvido">Editar</Link></h6></Col>
+                <Col className="text-center"><h6>ENVOLVIDO(S)<Link className="d-print-none" to="/boletim/envolvido">Editar</Link></h6></Col>
                 
             </Row>
 
@@ -142,7 +150,7 @@ const BoletimDetalhe = () => {
             </Row>  */}
 
             <Row>
-                <Col className="text-center"><h6>ARMAS E OBJETOS APREENDIDOS<Link className="d-print-none" to="/material">Editar</Link></h6></Col>
+                <Col className="text-center"><h6>ARMAS E OBJETOS APREENDIDOS<Link className="d-print-none" to="/boletim/material">Editar</Link></h6></Col>
             </Row>
            
                 {boletim.materiaisApreendidos.map(material=><MaterialDetalhe key={material.id} material={material}/>)}
@@ -151,17 +159,16 @@ const BoletimDetalhe = () => {
             <hr/>
 
             <Row>
-                <Col className="text-center"><h6>HISTÓRICO <Link className="d-print-none" to="/historico">Editar</Link></h6></Col>
+                <Col className="text-center"><h6>HISTÓRICO <Link className="d-print-none" to="/boletim/historico">Editar</Link></h6></Col>
             </Row>
 
             <Row className="text-justify">
                 <Editor editorState={editorState} onChange={setEditorState} readOnly={true}/>
-              
             </Row>
             <hr/>
 
             <Row>
-                <Col className="text-center"><h6>EFETIVO EMPREGADO <Link className="d-print-none" to="/efetivo">Editar</Link></h6></Col>
+                <Col className="text-center"><h6>EFETIVO EMPREGADO <Link className="d-print-none" to="/boletim/efetivo">Editar</Link></h6></Col>
             </Row>
             <Row>
 
@@ -206,7 +213,7 @@ const BoletimDetalhe = () => {
                         size="sm"
                         variant="warning" 
                         className="d-print-none"
-                        onClick={()=>{document.title = "BO_"+boletim.numero+"_"+boletim.data;window.print()}}>
+                        onClick={printPage}>
                             Imprimir <AiFillPrinter/>
                     </Button>
                 </Col>

@@ -35,7 +35,7 @@ function RegisterUser (){
         
         setIsLoading(true)
         
-        axios.post(`http://${BASE_URL}:433/auth/register`,{
+        axios.post(`http://${BASE_URL}/register`,{
             userName:userName,
             userEmail:userEmail,
             userPassword:userPassword,
@@ -48,9 +48,10 @@ function RegisterUser (){
             navigate('/login')
             setIsLoading(false)
         }).catch(function(error){
+            console.log(error)
             setErroShow(true)
             setErroMessagem(error.response.data.status)
-            console.log(error)
+            
             setIsLoading(false)
         })
 

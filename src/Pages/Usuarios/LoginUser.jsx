@@ -32,7 +32,8 @@ const LoginUser = () => {
         //RECEBE UM TOKEN TE AUTENTICAÇÃO PARA REQUISIÇOES FEITAS
         //
         //
-        axios.post(`http://${BASE_URL}:433/auth/login`,{
+        axios.post(`http://${BASE_URL}:433/login`,{
+        // axios.post(`http://127.0.0.1:433/login`,{
             userEmail: userEmail,
             userPassword: userPassword
         })
@@ -66,24 +67,19 @@ const LoginUser = () => {
           <Navigate to="/dashboard" replace={true} />
         )}
 
-        <Container >
-            <br/>
             <Row  className="justify-content-md-center">
-                <Col sm={12} md={6}>
+                <Col sm={8} md={4}>
 
                 <Alert variant="danger" show={erroShow}> {erroMessage}</Alert>
-
+                <LoadSpinner visible={isLoading}/>
                 <Card>
-                    <Card.Header>
-                        <Card.Title>Entrar</Card.Title>
-                        <LoadSpinner visible={isLoading}/>
-                    </Card.Header>
+                    
                     <Card.Body>
                         <Form onSubmit={clickHandleLogin}>
                             <Form.Label>Selecione sua cidade :</Form.Label>
                             <Form.Select aria-label="Default select example"
                             defaultValue={cidade}
-                            
+                            size={"sm"}
                             onChange={(e)=>{handleSetCidade(e.target.value)}}
                             >
                                 <option value="Balsas">Balsas</option>
@@ -98,29 +94,30 @@ const LoginUser = () => {
                                 </Form.Select>
                             <br/>
                             <Form.Control
+                                size={"sm"}
                                 required 
                                 autoComplete="on"
                                 onChange={(e)=>{setUserEmail(e.target.value)}}
                                 placeholder="E-mail"/>
                             <br/>
                             <Form.Control
+                                size={"sm"}
                                 required
                                 placeholder="senha"
                                 onChange={(e)=>{setUserPassword(e.target.value)}}
                                 type="password"/>
                             <br/>
-                            <Button variant="success" type="submit" disabled={isLoading}>
+                            <Button  size={"sm"} variant="success" type="submit" disabled={isLoading}>
                                 Login
                             </Button>
                         </Form>
                     </Card.Body>
-                    <Card.Footer>
+                    {/* <Card.Footer> */}
                         <Button variant="link" onClick={(e)=>navigate('/registro')}>Registre-se  Aqui</Button>
-                    </Card.Footer>
+                    {/* </Card.Footer> */}
                 </Card>
                 </Col>          
             </Row>
-        </Container>
     </>)
 }
  
