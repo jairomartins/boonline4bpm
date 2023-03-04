@@ -113,6 +113,7 @@ const LoginUser = () => {
                         </Form>
                     </Card.Body>
                     {/* <Card.Footer> */}
+                        <Button variant="link" onClick={(e)=>navigate('/recuperarSenha')}>Esqueceu a senha ?</Button>
                         <Button variant="link" onClick={(e)=>navigate('/registro')}>Registre-se  Aqui</Button>
                     {/* </Card.Footer> */}
                 </Card>
