@@ -1,18 +1,7 @@
 import React, {useContext} from "react";
 
+import {BrowserRouter,Routes,Route,} from "react-router-dom";
 
-
-
-import {
-    BrowserRouter,
-    Routes,
-    Route,
-  } from "react-router-dom";
-
-//
-//
-//
-//
 import { Context } from "../Context/AuthContext";
 import { BoletimProvider } from "../Context/BoletimContext";
 

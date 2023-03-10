@@ -121,7 +121,10 @@ function RegisterUser (){
                     <Button variant="success" type="submit">
                         Registrar-se
                     </Button>
+                    <Button variant="link" onClick={(e)=>navigate('/emailverify')}>Esqueceu a senha ?</Button>
+                    <Button variant="link" onClick={(e)=>navigate('/')}>Retornar para login</Button>
                 </Form>
+                
             </Card.Body>
         </Card>
         </Col>          

@@ -1,15 +1,18 @@
 import axios from "axios"
 import React, { useState } from "react"
-import { Button, Container, Form} from "react-bootstrap"
-import { useParams } from "react-router-dom"
+import { Alert, Button, Container, Form} from "react-bootstrap"
+import { useNavigate, useParams } from "react-router-dom"
 
 function PasswordRecover (){
+    const navigate = useNavigate() 
 
     const [newPassword, setNewPassword] = useState()
 
     const {id} = useParams()
 
-    console.log(id)
+    const [message, setMessage] = useState("")
+    const [showMessage, setShowMessage ] = useState(false)
+    const [messageType, setMessageType]  = useState()
 
     async function passswordChanger (e){
     console.log('passwordChanger')
@@ -19,8 +22,14 @@ function PasswordRecover (){
         userId:id,
         userPassword:newPassword,
         }).then(function(response){
+            setMessageType("success")
+            setMessage(response.data.message)
+            setShowMessage(true)
             console.log(response)
         }).catch((err)=>{
+            setMessageType("danger")
+            setMessage(err.response.data.message)
+            setShowMessage(true)
             console.log(err)
         })
 
@@ -28,6 +37,9 @@ function PasswordRecover (){
 
     return (<>
         <Container>
+            <br/>
+            {showMessage ? (<Alert variant={messageType}>{message} <Button variant="link" onClick={(e)=>navigate('/')}>Fazer LogIn</Button></Alert>) : ""}
+            
             <Form onSubmit={passswordChanger}>
             <Form.Label>Nova Senha:</Form.Label>
             <Form.Control
