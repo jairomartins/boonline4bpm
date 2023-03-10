@@ -1,32 +1,34 @@
 import axios from "axios";
 import React, { useContext, useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Alert, Button, Container, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
-import { Context } from "../../Context/AuthContext";
+const API_PORT = process.env.REACT_APP_API_PORT
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 function EmailVerify (){
 
+    const navigate = useNavigate() 
     const [email, setEmail] = useState()
-
-    const {BASE_URL} = useContext(Context)
+    const [message, setMessage] = useState("")
+    const [showMessage, setShowMessage ]= useState(false)
 
     async function handleForgotPassword  (e){
 
         e.preventDefault()
-    
-
-        console.log('entrando em esquecer a senha front')
 
         await axios.post(`http://${BASE_URL}:433/recuperarSenha`,{
             userEmail: email,
         })
         .then(function (response) {
-            console.log(response)    
+            setShowMessage(true)
+            console.log(response)
+            setMessage(response.data.message)    
         })
         .catch(function (error) {
-            
+            setShowMessage(true)
+            setMessage(error.data.message)
             console.error(error);
-
         })
         .then(function () {
             // sempre será executado
@@ -36,6 +38,11 @@ function EmailVerify (){
 
     return(<>
         <Container>
+            <br/>
+            <Alert> <p>Atenção: Caso exista um usuário registrado com o email informado será enviado un link para redefinir a senha, verifique sua caixa de entrada e/ou span.</p></Alert>
+            <br/>
+            {showMessage ? (<Alert variant="danger">{message}</Alert>) : ""}
+            
             <Form onSubmit={handleForgotPassword} >
             <Form.Label>Digite seu email:</Form.Label>
             <Form.Control
@@ -49,8 +56,10 @@ function EmailVerify (){
             <Button variant="success" type="submit">
                 Recuperar senha
             </Button>
+
+            <Button variant="link" onClick={(e)=>navigate('/')}>Retornar para login</Button>
             </Form>
-            
+           
         </Container>
     </>)
     
