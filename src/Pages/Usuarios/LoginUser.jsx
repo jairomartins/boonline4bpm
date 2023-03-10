@@ -19,7 +19,10 @@ const LoginUser = () => {
     const [erroShow, setErroShow] = useState(false)
     const [erroMessage, setErroMessage] = useState("")
 
-    const {authenticated, setAuthenticated, BASE_URL, cidade, setCidade} = useContext(Context)
+    const {authenticated, setAuthenticated, cidade, setCidade} = useContext(Context)
+
+    const API_PORT = process.env.REACT_APP_API_PORT
+    const BASE_URL = process.env.REACT_APP_BASE_URL
 
     async function clickHandleLogin(e){
            
@@ -29,25 +32,22 @@ const LoginUser = () => {
 
 
         //FAZ AUTENTICAÇÃO DO USUARIO NA API CONFERE EMAIL E SENHA
-        //RECEBE UM TOKEN TE AUTENTICAÇÃO PARA REQUISIÇOES FEITAS
-        //
-        //
-        axios.post(`http://${BASE_URL}:433/login`,{
-        // axios.post(`http://127.0.0.1:433/login`,{
+        //RECEBE UM TOKEN AUTENTICAÇÃO PARA REQUISIÇOES FEITAS
+
+        await axios.post(`http://${BASE_URL}:${API_PORT}/login`,{
             userEmail: userEmail,
             userPassword: userPassword
         })
         .then(function (response) {
-            // manipula o sucesso da requisição
+
             setAuthenticated(response.data.authenticated)
             localStorage.setItem("x-access-token",response.data.token)
             setIsLoading(false) 
             
         })
         .catch(function (error) {
-            // manipula erros da requisição
-            setErroMessage(error.response.data.status)
-            console.error(error.response.data.status);
+            setErroMessage(error.response.data.message)
+            console.error(error.response.data);
             setIsLoading(false) 
             setErroShow(true)
         })
