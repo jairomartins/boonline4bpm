@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, {useState } from "react";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -11,23 +11,26 @@ function EmailVerify (){
     const navigate = useNavigate() 
     const [email, setEmail] = useState()
     const [message, setMessage] = useState("")
-    const [showMessage, setShowMessage ]= useState(false)
+    const [showMessage, setShowMessage ] = useState(false)
+    const [messageType, setMessageType]  = useState()
 
     async function handleForgotPassword  (e){
 
         e.preventDefault()
 
-        await axios.post(`http://${BASE_URL}:433/recuperarSenha`,{
+        await axios.post(`http://${BASE_URL}:${API_PORT}/recuperarSenha`,{
             userEmail: email,
         })
         .then(function (response) {
+            setMessageType("success")
             setShowMessage(true)
             console.log(response)
             setMessage(response.data.message)    
         })
         .catch(function (error) {
+            setMessageType("danger")
             setShowMessage(true)
-            setMessage(error.data.message)
+            setMessage(error.response.data.message)
             console.error(error);
         })
         .then(function () {
@@ -39,9 +42,9 @@ function EmailVerify (){
     return(<>
         <Container>
             <br/>
-            <Alert> <p>Atenção: Caso exista um usuário registrado com o email informado será enviado un link para redefinir a senha, verifique sua caixa de entrada e/ou span.</p></Alert>
+            <Alert variant="warning "> <p>Atenção: Caso exista um usuário registrado com o email informado será enviado un link para redefinir a senha, verifique sua caixa de entrada e/ou span.</p></Alert>
             <br/>
-            {showMessage ? (<Alert variant="danger">{message}</Alert>) : ""}
+            {showMessage ? (<Alert variant={messageType}>{message}</Alert>) : ""}
             
             <Form onSubmit={handleForgotPassword} >
             <Form.Label>Digite seu email:</Form.Label>
