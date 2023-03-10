@@ -1,16 +1,16 @@
-import React, {useState, useContext} from "react"
+import React, {useState} from "react"
 import { useNavigate } from 'react-router-dom'
 import axios from "axios"
 import InputMask from 'react-input-mask'
 import {Card, Col, Row, Container, Form, Button, Alert} from "react-bootstrap"
 
-import { Context } from "../../Context/AuthContext";
+// import { Context } from "../../Context/AuthContext";
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import LoadSpinner from "../../components/LoadSpinner/LoadSpinner"
 
 function RegisterUser (){
 
-    const {BASE_URL} = useContext(Context)
+    // const {BASE_URL} = useContext(Context)
 
     const [userName, setUserName] =  useState()
     const [userEmail, setUserEmail] =  useState()

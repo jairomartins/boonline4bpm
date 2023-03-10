@@ -1,6 +1,6 @@
 import React,{useState, useContext} from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import {Card, Col, Row, Container, Form, Button, Alert} from "react-bootstrap"
+import {Card, Col, Row, Form, Button, Alert} from "react-bootstrap"
 import axios from "axios";
 
 import { Context } from "../../Context/AuthContext";
@@ -113,7 +113,7 @@ const LoginUser = () => {
                         </Form>
                     </Card.Body>
                     {/* <Card.Footer> */}
-                        <Button variant="link" onClick={(e)=>navigate('/recuperarSenha')}>Esqueceu a senha ?</Button>
+                        <Button variant="link" onClick={(e)=>navigate('/emailverify')}>Esqueceu a senha ?</Button>
                         <Button variant="link" onClick={(e)=>navigate('/registro')}>Registre-se  Aqui</Button>
                     {/* </Card.Footer> */}
                 </Card>

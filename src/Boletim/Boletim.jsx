@@ -32,6 +32,8 @@ import Dashboard from "../Pages/Admin/Dashboard";
 import DashboardBoletim from "../Pages/Admin/DashboardBoletim";
 import DashboardUsuario from "../Pages/Admin/DashboardUsuario";
 import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
+import EmailVerify from "../Pages/Usuarios/EmailVerify";
+import PasswordRecover from "../Pages/Usuarios/PasswordRecover";
 
 
 
@@ -86,6 +88,8 @@ export default function Boletim(){
 
                         <Route path="/registro" element={<RegisterUser/>}/>
                         <Route path="/login" element={<LoginUser/>}/>
+                        <Route path="/emailverify" element={<EmailVerify/>}/>
+                        <Route path="/passwordrecover/:id" element={<PasswordRecover/>}/>
 
 
                         <Route path="/dashboard" element={authenticated ? <Dashboard/>:<Home/>}/>
