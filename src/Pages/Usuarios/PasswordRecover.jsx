@@ -3,6 +3,9 @@ import React, { useState } from "react"
 import { Alert, Button, Container, Form} from "react-bootstrap"
 import { useNavigate, useParams } from "react-router-dom"
 
+const API_PORT = process.env.REACT_APP_API_PORT
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 function PasswordRecover (){
     const navigate = useNavigate() 
 
@@ -18,7 +21,7 @@ function PasswordRecover (){
     console.log('passwordChanger')
     e.preventDefault()
 
-    await axios.post(`http://127.0.0.1:433/recoverPassword`,{
+    await axios.post(`http://${BASE_URL}:${API_PORT}/recoverPassword`,{
         userId:id,
         userPassword:newPassword,
         }).then(function(response){
