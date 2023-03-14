@@ -24,6 +24,9 @@ import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
 import { Link, useNavigate } from "react-router-dom";
 import { BoletimContext } from "../../Context/BoletimContext";
 
+const API_PORT = process.env.REACT_APP_API_PORT
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 const BoletimDetalhe = () => {
 
     const {boletim, setBoletim} = useContext(BoletimContext)
@@ -44,9 +47,14 @@ const BoletimDetalhe = () => {
     //Salva o boletim no servidor 
     const saveToDB = async ()=>{
         
-        await axios.post("http://127.0.0.1:433/adm/boletim/create",{
-            boletim: boletim,
-        })
+        await axios.post(`http://${BASE_URL}:${API_PORT}/adm/boletim/create`,{
+                boletim: boletim
+            },{
+            headers :{
+                "x-access-token":localStorage.getItem("x-access-token")
+            },
+        }
+        )
         .then(function (response) {
             // manipula o sucesso da requisição
             console.log(response.data.message)

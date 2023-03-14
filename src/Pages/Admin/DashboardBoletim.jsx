@@ -16,6 +16,9 @@ import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
 import { Context } from "../../Context/AuthContext";
 import { BoletimContext } from "../../Context/BoletimContext";
 
+const API_PORT = process.env.REACT_APP_API_PORT
+const BASE_URL = process.env.REACT_APP_BASE_URL
+
 // import BoletimInformacoesList from "../Boletim/BoletimInformacoesList";
 
 const DashboardBoletim = (cidadeLogin) => {
@@ -34,33 +37,30 @@ const DashboardBoletim = (cidadeLogin) => {
 
     const [idBusca, setIdBusca] = useState('')
     
-
-    // const [listaBoletim, setListaBoletim] = useState([{}])
-
-    console.log(cidade+" - cidade auth context - DashboardBoletim  - linha 40")
-
     // faz requisição GET que verifica se o boletim esta cadastrado no banco de dados
     // se encontrar usa o objeto de retorno para setar o boletim e exibir detalhes
     //  
     //
     const buscarBoletim = async () =>{
+
         console.log("buscarBoletim boletim dashboard id : "+idBusca)
+        
         setIsLoading(true)
-        axios.get(`http://177.153.59.153:433/adm/listByNumeroECidade/${idBusca}/${cidade}`,{
+
+        axios.get(`http://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${cidade}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
         })
         .then((response)=>{
-            console.log("respostar  >"+response.data)
+            console.log(response.data)
             setBoletim(response.data)
             setExibeBoletim(true)
             setIsLoading(false)
         }).catch(function (error) {
             // manipula erros da requisição
             setBoletim({})
-            console.error(error);
-            console.log('nao foi possivel localzar')
+            console.error(error)
             setIsLoading(false)
         })
         .then(function () {
@@ -68,26 +68,6 @@ const DashboardBoletim = (cidadeLogin) => {
         });
     }
 
-    // const buscarListaBoletins = async () =>{
-        
-    //     axios.get(`http://192.168.0.100:433/adm/listaMeusBos/871110`,{
-    //         headers:{
-    //             "x-access-token":localStorage.getItem("x-access-token")
-    //         }
-    //     })
-    //     .then((response)=>{
-    //         setListaBoletim(response.data)
-    //         setExibeBoletimList(true)
-    //         setExibeBoletim(false)
-    //     }).catch(function (error) {
-    //         // manipula erros da requisição
-    //         console.error(error);
-    //         console.log('nao foi possivel localzar')
-    //     })
-    //     .then(function () {
-    //         // sempre será executado
-    //     });
-    // }
     const handleClickNovoBoletim = ()=>{
         const newboletim = ({
             id:uuidv4(),
@@ -140,28 +120,6 @@ const DashboardBoletim = (cidadeLogin) => {
                 </Col>
             </Row>
 
-            {/* <Row className="justify-content-md-center">
-                <Col md={6} sm={12} >
-                    {(exibeBoletimList)?
-                        <Table size="sm">
-                            <thead>
-                                <tr>
-                                    
-                                    <th>Natureza</th>
-                                    <th>Data</th>
-                                    <th>Número</th>
-                                    <th>Opção</th>
-                                </tr>
-                            </thead>
-                            <tbody>    
-                                {listaBoletim.map(boletim=><BoletimInformacoesList key={boletim.numero} boletim={boletim} setBoletim={setBoletim}/>)}
-                            </tbody>
-                        </Table>
-                        :
-                        ""
-                    }
-                </Col>
-            </Row> */}
         </Container>
 
     </> );

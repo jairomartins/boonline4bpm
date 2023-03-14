@@ -25,7 +25,6 @@ import EmailVerify from "../Pages/Usuarios/EmailVerify";
 import PasswordRecover from "../Pages/Usuarios/PasswordRecover";
 
 
-
 export default function Boletim(){ 
    
     const {authenticated, cidade} = useContext(Context);
@@ -45,27 +44,27 @@ export default function Boletim(){
 
                         <Route path="/boletim">
                             <Route path="header" 
-                                element={authenticated ? (<Header cidadeLogin={cidade}/>):(<LoginUser/>)} 
+                                element={authenticated ? (<Header cidadeLogin={cidade}/>):(<Home/>)} 
                             />
 
                             <Route path="envolvido" 
-                                element={authenticated ? (<Envolvidos/>):(<LoginUser/>)} 
+                                element={authenticated ? (<Envolvidos/>):(<Home/>)} 
                             />
                             
                             <Route path="material" 
-                                element={ authenticated ? <ItensApreendidos/>:<LoginUser/>} 
+                                element={ authenticated ? <ItensApreendidos/>:<Home/>} 
                                 />
                             
                             <Route path="efetivo" 
-                                element={authenticated ? <Efetivo/>:<LoginUser/>} 
+                                element={authenticated ? <Efetivo/>:<Home/>} 
                                 />
                             
                             <Route path="historico" 
-                                element={authenticated  ? <Historico/>:<LoginUser/>} 
+                                element={authenticated  ? <Historico/>:<Home/>} 
                                 />
                             
                             <Route path="VerBoletim" 
-                                element={authenticated ? <BoletimDetalhe/>:<LoginUser/>}
+                                element={authenticated ? <BoletimDetalhe/>:<Home/>}
                             />
                             
                         </Route>
@@ -82,8 +81,8 @@ export default function Boletim(){
 
 
                         <Route path="/dashboard" element={authenticated ? <Dashboard/>:<Home/>}/>
-                        <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletim />:<LoginUser/>}/>
-                        <Route path="/dashboard/usuarios" element={authenticated ?<DashboardUsuario/>:<LoginUser/>}/>
+                        <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletim />:<Home/>}/>
+                        <Route path="/dashboard/usuarios" element={authenticated ?<DashboardUsuario/>:<Home/>}/>
                         
                         {/* <Route path="adm/listaBoletim" element={<ListaBoletim/>}/> */}
                         <Route path="/BoFromBD"  element={<BoletimDetalheFromBD/>} />

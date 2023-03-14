@@ -6,12 +6,12 @@ import { AuthProvider } from "./Context/AuthContext";
 
 function App() {
   return (
-  <>
-    <AuthProvider>
-      
-      <Boletim/>
+    <>
+        <AuthProvider>
+          
+          <Boletim/>
 
-    </AuthProvider>   
+        </AuthProvider>   
     </>
   )
 }

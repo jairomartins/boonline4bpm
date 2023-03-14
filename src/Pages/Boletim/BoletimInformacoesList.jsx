@@ -6,7 +6,7 @@ const BoletimInformacoesList = ({boletim, setBoletim}) => {
 
     const CarregarBoletim = async (numero)=>{
       
-        axios.get(`http://177.153.59.153:433/adm/listByNumero/${numero}`,{
+        axios.get(`http://${BASE_URL}:${API_PORT}/adm/boletim/search/${numero}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }

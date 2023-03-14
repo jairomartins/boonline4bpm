@@ -27,12 +27,13 @@ import { BoletimContext } from "../../Context/BoletimContext";
 const BoletimDetalhe = () => {
 
     const {boletim} = useContext(BoletimContext)
+
     useEffect(() => {
         const state = boletim.historicohtml
           ? EditorState.createWithContent(stateFromHTML(boletim.historicohtml))
           : EditorState.createEmpty();
         setEditorState(state);
-      }, [boletim.historicohtml]);
+      }, [boletim?.historicohtml]);
 
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
  
@@ -120,7 +121,6 @@ const BoletimDetalhe = () => {
 
             <Row>
                 <Editor editorState={editorState} onChange={setEditorState} readOnly={true}/>
-              
             </Row>
             <hr/>
 
