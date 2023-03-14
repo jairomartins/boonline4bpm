@@ -29,7 +29,7 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
                     <td>{boletim.numero}</td>
                     <td>{boletim.municipio}</td>
                     <td><Button variant="warning"><Link to={"/BoFromBD"}>Detalhe</Link></Button></td>
-                    <td><Button variant="warning"><Link to={"/BoFromBD"}>Editar</Link></Button></td>
+                    <td><Button variant="danger"><Link to={"/boletim/header"}>Editar</Link></Button></td>
                 </tr>
             </tbody>
             </Table>
