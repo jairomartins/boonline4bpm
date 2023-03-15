@@ -24,6 +24,8 @@ function RegisterUser (){
 
     const navigate = useNavigate()
 
+    const API_PORT = process.env.REACT_APP_API_PORT
+    const BASE_URL = process.env.REACT_APP_BASE_URL
 
     //Faz a conexão via axios para registrar o usuario
     //Depois de registrado redireciona para tela de login
@@ -35,7 +37,7 @@ function RegisterUser (){
         
         setIsLoading(true)
         
-        axios.post(`http://127.0.0.1:433/register`,{
+        axios.post(`http://${BASE_URL}:${API_PORT}/register`,{
             userName:userName,
             userEmail:userEmail,
             userPassword:userPassword,
