@@ -28,8 +28,9 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
                     <td>{boletim.data}</td>
                     <td>{boletim.numero}</td>
                     <td>{boletim.municipio}</td>
-                    <td><Button variant="warning"><Link to={"/BoFromBD"}>Detalhe</Link></Button></td>
-                    <td><Button variant="danger"><Link to={"/boletim/header"}>Editar</Link></Button></td>
+                    <td><Button variant="warning"><Link to={"/BoFromBD"}>Detalhe</Link></Button> <br/>
+                    <br/>
+                    <Button disabled variant="danger"><Link to={"/boletim/header"}>Editar</Link></Button></td>
                 </tr>
             </tbody>
             </Table>
