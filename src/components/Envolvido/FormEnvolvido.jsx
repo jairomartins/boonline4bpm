@@ -114,10 +114,10 @@ function FormEnvolvido ({envolvido, setEnvolvido, modoEdicao, setModoEdicao}){
                                         defaultValue={envolvido.sexo}
                                         onChange={(e)=>{setEnvolvido({...envolvido, sexo:e.target.value})}}
                                         size="sm">
-                                        <option selected={envolvido.sexo ==='Masculino'} value="Masculino">Masculino</option>
-                                        <option selected={envolvido.sexo ==='Feminino'}value="Feminino">Feminino</option>
-                                        <option selected={envolvido.sexo ==='Outro'}value="Outro">Outro</option>
-                                        <option selected={envolvido.sexo ==='Prefiro não dizer'}value="Prefiro não dizer">Prefiro não dizer</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Feminino">Feminino</option>
+                                        <option value="Outro">Outro</option>
+                                        <option value="Prefiro não dizer">Prefiro não dizer</option>
                                     </Form.Select>
                             </Col>
                         </Row>
