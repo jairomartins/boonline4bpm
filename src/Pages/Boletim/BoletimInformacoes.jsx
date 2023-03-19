@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 
 const BoletimInformacoes = ({boletim, setBoletim}) => {
 
+    const usuarioLogadoID = localStorage.getItem("x-user-mat-id")
+
+    const boletimDoUsuario = boletim.efetivo.find(efetivo =>efetivo.id === usuarioLogadoID)// verifica se o usuario logado esta no boletim
+
     return ( 
         <> 
         {(boletim===null)?
@@ -30,7 +34,13 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
                     <td>{boletim.municipio}</td>
                     <td><Button variant="warning"><Link to={"/BoFromBD"}>Detalhe</Link></Button> <br/>
                     <br/>
-                    <Button disabled variant="danger"><Link to={"/boletim/header"}>Editar</Link></Button></td>
+
+                    { boletimDoUsuario!=null?
+                    (<Button  variant="danger"><Link to={"/boletim/header"}>Editar</Link></Button>)
+                    :
+                    ("")
+                    }
+                    </td>
                 </tr>
             </tbody>
             </Table>
