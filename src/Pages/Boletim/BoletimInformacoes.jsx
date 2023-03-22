@@ -5,7 +5,7 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
 
     const usuarioLogadoID = localStorage.getItem("x-user-mat-id")
 
-    const boletimDoUsuario = boletim.efetivo.find(efetivo =>efetivo.id === usuarioLogadoID)// verifica se o usuario logado esta no boletim
+    const boletimDoUsuario = boletim?.efetivo.find(efetivo =>efetivo.id === usuarioLogadoID)// verifica se o usuario logado esta no boletim
 
     return ( 
         <> 
