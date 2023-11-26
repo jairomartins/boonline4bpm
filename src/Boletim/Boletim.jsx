@@ -15,6 +15,7 @@ import BoletimDetalhe from "../components/BoletimDetalhe/BoletimDetalhe"
 import Page404 from "../components/Page404"
 import RegisterUser from "../Pages/Usuarios/RegisterUser";
 import LoginUser from "../Pages/Usuarios/LoginUser";
+import TCODashboard from "../tco-pmma/TCODashboard";
 
 // import ListaBoletim from "../Pages/Boletim/ListaBoletim";
 import Dashboard from "../Pages/Admin/Dashboard";
@@ -23,6 +24,8 @@ import DashboardUsuario from "../Pages/Admin/DashboardUsuario";
 import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
 import EmailVerify from "../Pages/Usuarios/EmailVerify";
 import PasswordRecover from "../Pages/Usuarios/PasswordRecover";
+import FormAmbiente from "../components/Ambiente/FormAmbiente";
+import PDFMake from "../Utils/PDFMake";
 
 
 export default function Boletim(){ 
@@ -45,6 +48,13 @@ export default function Boletim(){
                         <Route path="/boletim">
                             <Route path="header" 
                                 element={authenticated ? (<Header cidadeLogin={cidade}/>):(<Home/>)} 
+                            />
+
+                            <Route path="ambiente" 
+                                element={<FormAmbiente/>} 
+                            />
+                             <Route path="pdf" 
+                                element={<PDFMake/>} 
                             />
 
                             <Route path="envolvido" 
@@ -86,6 +96,10 @@ export default function Boletim(){
                         
                         {/* <Route path="adm/listaBoletim" element={<ListaBoletim/>}/> */}
                         <Route path="/BoFromBD"  element={<BoletimDetalheFromBD/>} />
+
+
+
+                        <Route path="/tco" element={<TCODashboard/>}/>
                     </Routes>
                 </BrowserRouter>
             </BoletimProvider>

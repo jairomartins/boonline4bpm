@@ -5,7 +5,7 @@
 
 import React, { useContext }  from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import {useNavigate } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 
 import { ImFileText } from "react-icons/im";
 import {BiUserCircle} from "react-icons/bi"
@@ -47,6 +47,12 @@ const Dashboard = () => {
                         <Button disabled className="mt-2">Meu Perfil <BiUserCircle/>
                         </Button>
                     {/* </Link> */}
+                </Col>
+
+                <Col sm={3} md={3} className="justify-content-md-center d-grid gap-2">
+                    <Link to={"tco"}>
+                            TCO-PMMA 4°BPM - TESTE
+                    </Link>
                 </Col>
                 
             </Row>
