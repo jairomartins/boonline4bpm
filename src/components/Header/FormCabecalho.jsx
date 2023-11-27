@@ -134,7 +134,7 @@ function FormCabecalho ({boletim, setBoletim}){
                         <Form.Label>Município : </Form.Label>
                         <Form.Select
                             name="cidadeOcorrencia"
-                            defaultValue={boletim.municipio}
+                            defaultValue=''
                             size="sm"
                             onChange={(e)=>{setBoletim({...boletim, municipio:e.target.value})}}
                         >

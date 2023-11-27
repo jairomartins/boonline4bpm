@@ -50,7 +50,7 @@ const Dashboard = () => {
                 </Col>
 
                 <Col sm={3} md={3} className="justify-content-md-center d-grid gap-2">
-                    <Link to={"tco"}>
+                    <Link to={"/links"}>
                             TCO-PMMA 4°BPM - TESTE
                     </Link>
                 </Col>
