@@ -47,7 +47,7 @@ const BoletimDetalhe = () => {
     //Salva o boletim no servidor 
     const saveToDB = async ()=>{
         
-        await axios.post(`http://${BASE_URL}:${API_PORT}/adm/boletim/create`,{
+        await axios.post(`https://${BASE_URL}:${API_PORT}/adm/boletim/create`,{
                 boletim: boletim
             },{
             headers :{

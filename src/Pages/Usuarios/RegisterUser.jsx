@@ -37,7 +37,7 @@ function RegisterUser (){
         
         setIsLoading(true)
         
-        axios.post(`http://${BASE_URL}:${API_PORT}/register`,{
+        axios.post(`https://${BASE_URL}:${API_PORT}/register`,{
             userName:userName,
             userEmail:userEmail,
             userPassword:userPassword,

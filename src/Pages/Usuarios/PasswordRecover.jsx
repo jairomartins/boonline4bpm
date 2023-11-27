@@ -21,7 +21,7 @@ function PasswordRecover (){
     console.log('passwordChanger')
     e.preventDefault()
 
-    await axios.post(`http://${BASE_URL}:${API_PORT}/recoverPassword`,{
+    await axios.post(`https://${BASE_URL}:${API_PORT}/recoverPassword`,{
         userId:id,
         userPassword:newPassword,
         }).then(function(response){

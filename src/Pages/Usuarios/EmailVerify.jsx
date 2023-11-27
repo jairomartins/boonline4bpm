@@ -18,7 +18,7 @@ function EmailVerify (){
 
         e.preventDefault()
 
-        await axios.post(`http://${BASE_URL}:${API_PORT}/recuperarSenha`,{
+        await axios.post(`https://${BASE_URL}:${API_PORT}/recuperarSenha`,{
             userEmail: email,
         })
         .then(function (response) {
