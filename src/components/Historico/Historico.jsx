@@ -88,14 +88,14 @@ const Historico = () => {
                 </Card.Body>
             </Card>
             <br/>
-            <Card>
+            {/* <Card>
                 <Card.Header>
                     Anexar Imagens (Opcional)
                 </Card.Header>
                 <Card.Body>
                     <UploadImagem/>
                 </Card.Body>
-            </Card>
+            </Card> */}
 
             <br/>
             <Row className="text-center">

@@ -1,10 +1,7 @@
 import React, { useContext, useState } from 'react';
 
-
-
 import { BoletimContext } from "../../Context/BoletimContext";
 import { Button, Form } from 'react-bootstrap';
-
 
 const UploadImagem = () => {
     const { boletim, setBoletim } = useContext(BoletimContext);
@@ -82,6 +79,36 @@ const UploadImagem = () => {
       setPreviewImages(newPreviewImages);
     };
   
+    // const handleUpload = async () => {
+      // Lógica de upload aqui, usando boletim.images
+  
+      // Exemplo fictício de envio para o backend:
+      // const formData = new FormData();
+      // boletim.images.forEach((imageData) => {
+      //   formData.append('images', imageData.file);
+      //   formData.append('captions', imageData.caption);
+      // });
+  
+      // try {
+      //   const response = await fetch('URL_DO_SEU_BACKEND/upload', {
+      //     method: 'POST',
+      //     body: formData,
+      //   });
+  
+      //   if (response.ok) {
+      //     console.log('Upload bem-sucedido!');
+      //     setPreviewImages([]);
+      //     setSelectedImages([]);
+      //     setCaptions([]);
+      //     setBoletim({ ...boletim, images: [] });
+      //   } else {
+      //     console.error('Falha no upload.');
+      //   }
+      // } catch (error) {
+      //   console.error('Erro ao enviar as imagens:', error);
+      // }
+    // };
+  
     return (
       <div>
         
@@ -107,4 +134,5 @@ const UploadImagem = () => {
       </div>
     );
   };
+  
   export default UploadImagem;

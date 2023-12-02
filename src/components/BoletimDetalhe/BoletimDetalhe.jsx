@@ -202,7 +202,7 @@ const BoletimDetalhe = () => {
                 </tbody>
             </Table>
             <hr/>
-            <Row>
+            {/* <Row>
                 <Col className="text-center"><h6>ANEXOS: <Link className="d-print-none" to="/boletim/efetivo">Editar</Link></h6></Col>
             </Row>
                 {boletim.images?.map((imageData, imageIndex) => (
@@ -216,7 +216,7 @@ const BoletimDetalhe = () => {
                     </div>
                    
                     </>   
-                    ))}
+                    ))} */}
            
             <Row className="text-center">
                 <Col>
