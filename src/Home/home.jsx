@@ -36,7 +36,7 @@ const Home = ()=>{
             <br/>
             <br/>
             <Row className="text-center">
-                <Col>Criado por : <b>SD PM  J.Martins - 2021</b></Col>
+                <Col>Criado por : <b>SD PM  J.Martins - 2021 -2023 </b></Col>
             </Row>
         </Container>
         </>
