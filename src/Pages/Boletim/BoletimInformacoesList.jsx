@@ -1,12 +1,13 @@
 import axios from "axios";
 import {Alert, Button} from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+const API_PORT = process.env.REACT_APP_API_PORT
+const BASE_URL = process.env.REACT_APP_BASE_URL
 const BoletimInformacoesList = ({boletim, setBoletim}) => {
 
     const CarregarBoletim = async (numero)=>{
       
-        axios.get(`http://${BASE_URL}:${API_PORT}/adm/boletim/search/${numero}`,{
+        axios.get(`https://${BASE_URL}:${API_PORT}/adm/boletim/search/${numero}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
@@ -33,6 +34,7 @@ const BoletimInformacoesList = ({boletim, setBoletim}) => {
                     <td>{boletim.natureza}</td>
                     <td>{boletim.data}</td>
                     <td>{boletim.numero}</td>
+                    <td>{boletim.cidade}</td>
                     <td><Button variant="warning" onClick={(e)=>CarregarBoletim(boletim.numero)}><Link to={"/BoFromBD"}>Detalhe</Link></Button></td>
                 </tr>
         

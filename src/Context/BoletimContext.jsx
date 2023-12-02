@@ -18,6 +18,7 @@ function BoletimProvider({ children }) {
         envolvidos:[],
         materiaisApreendidos:[],
         efetivo:[],
+        images:[],
     })
 
 

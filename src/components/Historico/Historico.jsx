@@ -21,6 +21,9 @@ import {BsArrowLeft } from "react-icons/bs"
 
 import { Link, useNavigate } from "react-router-dom";
 import CabecalhoBoletim from "../Cabecalho/CabecalhoBoletim";
+import UploadImagem from "../UploadImagem/UploadImagem";
+
+
 
 
 
@@ -84,7 +87,16 @@ const Historico = () => {
                     </Row>
                 </Card.Body>
             </Card>
-            
+            <br/>
+            <Card>
+                <Card.Header>
+                    Anexar Imagens (Opcional)
+                </Card.Header>
+                <Card.Body>
+                    <UploadImagem/>
+                </Card.Body>
+            </Card>
+
             <br/>
             <Row className="text-center">
                 <Col>

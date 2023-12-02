@@ -32,11 +32,11 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
                     <td>{boletim.data}</td>
                     <td>{boletim.numero}</td>
                     <td>{boletim.municipio}</td>
-                    <td><Button variant="warning"><Link to={"/BoFromBD"}>Detalhe</Link></Button> <br/>
+                    <td><Button variant="link"><Link to={"/BoFromBD"}>Ver</Link></Button> <br/>
                     <br/>
 
                     { boletimDoUsuario!=null?
-                    (<Button  variant="danger"><Link to={"/boletim/header"}>Editar</Link></Button>)
+                    (<Button  variant="link"><Link to={"/boletim/header"}>Editar</Link></Button>)
                     :
                     ("")
                     }

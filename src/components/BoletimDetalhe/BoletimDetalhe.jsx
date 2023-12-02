@@ -201,7 +201,23 @@ const BoletimDetalhe = () => {
                 </tr>
                 </tbody>
             </Table>
+            <hr/>
+            <Row>
+                <Col className="text-center"><h6>ANEXOS: <Link className="d-print-none" to="/boletim/efetivo">Editar</Link></h6></Col>
+            </Row>
+                {boletim.images?.map((imageData, imageIndex) => (
+                     <>
+                    <Row style={{pageBreakBefore:"always"}}> </Row>
+              
+                    <div key={imageIndex} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px', }}>
+                        <p  style={{textTransform: 'uppercase', fontWeight:"bold"}}>{imageData.caption}:</p>
+                        <img src={imageData.preview} alt={`Imagem ${imageData.caption}`} title={imageData.caption} style={{ maxWidth: '600px', maxHeight: '600px', marginRight: '10px', marginBottom:'5px'}} />
 
+                    </div>
+                   
+                    </>   
+                    ))}
+           
             <Row className="text-center">
                 <Col>
                     <Button

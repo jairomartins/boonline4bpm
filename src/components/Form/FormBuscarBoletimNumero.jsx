@@ -5,7 +5,7 @@
 
 import { Form, Button, InputGroup} from "react-bootstrap";
 
-const FormBuscarBo = ({setIdBusca, checkBoletim}) => {
+const FormBuscarBoletimNumero = ({setIdBusca, checkBoletim}) => {
     return ( <>
             <Form>
                 <InputGroup>
@@ -23,4 +23,4 @@ const FormBuscarBo = ({setIdBusca, checkBoletim}) => {
     </> );
 }
  
-export default FormBuscarBo;
+export default FormBuscarBoletimNumero;

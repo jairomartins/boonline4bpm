@@ -5,10 +5,10 @@
 
 import React, { useContext }  from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
-import {Link, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 
 import { ImFileText } from "react-icons/im";
-import {BiUserCircle} from "react-icons/bi"
+import {BiCollection, BiUserCircle} from "react-icons/bi"
 import {GiExitDoor} from "react-icons/gi"
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
@@ -23,6 +23,9 @@ const Dashboard = () => {
 
     const handleClickBoletim = ()=>{
         navigate('boletim')
+    }
+    const handleClickTCO = ()=>{
+        navigate('/links')
     }
 
     const handleClickSair =()=>{
@@ -50,9 +53,11 @@ const Dashboard = () => {
                 </Col>
 
                 <Col sm={3} md={3} className="justify-content-md-center d-grid gap-2">
-                    <Link to={"/links"}>
-                            TCO-PMMA 4°BPM - TESTE
-                    </Link>
+                    {/* <Link to={"/links"}> */}
+                        <Button onClick={handleClickTCO} variant="warning" className="mt-2">
+                            TCO-PMMA - Arquivos<BiCollection/>
+                        </Button>
+                    {/* </Link> */}
                 </Col>
                 
             </Row>
