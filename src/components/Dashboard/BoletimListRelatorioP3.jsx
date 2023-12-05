@@ -18,6 +18,7 @@ const BoletimListRelatorioP3 = ({ boletimList }) => {
       {boletimList.map((boletim, index) => (
         <div key={index}>
           <p>*BO:* {boletim.numero}</p>
+          <p>*OCORRÊNCIA:* 0{index+1}</p>
           <p>*DATA:* {boletim.data}</p>
           <p>*HORA:* {boletim.horario}</p>
           <p>*LOCAL:* {boletim.endereco}, {boletim.numeroEndereco} , {boletim.bairro} - {boletim.municipio}</p>
