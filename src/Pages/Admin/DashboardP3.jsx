@@ -28,13 +28,9 @@ const Dashboard = () => {
         navigate('/links')
     }
 
-    const handleClickSair = () => {
-        // Limpar os dados de autenticação armazenados
-        localStorage.removeItem("x-access-token");
-        localStorage.removeItem("x-user-mat-id");
-        // Atualizar o estado de autenticação para falso
-        setAuthenticated(false);
-      };
+    const handleClickSair =()=>{
+        setAuthenticated(false)
+    }
 
     return ( 
     <>

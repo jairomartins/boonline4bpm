@@ -24,6 +24,7 @@ import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
 import EmailVerify from "../Pages/Usuarios/EmailVerify";
 import PasswordRecover from "../Pages/Usuarios/PasswordRecover";
 import Links from "../Pages/Links/Links";
+import DashboardBoletimp3 from "../Pages/Admin/DashboardBoletimp3";
 
 
 
@@ -83,7 +84,7 @@ export default function Boletim(){
 
 
                         <Route path="/dashboard" element={authenticated ? <Dashboard/>:<Home/>}/>
-                        <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletim />:<Home/>}/>
+                        <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletimp3 />:<Home/>}/>
                         <Route path="/dashboard/usuarios" element={authenticated ?<DashboardUsuario/>:<Home/>}/>
                         
                         {/* <Route path="adm/listaBoletim" element={<ListaBoletim/>}/> */}

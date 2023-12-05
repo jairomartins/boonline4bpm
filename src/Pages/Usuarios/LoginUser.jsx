@@ -1,4 +1,4 @@
-import React,{useState, useContext} from "react";
+import React,{useState, useContext, useEffect} from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import {Card, Col, Row, Form, Button, Alert} from "react-bootstrap"
 import axios from "axios";
@@ -9,6 +9,18 @@ import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
 
 
 const LoginUser = () => {
+    const {authenticated, setAuthenticated, cidade, setCidade} = useContext(Context)
+    
+    useEffect(() => {
+        const token = localStorage.getItem("x-access-token");
+        const userID = localStorage.getItem("x-user-mat-id");
+      
+        if (token && userID) {
+          // Definir o estado de autenticação com base nas informações armazenadas
+          setAuthenticated(true);
+          // Definir outros estados conforme necessário
+        }
+      }, [setAuthenticated]);
 
     const navigate = useNavigate() 
     
@@ -19,7 +31,7 @@ const LoginUser = () => {
     const [erroShow, setErroShow] = useState(false)
     const [erroMessage, setErroMessage] = useState("")
 
-    const {authenticated, setAuthenticated, cidade, setCidade} = useContext(Context)
+    
 
     const API_PORT = process.env.REACT_APP_API_PORT
     const BASE_URL = process.env.REACT_APP_BASE_URL
