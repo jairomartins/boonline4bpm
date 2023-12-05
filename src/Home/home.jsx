@@ -21,7 +21,7 @@ const Home = ()=>{
             <Row> 
                 <Col sm={12} className="text-center">
                 <h3>Boletim de Ocorrência PMMA 4°BPM </h3>
-                <p><i>versão 2023.12.02</i></p>
+                <p><i>Versão 2023.12.04</i></p>
                 </Col>
             </Row>
             <br/>
