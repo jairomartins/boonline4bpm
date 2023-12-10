@@ -21,7 +21,7 @@ import {BsArrowLeft } from "react-icons/bs"
 
 import { Link, useNavigate } from "react-router-dom";
 import CabecalhoBoletim from "../Cabecalho/CabecalhoBoletim";
-import UploadImagem from "../UploadImagem/UploadImagem";
+// import UploadImagem from "../UploadImagem/UploadImagem";
 
 
 

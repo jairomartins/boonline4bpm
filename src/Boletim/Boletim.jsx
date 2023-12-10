@@ -18,13 +18,14 @@ import LoginUser from "../Pages/Usuarios/LoginUser";
 
 // import ListaBoletim from "../Pages/Boletim/ListaBoletim";
 import Dashboard from "../Pages/Admin/Dashboard";
-import DashboardBoletim from "../Pages/Admin/DashboardBoletim";
-import DashboardUsuario from "../Pages/Admin/DashboardUsuario";
+import DashboardUsuario from "../Pages/Admin/DashboardUsuario"
 import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
 import EmailVerify from "../Pages/Usuarios/EmailVerify";
 import PasswordRecover from "../Pages/Usuarios/PasswordRecover";
 import Links from "../Pages/Links/Links";
 import DashboardBoletimp3 from "../Pages/Admin/DashboardBoletimp3";
+import DashboardUsuarios from "../Pages/Admin/Usuarios/DashboardUsuarios";
+import DashboardOcorrencias from "../Pages/Admin/Ocorrencias/DashboardOcorrencias";
 
 
 
@@ -70,6 +71,14 @@ export default function Boletim(){
                                 element={authenticated ? <BoletimDetalhe/>:<Home/>}
                             />
                             
+                        </Route>
+                        <Route path="/administrador">
+                            <Route path="usuarios" 
+                                element={authenticated ? (<DashboardUsuarios/>):(<Home/>)} 
+                            />
+                            <Route path="ocorrencias" 
+                                element={authenticated ? (<DashboardOcorrencias/>):(<Home/>)} 
+                            />
                         </Route>
                         
 
