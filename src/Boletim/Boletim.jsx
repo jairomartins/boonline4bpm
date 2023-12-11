@@ -32,9 +32,9 @@ import DashboardOcorrencias from "../Pages/Admin/Ocorrencias/DashboardOcorrencia
 export default function Boletim(){ 
    
     const {authenticated, cidade} = useContext(Context);
- 
+    const userTipo = localStorage.getItem("x-user-tipo");
     const checkUserTipo = (tipo) =>{
-        return "admin" === tipo 
+        return "admin" === userTipo 
     }
 
     return (
