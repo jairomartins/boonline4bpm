@@ -55,7 +55,8 @@ const LoginUser = () => {
             setAuthenticated(response.data.authenticated)
             localStorage.setItem("x-access-token",response.data.token)
             localStorage.setItem("x-user-mat-id",response.data.userID)
-            console.log(response.data.userID)
+            localStorage.setItem("x-user-tipo",response.data.tipo)
+            console.log(response.data)
             setIsLoading(false) 
             
         })

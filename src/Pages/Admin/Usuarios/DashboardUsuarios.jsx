@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Button, ButtonGroup, Container, Row, Table} from "react-bootstrap";
+import { Button, ButtonGroup, Col, Container, Row} from "react-bootstrap";
 import Cabecalho from "../../../components/Cabecalho/Cabecalho";
 import FormBuscarUsuario from "../../../components/Form/FormBuscarUsuario";
 import axios from "axios";
+import CadastroUsuario from "./CadastroUsuario";
+import TabelaUsuarios from "./TabelaUsuarios";
 
 const API_PORT = process.env.REACT_APP_API_PORT
 const BASE_URL = process.env.REACT_APP_BASE_URL
@@ -30,6 +32,14 @@ const DashboardUsuarios = () => {
         });
     }
 
+    const handleClickEditarUsuario = ()=>{
+        console.log("Editando ...")
+    }
+
+    const handleClickRemoverUsuario = ()=>{
+        console.log("Removendo ...")
+    }
+
     return ( 
     <>
         <Cabecalho texto={"Gerenciador de Boletins Digitais: versão(2022.1)"}/>
@@ -37,9 +47,9 @@ const DashboardUsuarios = () => {
         <Container>
         
            <h1>Gerenciamento de Usuários</h1>
-            <FormBuscarUsuario us/>
-           <p>Lista de Usuários Cadastrados </p>
-           <ButtonGroup>
+           <FormBuscarUsuario us/>
+
+           <ButtonGroup className="mt-2">
                 <Button onClick={handleClickBuscarUsuarios}>
                     Carregar Usuários ...
                 </Button>
@@ -48,37 +58,12 @@ const DashboardUsuarios = () => {
                 </Button>
            </ButtonGroup>
            <Row>
-           <Table>
-                <thead>
-                    <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Tipo de Usuário</th>
-                    <th>Mat/ID</th>
-                    <th>Opção</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   
-                        {
-                            usuarioList?.map((usuario)=>
-                            <tr key={usuario.id}>
-                                <td>{usuario.userName} </td>
-                                <td>{usuario.userEmail}</td>
-                                <td>{usuario.tipo}</td>
-                                <td>{usuario.userMatriculaId}</td>
-                                <td>
-                                    <a href="#/">Excluir </a>
-                                    <a href="#/"> Editar</a>
-                                </td>
-                            </tr>
-                            )
-                        }
-                    
-                </tbody>
-            </Table>
+                <Col>
+                    <TabelaUsuarios usuarioList={usuarioList} handleClickEditarUsuario={handleClickEditarUsuario} handleClickRemoverUsuario={handleClickRemoverUsuario}/>
+                </Col>
            </Row>
            
+        <CadastroUsuario/>
         </Container>
 
     </> );

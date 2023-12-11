@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 
-import {BrowserRouter,Routes,Route,} from "react-router-dom";
+import {BrowserRouter,Routes,Route} from "react-router-dom";
 
 import { Context } from "../Context/AuthContext";
 import { BoletimProvider } from "../Context/BoletimContext";
@@ -33,12 +33,14 @@ export default function Boletim(){
    
     const {authenticated, cidade} = useContext(Context);
  
+    const checkUserTipo = (tipo) =>{
+        return "admin" === tipo 
+    }
 
     return (
         <>
             <BoletimProvider>
                 <BrowserRouter>
-                {/* {authenticated && <Navigate replace to="/home"/>} */}
                     <Routes>
                     
 
@@ -74,10 +76,10 @@ export default function Boletim(){
                         </Route>
                         <Route path="/administrador">
                             <Route path="usuarios" 
-                                element={authenticated ? (<DashboardUsuarios/>):(<Home/>)} 
+                                element={authenticated && checkUserTipo("admin") ? (<DashboardUsuarios/>):(<Home/>)} 
                             />
                             <Route path="ocorrencias" 
-                                element={authenticated ? (<DashboardOcorrencias/>):(<Home/>)} 
+                                element={authenticated && checkUserTipo("admin") ? (<DashboardOcorrencias/>):(<Home/>)} 
                             />
                         </Route>
                         
