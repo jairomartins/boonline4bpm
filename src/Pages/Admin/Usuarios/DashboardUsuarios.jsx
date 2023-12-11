@@ -13,9 +13,10 @@ const BASE_URL = process.env.REACT_APP_BASE_URL
 const DashboardUsuarios = () => {
 
     const [usuarioList, setUsuarioList] = useState([])
-
+    const [exibeFormCadastro, setExibeFormCadastro] = useState(false)
 
     const handleClickBuscarUsuarios = ()=>{
+        setExibeFormCadastro(false)
         axios.get(`https://${BASE_URL}:${API_PORT}/users`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
@@ -40,6 +41,11 @@ const DashboardUsuarios = () => {
         console.log("Removendo ...")
     }
 
+    const handleClickRegistrarUsuarios = ()=>{
+        setUsuarioList([])
+        setExibeFormCadastro(true)
+    }
+
     return ( 
     <>
         <Cabecalho texto={"Gerenciador de Boletins Digitais: versão(2022.1)"}/>
@@ -49,11 +55,11 @@ const DashboardUsuarios = () => {
            <h1>Gerenciamento de Usuários</h1>
            <FormBuscarUsuario us/>
 
-           <ButtonGroup className="mt-2">
+           <ButtonGroup className="mt-2 mb-2">
                 <Button onClick={handleClickBuscarUsuarios}>
                     Carregar Usuários ...
                 </Button>
-                <Button variant="warning" onClick={handleClickBuscarUsuarios}>
+                <Button variant="warning" onClick={handleClickRegistrarUsuarios}>
                     Cadastrar Usuário +
                 </Button>
            </ButtonGroup>
@@ -62,8 +68,11 @@ const DashboardUsuarios = () => {
                     <TabelaUsuarios usuarioList={usuarioList} handleClickEditarUsuario={handleClickEditarUsuario} handleClickRemoverUsuario={handleClickRemoverUsuario}/>
                 </Col>
            </Row>
-           
-        <CadastroUsuario/>
+            { 
+                exibeFormCadastro?  <CadastroUsuario/> :""
+            
+            }
+            
         </Container>
 
     </> );
