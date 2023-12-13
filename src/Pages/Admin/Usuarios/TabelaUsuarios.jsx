@@ -20,11 +20,11 @@ const TabelaUsuarios = ({ usuarioList, handleClickEditarUsuario, handleClickRemo
             <tbody>
                 {usuarioList?.map((usuario) => (
                     <tr key={usuario.id}>
-                        <td>{usuario.userName}</td>
-                        <td>{usuario.userEmail}</td>
-                        <td>{usuario.tipo}</td>
-                        <td>{usuario.userMatriculaId}</td>
-                        <td>
+                        <td key={usuario.id}>{usuario.userName}</td>
+                        <td key={usuario.id}>{usuario.userEmail}</td>
+                        <td key={usuario.id}>{usuario.tipo}</td>
+                        <td key={usuario.id}>{usuario.userMatriculaId}</td>
+                        <td key={usuario.id}>
                             <Button className="mb-2" onClick={() => handleClickEditarUsuario(usuario.id)}>
                                 Editar
                             </Button>

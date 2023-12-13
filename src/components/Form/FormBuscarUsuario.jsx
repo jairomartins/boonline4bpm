@@ -9,8 +9,8 @@ const FormBuscarUsuario = ()=>{
 
     return (
         <>
-            <Form>
-            <InputGroup>
+        <Form>
+            <InputGroup size="sm">
                 <Form.Control
                 required
                 placeholder="Digite o ID ou Matricula"
