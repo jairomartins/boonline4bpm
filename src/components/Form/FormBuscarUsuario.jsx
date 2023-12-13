@@ -1,11 +1,9 @@
 import React from "react"
 import { Button, Form, InputGroup } from "react-bootstrap"
 
-const FormBuscarUsuario = ()=>{
+const FormBuscarUsuario = ({setIdBusca, handleClickBuscarUsuarios})=>{
 
-    const handleClickBuscarUsuarios = ()=>[
-        console.log("Buscando usuário")
-    ]
+    
 
     return (
         <>
@@ -14,6 +12,7 @@ const FormBuscarUsuario = ()=>{
                 <Form.Control
                 required
                 placeholder="Digite o ID ou Matricula"
+                onChange={(e)=>setIdBusca(e.target.value)}
                 type="number"
                 />
                 <Button onClick={handleClickBuscarUsuarios}>

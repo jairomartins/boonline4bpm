@@ -16,12 +16,31 @@ const DashboardUsuarios = () => {
 
     const [usuarioList, setUsuarioList] = useState([])
     const [exibeFormCadastro, setExibeFormCadastro] = useState(false)
+    const [idBusca, setIdBusca] = useState()
 
     const navigate = useNavigate()    
 
     const handleClickBuscarUsuarios = ()=>{
         setExibeFormCadastro(false)
-        axios.get(`https://${BASE_URL}:${API_PORT}/users`,{
+        axios.get(`https://${BASE_URL}:${API_PORT}/users/`,{
+            headers:{
+                "x-access-token":localStorage.getItem("x-access-token")
+            }
+        })
+        .then((response)=>{
+            console.log(response.data)
+            setUsuarioList(response.data)
+        }).catch(function (error) {
+            console.error(error)
+        })
+        .then(function () {
+            // sempre será executado
+        });
+    }
+
+    const handleClickBuscarUsuario = ()=>{
+        setExibeFormCadastro(false)
+        axios.get(`https://${BASE_URL}:${API_PORT}/user/${idBusca}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
@@ -61,7 +80,7 @@ const DashboardUsuarios = () => {
         <Container>
         
            <h1>Gerenciamento de Usuários</h1>
-           <FormBuscarUsuario />
+           <FormBuscarUsuario setIdBusca={setIdBusca} handleClickBuscarUsuarios={handleClickBuscarUsuario} />
             <Row>
                 <Col className="d-grid gap-2 d-md-block mt-2 mb-2">
                     <Button size="sm" variant="warning" onClick={handleClickBuscarUsuarios}>
