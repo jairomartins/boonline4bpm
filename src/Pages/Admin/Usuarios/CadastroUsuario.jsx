@@ -21,6 +21,15 @@ const CadastroUsuario = ()=>{
     const API_PORT = process.env.REACT_APP_API_PORT
     const BASE_URL = process.env.REACT_APP_BASE_URL
 
+
+    function limpaCampos(){
+        setUserName("")
+        setUserEmail("")
+        setUserPassword("")
+        setUserContato("")
+        setUserMatriculaId("")
+        setUserTipo("Comum")
+    }
     //Faz a conexão via axios para registrar o usuario
     //Depois de registrado redireciona para tela de login
  
@@ -39,7 +48,8 @@ const CadastroUsuario = ()=>{
         .then(function (response){
             console.log(response.data)
             alert(response.data.message)
-            navigate('/')
+            limpaCampos()
+            navigate('/administrador/usuarios')
 
         }).catch(function(error){
             console.log(error)         
@@ -64,12 +74,14 @@ const CadastroUsuario = ()=>{
                     <Form.Label>Usuário:</Form.Label>
                     <Form.Control
                         required
+                        value={userName}
                         onChange={(e)=>{setUserName(e.target.value)}}
                         placeholder="Nome"/>
                     <br/>
                     <Form.Label>Matrícula ou ID:</Form.Label>
                     <InputMask 
                         required
+                        value={userMatriculaId}
                         className="form-control "
                         type="number"
                         onChange={(e)=>{setUserMatriculaId(e.target.value)}}
@@ -79,12 +91,14 @@ const CadastroUsuario = ()=>{
                     <Form.Label>E-mail:</Form.Label>
                     <Form.Control 
                         required
+                        value={userEmail}
                         onChange={(e)=>{setUserEmail(e.target.value)}}
                         placeholder="E-mail"/>
                     <br/>
                     <Form.Label>Contato:</Form.Label>
                     <InputMask 
                         required
+                        value={userContato}
                         className="form-control "
                         mask="(99) 9 9999-9999"
                         onChange={(e)=>{setUserContato(e.target.value)}}
@@ -95,6 +109,7 @@ const CadastroUsuario = ()=>{
                     <Form.Label>Senha:</Form.Label>
                     <Form.Control
                         required
+                        value={userPassword}
                         placeholder="senha"
                         onChange={(e)=>{setUserPassword(e.target.value)}}
                         type="password"/>
