@@ -14,6 +14,7 @@ const CadastroUsuario = ()=>{
     const [userPassword, setUserPassword] =  useState()
     const [userContato, setUserContato] =  useState()
     const [userMatriculaId, setUserMatriculaId] = useState()
+    const [userTipo, setUserTipo] = useState()
 
     const navigate = useNavigate()
 
@@ -27,17 +28,17 @@ const CadastroUsuario = ()=>{
         
         e.preventDefault()
 
-        
         axios.post(`https://${BASE_URL}:${API_PORT}/register`,{
             userName:userName,
             userEmail:userEmail,
             userPassword:userPassword,
             userContato:userContato,
-            userMatriculaId: userMatriculaId
+            userMatriculaId: userMatriculaId,
+            tipo:userTipo
         })
         .then(function (response){
             console.log(response.data)
-            alert(response.data.status)
+            alert(response.data.message)
             navigate('/')
 
         }).catch(function(error){
@@ -53,7 +54,7 @@ const CadastroUsuario = ()=>{
             <Card.Body>
                 <Form onSubmit={handleRegistar}>
                     <Form.Label>Tipo:</Form.Label>
-                    <Form.Select aria-label="Default select example">
+                    <Form.Select onChange={(e)=>setUserTipo(e.target.value)}>
                         <option value="Comum">Comum</option>
                         <option value="Copom">Copom</option>
                         <option value="P3">P3</option>
