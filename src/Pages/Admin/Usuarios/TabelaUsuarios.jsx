@@ -7,6 +7,7 @@ const TabelaUsuarios = ({ usuarioList, handleClickEditarUsuario, handleClickRemo
     }
     return (
         <>
+        <h5>Total Usuários: [{usuarioList.length}]</h5>
         <Table striped> 
             <thead>
                 <tr>
