@@ -1,6 +1,6 @@
 import { Button, Table } from "react-bootstrap";
 
-const TabelaUsuarios = ({ usuarioList, handleClickEditarUsuario, handleClickRemoverUsuario }) => {
+const TabelaUsuarios = ({ usuarioList, handleClickEditarUsuario, handleClickRemoverUsuario, setIdBusca }) => {
 
     if (!usuarioList || usuarioList.length === 0) {
         return null; // Se usuarioList for vazio ou não existir, não renderiza a tabela
@@ -19,14 +19,14 @@ const TabelaUsuarios = ({ usuarioList, handleClickEditarUsuario, handleClickRemo
                 </tr>
             </thead>
             <tbody>
-                {usuarioList?.map((usuario) => (
+                {usuarioList?.map((usuario, index) => (
                     <tr key={usuario.id}>
                         <td key={usuario.id}>{usuario.userName}</td>
                         <td key={usuario.id}>{usuario.userEmail}</td>
                         <td key={usuario.id}>{usuario.tipo}</td>
                         <td key={usuario.id}>{usuario.userMatriculaId}</td>
                         <td key={usuario.id}>
-                            <Button className="mb-2" onClick={() => handleClickEditarUsuario(usuario.id)}>
+                            <Button className="mb-2" onClick={() => handleClickEditarUsuario(index)}>
                                 Editar
                             </Button>
                             {" "}

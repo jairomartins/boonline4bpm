@@ -7,6 +7,7 @@ import CadastroUsuario from "./CadastroUsuario";
 import TabelaUsuarios from "./TabelaUsuarios";
 import { useNavigate } from "react-router-dom";
 import { BiArrowBack, BiDownload, BiPlus } from "react-icons/bi";
+import EditarUsuario from "./EditarUsuario";
 
 const API_PORT = process.env.REACT_APP_API_PORT
 const BASE_URL = process.env.REACT_APP_BASE_URL
@@ -15,13 +16,17 @@ const BASE_URL = process.env.REACT_APP_BASE_URL
 const DashboardUsuarios = () => {
 
     const [usuarioList, setUsuarioList] = useState([])
-    const [exibeFormCadastro, setExibeFormCadastro] = useState(false)
+    const [exibirFormCadastro, setExibirFormCadastro] = useState(false)
+    const [exibirFormEdicao, setExibirFormEdicao] = useState(false)
+    const [exibirTabelaUsuarios,setExibirTabelaUsuarios] = useState(false)
     const [idBusca, setIdBusca] = useState()
+    const [index, setIndex]= useState()
 
     const navigate = useNavigate()    
 
     const handleClickBuscarUsuarios = ()=>{
-        setExibeFormCadastro(false)
+        setExibirFormCadastro(false)
+        setExibirFormEdicao(false)
         axios.get(`https://${BASE_URL}:${API_PORT}/users/`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
@@ -29,6 +34,7 @@ const DashboardUsuarios = () => {
         })
         .then((response)=>{
             console.log(response.data)
+            setExibirTabelaUsuarios(true)
             setUsuarioList(response.data)
         }).catch(function (error) {
             console.error(error)
@@ -39,14 +45,15 @@ const DashboardUsuarios = () => {
     }
 
     const handleClickBuscarUsuario = ()=>{
-        setExibeFormCadastro(false)
+        setExibirFormEdicao(false)
+        setExibirFormCadastro(false)
         axios.get(`https://${BASE_URL}:${API_PORT}/user/${idBusca}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
         })
         .then((response)=>{
-            console.log(response.data)
+            console.log(response.data[0])
             setUsuarioList(response.data)
         }).catch(function (error) {
             console.error(error)
@@ -56,8 +63,11 @@ const DashboardUsuarios = () => {
         });
     }
 
-    const handleClickEditarUsuario = ()=>{
-        console.log("Editando ...")
+    const handleClickEditarUsuario = (index)=>{
+        setIndex(index)
+        setExibirTabelaUsuarios(false)
+        setExibirFormEdicao(true)
+        console.log("Editando ..."+ index)
     }
 
     const handleClickRemoverUsuario = ()=>{
@@ -66,7 +76,7 @@ const DashboardUsuarios = () => {
 
     const handleClickRegistrarUsuarios = ()=>{
         setUsuarioList([])
-        setExibeFormCadastro(true)
+        setExibirFormCadastro(true)
     }
 
     const handleClickVoltar = ()=>{
@@ -96,14 +106,21 @@ const DashboardUsuarios = () => {
                     </Button>
                 </Col>
             </Row>
-           <Row >
-                <Col>
-                    <TabelaUsuarios usuarioList={usuarioList} handleClickEditarUsuario={handleClickEditarUsuario} handleClickRemoverUsuario={handleClickRemoverUsuario}/>
-                </Col>
-           </Row>
-        
             { 
-                exibeFormCadastro?  <CadastroUsuario/> :""
+                exibirTabelaUsuarios? 
+                
+                <TabelaUsuarios usuarioList={usuarioList} handleClickEditarUsuario={handleClickEditarUsuario} handleClickRemoverUsuario={handleClickRemoverUsuario} setIdBusca={idBusca}/>
+
+                
+                : ""
+            }
+
+            { 
+                exibirFormCadastro?  <CadastroUsuario/> :""
+            
+            }
+            { 
+                exibirFormEdicao?  <EditarUsuario usuario={usuarioList[index]} /> :""
             
             }
 
