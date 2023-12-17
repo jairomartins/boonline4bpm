@@ -120,7 +120,7 @@ const DashboardUsuarios = () => {
             
             }
             { 
-                exibirFormEdicao?  <EditarUsuario usuario={usuarioList[index]} /> :""
+                exibirFormEdicao?  <EditarUsuario usuario={usuarioList[index]} setExibirFormEdicao={setExibirFormEdicao} /> :""
             
             }
 

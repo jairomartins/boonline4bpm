@@ -6,7 +6,7 @@ import {Card, Form, Button} from "react-bootstrap"
 
 
 
-const EditarUsuario = ({usuario})=>{
+const EditarUsuario = ({usuario, setExibirFormEdicao})=>{
     // const {BASE_URL} = useContext(Context)
 
     const [userName, setUserName] =  useState(usuario?.userName)
@@ -44,11 +44,39 @@ const EditarUsuario = ({usuario})=>{
             userContato:userContato,
             userMatriculaId: userMatriculaId,
             tipo:userTipo
+        },{
+            headers :{
+                "x-access-token":localStorage.getItem("x-access-token")
+            },
         })
         .then(function (response){
             console.log(response.data)
             alert(response.data.message)
             limpaCampos()
+            setExibirFormEdicao(false)
+            navigate('/administrador/usuarios')
+
+        }).catch(function(error){
+            console.log(error)         
+
+        })
+    }
+    async function handleUpdatePassword (e){
+        
+        e.preventDefault()
+        console.log("editando senha")
+        axios.post(`https://${BASE_URL}:${API_PORT}/recoverPassword/${usuario?._id}`,{
+            userPassword:userPassword
+        },{
+            headers :{
+                "x-access-token":localStorage.getItem("x-access-token")
+            },
+        })
+        .then(function (response){
+            console.log(response.data)
+            alert(response.data.message)
+            limpaCampos()
+            setExibirFormEdicao(false)
             navigate('/administrador/usuarios')
 
         }).catch(function(error){
@@ -57,18 +85,30 @@ const EditarUsuario = ({usuario})=>{
         })
     }
     return (
+        <>
         <Card>
             <Card.Header className="text-center">
                 <Card.Title>Editar Usuário</Card.Title>
             </Card.Header>
             <Card.Body>
                 <Form onSubmit={handleUpdate}>
+                    <Form.Label>Matrícula ou ID:</Form.Label>
+                    <InputMask 
+                        disabled
+                        required
+                        value={userMatriculaId}
+                        className="form-control "
+                        type="number"
+                        onChange={(e)=>{setUserMatriculaId(e.target.value)}}
+                        placeholder="Mátricula ou ID"
+                        />
+                    <br/>
                     <Form.Label>Tipo:</Form.Label>
                     <Form.Select onChange={(e)=>setUserTipo(e.target.value)}>
-                        <option value="Comum">Comum</option>
-                        <option value="Copom">Copom</option>
-                        <option value="P3">P3</option>
-                        <option value="admin">Admin</option>
+                        <option value="Comum" selected={userTipo === "Comum"}>Comum</option>
+                        <option value="Copom" selected={userTipo === "Copom"}>Copom</option>
+                        <option value="P3" selected={userTipo === "P3"}>P3</option>
+                        <option value="admin" selected={userTipo === "admin"}>Admin</option>
                     </Form.Select>
                     <br/>
                     <Form.Label>Usuário:</Form.Label>
@@ -78,16 +118,7 @@ const EditarUsuario = ({usuario})=>{
                         onChange={(e)=>{setUserName(e.target.value)}}
                         placeholder="Nome"/>
                     <br/>
-                    <Form.Label>Matrícula ou ID:</Form.Label>
-                    <InputMask 
-                        required
-                        value={userMatriculaId}
-                        className="form-control "
-                        type="number"
-                        onChange={(e)=>{setUserMatriculaId(e.target.value)}}
-                        placeholder="Mátricula ou ID"
-                        />
-                    <br/>
+                    
                     <Form.Label>E-mail:</Form.Label>
                     <Form.Control 
                         required
@@ -104,19 +135,7 @@ const EditarUsuario = ({usuario})=>{
                         onChange={(e)=>{setUserContato(e.target.value)}}
                         placeholder="(99) 9 0000-0000"
                         />
-                    <br/>
-                    
-                    <Form.Label>Senha:</Form.Label>
-                    <Form.Control
-                        required
-                        value={userPassword}
-                        placeholder="senha"
-                        onChange={(e)=>{setUserPassword(e.target.value)}}
-                        type="password"/>
-                    <br/>
-
-                    
-
+                    <br/>                  
                     <Button variant="warning" type="submit">
                         Salvar Alteraçoes
                     </Button>
@@ -124,7 +143,29 @@ const EditarUsuario = ({usuario})=>{
                 
             </Card.Body>
         </Card>
+        <br/>
+        <Card>
+        <Card.Header className="text-center">
+            <Card.Title>Alterar Senha</Card.Title>
+        </Card.Header>
+        <Card.Body>
+            <Form onSubmit={handleUpdatePassword}>
+            
+                <Form.Control
+                    required
+                    placeholder="senha"
+                    onChange={(e)=>{setUserPassword(e.target.value)}}
+                    type="password"/>
+                <br/> 
 
+                <Button variant="warning" type="submit">
+                    Confirmar
+                </Button>
+            </Form>
+            
+        </Card.Body>
+        </Card>
+        </>
     )
 }
 export default EditarUsuario
