@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/static/css/main.bf08d1dd.css",
-    "main.js": "/static/js/main.f2985421.js",
+    "main.js": "/static/js/main.093b2d56.js",
     "static/media/Logo_4bpm.png": "/static/media/Logo_4bpm.15399ede03414c329a51.png",
     "static/media/logo_pmma.png": "/static/media/logo_pmma.b4f7a3ddc683c301f81e.png",
     "index.html": "/index.html",
     "main.bf08d1dd.css.map": "/static/css/main.bf08d1dd.css.map",
-    "main.f2985421.js.map": "/static/js/main.f2985421.js.map"
+    "main.093b2d56.js.map": "/static/js/main.093b2d56.js.map"
   },
   "entrypoints": [
     "static/css/main.bf08d1dd.css",
-    "static/js/main.f2985421.js"
+    "static/js/main.093b2d56.js"
   ]
 }
