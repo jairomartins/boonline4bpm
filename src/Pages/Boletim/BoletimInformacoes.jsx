@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const BoletimInformacoes = ({boletim, setBoletim}) => {
 
     const usuarioLogadoID = localStorage.getItem("x-user-mat-id")
+    const userTipo = localStorage.getItem("x-user-tipo");
 
     const boletimDoUsuario = boletim?.efetivo.find(efetivo =>efetivo.id === usuarioLogadoID)// verifica se o usuario logado esta no boletim
 
@@ -35,7 +36,7 @@ const BoletimInformacoes = ({boletim, setBoletim}) => {
                     <td><Button variant="link"><Link to={"/BoFromBD"}>Ver</Link></Button> <br/>
                     <br/>
 
-                    { boletimDoUsuario!=null?
+                    { (boletimDoUsuario!=null) || (userTipo ==="admin") ?
                     (<Button  variant="link"><Link to={"/boletim/header"}>Editar</Link></Button>)
                     :
                     ("")
