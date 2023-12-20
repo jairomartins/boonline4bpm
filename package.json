@@ -1,6 +1,6 @@
 {
   "name": "boonline4bpm",
-  "version": "1.0.0",
+  "version": "1.12.2923",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
