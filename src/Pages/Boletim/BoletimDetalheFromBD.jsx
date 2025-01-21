@@ -23,6 +23,7 @@ import EnvolvidosDetalhe from "../../components/BoletimDetalhe/EnvolvidosDetalhe
 
 import { Link} from "react-router-dom";
 import { BoletimContext } from "../../Context/BoletimContext";
+import PDFComponent from "../../PDF/PDFComponent";
 
 const BoletimDetalhe = () => {
 
@@ -183,7 +184,7 @@ const BoletimDetalhe = () => {
             <p className="d-print-none"><b>I - Imprimir</b> -  Para imprimir o boletim ou salvar PDF;</p>
             <p className="d-print-none"><b>II -  Voltar</b> -  Retorne a página anterior</p>
         </Container>
-    
+        <PDFComponent boletim={boletim}/>
     </> );
 }
  

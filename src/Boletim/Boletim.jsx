@@ -26,6 +26,7 @@ import Links from "../Pages/Links/Links";
 import DashboardBoletimp3 from "../Pages/Admin/DashboardBoletimp3";
 import DashboardUsuarios from "../Pages/Admin/Usuarios/DashboardUsuarios";
 import DashboardOcorrencias from "../Pages/Admin/Ocorrencias/DashboardOcorrencias";
+import PDFComponent from "../PDF/PDFComponent";
 
 
 
@@ -101,7 +102,7 @@ export default function Boletim(){
                         {/* <Route path="adm/listaBoletim" element={<ListaBoletim/>}/> */}
                         <Route path="/BoFromBD"  element={<BoletimDetalheFromBD/>} />
 
-
+                        <Route path="/PDFMake"  element={<PDFComponent/>} />
 
                         <Route path="/links" element={<Links/>}/>
                     </Routes>

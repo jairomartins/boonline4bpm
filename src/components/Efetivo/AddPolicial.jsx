@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { Button, Col,Row,Container, Form ,ProgressBar, Card} from "react-bootstrap";
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import {GiPoliceCar} from "react-icons/gi"
+import axios from "axios";
+
+const API_PORT = process.env.REACT_APP_API_PORT
+const BASE_URL = process.env.REACT_APP_BASE_URL
 
 
 function AddPolicial ({boletim,setBoletim}){
+    const [policial, setPolicial]  = useState('')
     const [vtr, setVtr] = useState('')
     const [nome, setNome] = useState('')
     const [graduacao, setGraduacao] = useState('')
@@ -36,9 +41,55 @@ function AddPolicial ({boletim,setBoletim}){
         
         resetaCampos()
     }
+    const handleClickBuscarUsuario = ()=>{
+       
+        axios.get(`https://${BASE_URL}:${API_PORT}/user/${id}`,{
+            headers:{
+                "x-access-token":localStorage.getItem("x-access-token")
+            }
+        })
+        .then((response)=>{
+            
+            setPolicial(response.data)
+            console.log(response.data[0].userName)
+            setNome(response.data[0].userName)
+        }).catch(function (error) {
+            console.error(error)
+        })
+        .then(function () {
+            // sempre será executado
+        });
+    }
+
+
+        /** Busca os dados do policial pelo ID */
+        // const carregarDadosPolicial = async () => {
+        //     if (!id) {
+        //         setMensagem({ estado: true, texto: "Informe um ID válido.", tipo: "danger" });
+        //         return;
+        //     }
+    
+        //     try {
+        //         const response = await fetch(`/api/policial/${id}`);
+    
+        //         if (!response.ok) {
+        //             throw new Error("Não foi possível encontrar o policial.");
+        //         }
+    
+        //         const data = await response.json();
+    
+        //         setVtr(data.vtr || "");
+        //         setNome(data.nome || "");
+        //         setGraduacao(data.graduacao || "");
+        //         setNumeroBarra(data.numeroBarra || "");
+    
+        //         setMensagem({ estado: true, texto: "Dados carregados com sucesso!", tipo: "success" });
+        //     } catch (error) {
+        //         setMensagem({ estado: true, texto: error.message, tipo: "danger" });
+        //     }
+        // };
     
 
- 
 
     return(
         <>  
@@ -66,6 +117,18 @@ function AddPolicial ({boletim,setBoletim}){
                                     placeholder="EX.: 128"
                                     value={vtr}
                                     onChange={(e)=>{setVtr(e.target.value)}}
+                                    />
+                                </Col>
+                                <Col md={2} >
+                                    <Form.Label>Matrícula:</Form.Label>
+                                    <Form.Control
+                                    type="number"
+                                    size="sm"
+                                    required
+                                    placeholder="ID / Matrícula"
+                                    value={id}
+                                    onBlur={handleClickBuscarUsuario}
+                                    onChange={(e)=>setId(e.target.value)}
                                     />
                                 </Col>
                                 <Col md={2} >
@@ -99,17 +162,7 @@ function AddPolicial ({boletim,setBoletim}){
                                     onChange={(e)=>setNome(e.target.value)}
                                     />
                                 </Col>
-                                <Col md={2} >
-                                    <Form.Label>Matrícula:</Form.Label>
-                                    <Form.Control
-                                    type="number"
-                                    size="sm"
-                                    required
-                                    placeholder="ID / Matrícula"
-                                    value={id}
-                                    onChange={(e)=>setId(e.target.value)}
-                                    />
-                                </Col>
+                                
                             </Row>
                             <br/>
                             <Row className="text-center">

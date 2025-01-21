@@ -27,7 +27,7 @@ const DashboardUsuarios = () => {
     const handleClickBuscarUsuarios = ()=>{
         setExibirFormCadastro(false)
         setExibirFormEdicao(false)
-        axios.get(`https://${BASE_URL}:${API_PORT}/users/`,{
+        axios.get(`http://${BASE_URL}:${API_PORT}/users/`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }

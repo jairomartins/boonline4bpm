@@ -50,7 +50,7 @@ const DashboardBoletimp3 = (cidadeLogin) => {
         
         setIsLoading(true)
 
-        axios.get(`https://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${cidade}`,{
+        axios.get(`http://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${cidade}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
@@ -75,7 +75,7 @@ const DashboardBoletimp3 = (cidadeLogin) => {
     const buscarBoletimPorDia = async () =>{
         console.log("buscarBoletim boletim dashboard dia : "+idBusca)
         setIsLoading(true)
-        axios.get(`https://${BASE_URL}:${API_PORT}/adm/boletim/dia/${idBusca}`,{
+        axios.get(`http://${BASE_URL}:${API_PORT}/adm/boletim/dia/${idBusca}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }

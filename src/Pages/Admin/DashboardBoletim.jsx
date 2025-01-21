@@ -49,7 +49,7 @@ const DashboardBoletim = (cidadeLogin) => {
         
         setIsLoading(true)
 
-        axios.get(`https://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${cidade}`,{
+        axios.get(`http://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${cidade}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
