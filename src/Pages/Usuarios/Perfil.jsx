@@ -60,7 +60,7 @@ async function handleUpdateProfile (e){
     })
     .then(function (response){
         localStorage.setItem("x-user-mat-id",userData.userMatriculaId) // atualiza o id do usuario
-        alert("Perfil atualizado com sucesso!")
+        alert("Perfil atualizado com sucesso!" + response)
 
     }).catch(function(error){
         setErroMessagem("Erro ao atualizar perfil. Verifique os dados e tente novamente.");
