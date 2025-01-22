@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Card, Col, Row, Container, Form, Button, Alert } from "react-bootstrap";
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
+import { Link } from "react-router-dom";
+import { BsArrowLeft } from "react-icons/bs";
 
 
 function UserProfile() {
+  const [idAntigo, setIdAntigo] = useState("");
   const [userData, setUserData] = useState({});
   const [erroShow, setErroShow] = useState(false);
   const [erroMessagem, setErroMessagem] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const id = localStorage.getItem('x-user-mat-id')
-
-
 
   const API_PORT = process.env.REACT_APP_API_PORT;
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -26,11 +27,9 @@ function UserProfile() {
             }
         })
         .then((response)=>{
-            
             console.log(response)
-
             setUserData(response.data[0])
-
+            setIdAntigo(response.data[0].userMatriculaId) //guarda id antigo para fazer alteraçao se necessario
         }).catch(function (error) {
             console.error(error)
         })
@@ -44,12 +43,12 @@ function UserProfile() {
   // Handle form submission to update user data
 async function handleUpdateProfile (e){   
     e.preventDefault()
-    axios.put(`http://${BASE_URL}:${API_PORT}/users/${userData.userMatriculaId}`,{
+    axios.put(`http://${BASE_URL}:${API_PORT}/users/${idAntigo}`,{
+        userMatriculaId:userData.userMatriculaId,
         userName:userData.userName,
         userEmail:userData.userEmail,
         userPassword:userData.userPassword,
         userContato:userData.userContato,
-        userMatriculaId: userData.userMatriculaId,
         tipo:userData.userTipo,
         userBarra:userData.userBarra,
         userGraduacao:userData.userGraduacao
@@ -60,7 +59,7 @@ async function handleUpdateProfile (e){
     })
     .then(function (response){
         console.log(response.data)
-        
+        localStorage.setItem("x-user-mat-id",userData.userMatriculaId) // atualiza o id do usuario
 
     }).catch(function(error){
         console.log(error)         
@@ -87,7 +86,11 @@ async function handleUpdateProfile (e){
 
       }
     }
+
+    
   }
+
+
 
   return (
     <>
@@ -121,10 +124,10 @@ async function handleUpdateProfile (e){
                   <Form.Label>Matrícula:</Form.Label>
                   <Form.Control
                     value={userData.userMatriculaId || ""}
-                    disabled
+                    onChange={(e) => setUserData({ ...userData, userMatriculaId: e.target.value })}
                   />
                   <br />
-                  <Form.Label>Graduação:</Form.Label>
+                  <Form.Label>Graduação/Posto:</Form.Label>
                   <Form.Control
                     value={userData.userGraduacao || ""}
                     onChange={(e) => setUserData({ ...userData, userGraduacao: e.target.value })}
@@ -162,6 +165,13 @@ async function handleUpdateProfile (e){
                 </Form>
               </Card.Body>
             </Card>
+          </Col>
+
+        </Row>
+        <br />
+        <Row>
+          <Col className="text-center">
+            <Button  variant="outline-primary"><Link className="text-decoration-none" to="/dashboard"><BsArrowLeft/> Voltar</Link></Button>
           </Col>
         </Row>
       </Container>
