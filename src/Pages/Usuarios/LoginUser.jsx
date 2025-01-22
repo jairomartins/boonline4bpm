@@ -46,7 +46,7 @@ const LoginUser = () => {
         //FAZ AUTENTICAÇÃO DO USUARIO NA API CONFERE EMAIL E SENHA
         //RECEBE UM TOKEN AUTENTICAÇÃO PARA REQUISIÇOES FEITAS
 
-        await axios.post(`https://${BASE_URL}:${API_PORT}/login`,{
+        await axios.post(`http://${BASE_URL}:${API_PORT}/login`,{
             userEmail: userEmail,
             userPassword: userPassword
         })

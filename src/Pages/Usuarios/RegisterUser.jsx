@@ -17,6 +17,8 @@ function RegisterUser (){
     const [userPassword, setUserPassword] =  useState()
     const [userContato, setUserContato] =  useState()
     const [userMatriculaId, setUserMatriculaId] = useState()
+    const [userGraduacao, setUserGraduacao] = useState();
+    const [userBarra, setUserBarra] = useState();
 
     const [isLoading, setIsLoading] = useState(false)
     const [erroShow, setErroShow] = useState(false)
@@ -37,12 +39,14 @@ function RegisterUser (){
         
         setIsLoading(true)
         
-        axios.post(`https://${BASE_URL}:${API_PORT}/register`,{
+        axios.post(`http://${BASE_URL}:${API_PORT}/register`,{
             userName:userName,
             userEmail:userEmail,
             userPassword:userPassword,
             userContato:userContato,
-            userMatriculaId: userMatriculaId
+            userMatriculaId: userMatriculaId,
+            userGraduacao: userGraduacao, // Novos campos
+            userBarra: userBarra,   
         })
         .then(function (response){
             console.log(response.data)
@@ -94,6 +98,22 @@ function RegisterUser (){
                         placeholder="Mátricula ou ID"
                         />
                     <br/>
+                    <Form.Label>Graduação:</Form.Label>
+                    <Form.Control
+                        required
+                        onChange={(e) => setUserGraduacao(e.target.value)}
+                        placeholder="Ex.: Capitão"
+                    />
+                    <br />
+
+                    <Form.Label>Número da Barra:</Form.Label>
+                    <Form.Control
+                        required
+                        onChange={(e) => setUserBarra(e.target.value)}
+                        placeholder="Ex.: 123/21"
+                    />
+                    <br />
+                    
                     <Form.Label>E-mail:</Form.Label>
                     <Form.Control 
                         required

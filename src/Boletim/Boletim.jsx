@@ -15,6 +15,7 @@ import BoletimDetalhe from "../components/BoletimDetalhe/BoletimDetalhe"
 import Page404 from "../components/Page404"
 import RegisterUser from "../Pages/Usuarios/RegisterUser";
 import LoginUser from "../Pages/Usuarios/LoginUser";
+import Perfil from "../Pages/Usuarios/Perfil"
 
 // import ListaBoletim from "../Pages/Boletim/ListaBoletim";
 import Dashboard from "../Pages/Admin/Dashboard";
@@ -93,6 +94,8 @@ export default function Boletim(){
                         <Route path="/login" element={<LoginUser/>}/>
                         <Route path="/emailverify" element={<EmailVerify/>}/>
                         <Route path="/passwordrecover/:id" element={<PasswordRecover/>}/>
+
+                        <Route path="/perfil" element={<Perfil/>}/>
 
 
                         <Route path="/dashboard" element={authenticated ? <Dashboard/>:<Home/>}/>

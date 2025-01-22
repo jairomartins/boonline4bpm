@@ -43,16 +43,18 @@ function AddPolicial ({boletim,setBoletim}){
     }
     const handleClickBuscarUsuario = ()=>{
        
-        axios.get(`https://${BASE_URL}:${API_PORT}/user/${id}`,{
+        axios.get(`http://${BASE_URL}:${API_PORT}/user/${id}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
         })
         .then((response)=>{
             
-            setPolicial(response.data)
-            console.log(response.data[0].userName)
+            console.log(response.data[0])
+            console.log(response.data[0].userBarra)
             setNome(response.data[0].userName)
+            setNumeroBarra(response.data[0].userBarra)
+            setGraduacao(response.data[0].userGraduacao)
         }).catch(function (error) {
             console.error(error)
         })

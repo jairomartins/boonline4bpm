@@ -24,6 +24,11 @@ const Dashboard = () => {
     const handleClickBoletim = ()=>{
         navigate('boletim')
     }
+
+    const handleClickPerfil = ()=>{
+        navigate('/perfil')
+    }
+
     const handleClickTCO = ()=>{
         navigate('/links')
     }
@@ -54,7 +59,7 @@ const Dashboard = () => {
                 </Col>
                 <Col sm={3} md={3} className="justify-content-md-center d-grid gap-2">
                     {/* <Link to={"usuarios"}> */}
-                        <Button disabled className="mt-2">Meu Perfil <BiUserCircle/>
+                        <Button onClick={handleClickPerfil} className="mt-2">Meu Perfil <BiUserCircle/>
                         </Button>
                     {/* </Link> */}
                 </Col>
