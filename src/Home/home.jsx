@@ -21,7 +21,7 @@ const Home = ()=>{
             <Row> 
                 <Col sm={12} className="text-center">
                 <h3>Boletim de Ocorrência Online</h3>
-                <p><i>Versão 2024.01.28</i></p>
+                <p><i>Versão 2025.01.22</i></p>
                 </Col>
             </Row>
             <br/>

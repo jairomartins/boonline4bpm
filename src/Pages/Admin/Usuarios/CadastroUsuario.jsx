@@ -18,6 +18,7 @@ const CadastroUsuario = ()=>{
 
     const navigate = useNavigate()
 
+    const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
     const API_PORT = process.env.REACT_APP_API_PORT
     const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -37,7 +38,7 @@ const CadastroUsuario = ()=>{
         
         e.preventDefault()
 
-        axios.post(`https://${BASE_URL}:${API_PORT}/register`,{
+        axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/register`,{
             userName:userName,
             userEmail:userEmail,
             userPassword:userPassword,

@@ -14,6 +14,7 @@ function UserProfile() {
   const [successMessage, setSuccessMessage] = useState("");
   const id = localStorage.getItem('x-user-mat-id')
 
+  const PROTOCOLO = process.env.REACT_APP_PROTOCOLO;
   const API_PORT = process.env.REACT_APP_API_PORT;
   const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -21,7 +22,7 @@ function UserProfile() {
   useEffect(() => {
     async function fetchUserData() {
   
-        axios.get(`http://${BASE_URL}:${API_PORT}/user/${id}`,{
+        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/user/${id}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
@@ -38,12 +39,12 @@ function UserProfile() {
         });
     }
     fetchUserData();
-  }, [BASE_URL, API_PORT, id]);
+  }, [BASE_URL, API_PORT, id, PROTOCOLO]);
 
   // Handle form submission to update user data
 async function handleUpdateProfile (e){   
     e.preventDefault()
-    axios.put(`http://${BASE_URL}:${API_PORT}/users/${idAntigo}`,{
+    axios.put(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/users/${idAntigo}`,{
         userMatriculaId:userData.userMatriculaId,
         userName:userData.userName,
         userEmail:userData.userEmail,
@@ -58,8 +59,8 @@ async function handleUpdateProfile (e){
         },
     })
     .then(function (response){
-        console.log(response.data)
         localStorage.setItem("x-user-mat-id",userData.userMatriculaId) // atualiza o id do usuario
+        alert("Perfil atualizado com sucesso!")
 
     }).catch(function(error){
         setErroMessagem("Erro ao atualizar perfil. Verifique os dados e tente novamente.");
@@ -79,7 +80,7 @@ async function handleUpdateProfile (e){
 
       e.preventDefault()
       console.log("editando senha")
-      axios.post(`http://${BASE_URL}:${API_PORT}/recoverPassword/${userData._id}`,{
+      axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/recoverPassword/${userData._id}`,{
           userPassword:newPassword
       },{
           headers :{

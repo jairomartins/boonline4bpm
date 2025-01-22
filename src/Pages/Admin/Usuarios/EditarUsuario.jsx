@@ -7,7 +7,6 @@ import {Card, Form, Button} from "react-bootstrap"
 
 
 const EditarUsuario = ({usuario, setExibirFormEdicao})=>{
-    // const {BASE_URL} = useContext(Context)
 
     const [userName, setUserName] =  useState(usuario?.userName)
     const [userEmail, setUserEmail] =  useState(usuario?.userEmail)
@@ -18,6 +17,7 @@ const EditarUsuario = ({usuario, setExibirFormEdicao})=>{
 
     const navigate = useNavigate()
 
+    const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
     const API_PORT = process.env.REACT_APP_API_PORT
     const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -65,7 +65,7 @@ const EditarUsuario = ({usuario, setExibirFormEdicao})=>{
         
         e.preventDefault()
         console.log("editando senha")
-        axios.post(`https://${BASE_URL}:${API_PORT}/recoverPassword/${usuario?._id}`,{
+        axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/recoverPassword/${usuario?._id}`,{
             userPassword:userPassword
         },{
             headers :{

@@ -25,6 +25,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BoletimContext } from "../../Context/BoletimContext";
 import PDFComponent from "../../PDF/PDFComponent";
 
+const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
 const API_PORT = process.env.REACT_APP_API_PORT
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -48,7 +49,7 @@ const BoletimDetalhe = () => {
     //Salva o boletim no servidor 
     const saveToDB = async ()=>{
         
-        await axios.post(`https://${BASE_URL}:${API_PORT}/adm/boletim/create`,{
+        await axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/create`,{
                 boletim: boletim
             },{
             headers :{

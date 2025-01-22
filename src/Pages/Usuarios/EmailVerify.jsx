@@ -3,6 +3,7 @@ import React, {useState } from "react";
 import { Alert, Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
+const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
 const API_PORT = process.env.REACT_APP_API_PORT
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -18,7 +19,7 @@ function EmailVerify (){
 
         e.preventDefault()
 
-        await axios.post(`https://${BASE_URL}:${API_PORT}/recuperarSenha`,{
+        await axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/recuperarSenha`,{
             userEmail: email,
         })
         .then(function (response) {

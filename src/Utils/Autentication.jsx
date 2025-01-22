@@ -1,7 +1,7 @@
 // Função de autenticação
 async function authenticateUser(email, password) {
     try {
-        const response = await axios.post(`http://${BASE_URL}:${API_PORT}/login`, {
+        const response = await axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/login`, {
             userEmail: email,
             userPassword: password
         });

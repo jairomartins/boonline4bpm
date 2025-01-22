@@ -32,7 +32,7 @@ const LoginUser = () => {
     const [erroMessage, setErroMessage] = useState("")
 
     
-
+    const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
     const API_PORT = process.env.REACT_APP_API_PORT
     const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -46,7 +46,7 @@ const LoginUser = () => {
         //FAZ AUTENTICAÇÃO DO USUARIO NA API CONFERE EMAIL E SENHA
         //RECEBE UM TOKEN AUTENTICAÇÃO PARA REQUISIÇOES FEITAS
 
-        await axios.post(`http://${BASE_URL}:${API_PORT}/login`,{
+        await axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/login`,{
             userEmail: userEmail,
             userPassword: userPassword
         })

@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { BiArrowBack, BiDownload, BiPlus } from "react-icons/bi";
 import EditarUsuario from "./EditarUsuario";
 
+const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
 const API_PORT = process.env.REACT_APP_API_PORT
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -27,7 +28,7 @@ const DashboardUsuarios = () => {
     const handleClickBuscarUsuarios = ()=>{
         setExibirFormCadastro(false)
         setExibirFormEdicao(false)
-        axios.get(`http://${BASE_URL}:${API_PORT}/users/`,{
+        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/users/`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
@@ -47,7 +48,7 @@ const DashboardUsuarios = () => {
     const handleClickBuscarUsuario = ()=>{
         setExibirFormEdicao(false)
         setExibirFormCadastro(false)
-        axios.get(`https://${BASE_URL}:${API_PORT}/user/${idBusca}`,{
+        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/user/${idBusca}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
