@@ -9,7 +9,6 @@ const BASE_URL = process.env.REACT_APP_BASE_URL
 
 
 function AddPolicial ({boletim,setBoletim}){
-    const [policial, setPolicial]  = useState('')
     const [vtr, setVtr] = useState('')
     const [nome, setNome] = useState('')
     const [graduacao, setGraduacao] = useState('')
@@ -62,35 +61,6 @@ function AddPolicial ({boletim,setBoletim}){
             // sempre será executado
         });
     }
-
-
-        /** Busca os dados do policial pelo ID */
-        // const carregarDadosPolicial = async () => {
-        //     if (!id) {
-        //         setMensagem({ estado: true, texto: "Informe um ID válido.", tipo: "danger" });
-        //         return;
-        //     }
-    
-        //     try {
-        //         const response = await fetch(`/api/policial/${id}`);
-    
-        //         if (!response.ok) {
-        //             throw new Error("Não foi possível encontrar o policial.");
-        //         }
-    
-        //         const data = await response.json();
-    
-        //         setVtr(data.vtr || "");
-        //         setNome(data.nome || "");
-        //         setGraduacao(data.graduacao || "");
-        //         setNumeroBarra(data.numeroBarra || "");
-    
-        //         setMensagem({ estado: true, texto: "Dados carregados com sucesso!", tipo: "success" });
-        //     } catch (error) {
-        //         setMensagem({ estado: true, texto: error.message, tipo: "danger" });
-        //     }
-        // };
-    
 
 
     return(

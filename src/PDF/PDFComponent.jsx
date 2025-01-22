@@ -1,7 +1,7 @@
 import React from 'react';
 import pdfMake from 'pdfmake/build/pdfmake';
 import pdfFonts from 'pdfmake/build/vfs_fonts';
-import OcorrenciaForm from './OcorrenciaForm';
+// import OcorrenciaForm from './OcorrenciaForm';
 import { Button } from 'react-bootstrap';
 
 

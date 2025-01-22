@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { Card, Col, Row, Container, Form, Button, Alert } from "react-bootstrap";
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
-import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
+
 
 function UserProfile() {
   const [userData, setUserData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
   const [erroShow, setErroShow] = useState(false);
   const [erroMessagem, setErroMessagem] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const id = localStorage.getItem('x-user-mat-id')
 
-  const navigate = useNavigate();
+
 
   const API_PORT = process.env.REACT_APP_API_PORT;
   const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -21,9 +19,7 @@ function UserProfile() {
   // Fetch user data from the API on load
   useEffect(() => {
     async function fetchUserData() {
-      setIsLoading(true);
-      
-       
+  
         axios.get(`http://${BASE_URL}:${API_PORT}/user/${id}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
@@ -43,13 +39,11 @@ function UserProfile() {
         });
     }
     fetchUserData();
-  }, [BASE_URL, API_PORT]);
+  }, [BASE_URL, API_PORT, id]);
 
   // Handle form submission to update user data
-  async function handleUpdateProfile (e){
-        
+async function handleUpdateProfile (e){   
     e.preventDefault()
-
     axios.put(`http://${BASE_URL}:${API_PORT}/users/${userData.userMatriculaId}`,{
         userName:userData.userName,
         userEmail:userData.userEmail,
@@ -80,7 +74,6 @@ function UserProfile() {
     const newPassword = prompt("Digite a nova senha:");
 
     if (newPassword) {
-      setIsLoading(true);
       setErroShow(false);
       setSuccessMessage("");
 
@@ -91,7 +84,7 @@ function UserProfile() {
         setErroShow(true);
         setErroMessagem(error.response?.data?.message || "Erro ao alterar a senha.");
       } finally {
-        setIsLoading(false);
+
       }
     }
   }
