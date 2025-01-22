@@ -18,7 +18,7 @@ import BoletimList from "../../components/Dashboard/BoletimList";
 import FormBuscarBoletimData from "../../components/Form/FormBuscarBoletimData";
 import FormBuscarBoletimNumero from "../../components/Form/FormBuscarBoletimNumero";
 
-
+const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
 const API_PORT = process.env.REACT_APP_API_PORT
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -49,7 +49,7 @@ const DashboardBoletim = (cidadeLogin) => {
         
         setIsLoading(true)
 
-        axios.get(`http://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${cidade}`,{
+        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${cidade}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
@@ -74,7 +74,7 @@ const DashboardBoletim = (cidadeLogin) => {
     const buscarBoletimPorDia = async () =>{
         console.log("buscarBoletim boletim dashboard dia : "+idBusca)
         setIsLoading(true)
-        axios.get(`https://${BASE_URL}:${API_PORT}/adm/boletim/dia/${idBusca}`,{
+        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/dia/${idBusca}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
