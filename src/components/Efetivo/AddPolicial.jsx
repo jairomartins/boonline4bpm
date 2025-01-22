@@ -4,6 +4,7 @@ import { BsFillPersonPlusFill } from "react-icons/bs";
 import {GiPoliceCar} from "react-icons/gi"
 import axios from "axios";
 
+const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
 const API_PORT = process.env.REACT_APP_API_PORT
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
@@ -42,7 +43,7 @@ function AddPolicial ({boletim,setBoletim}){
     }
     const handleClickBuscarUsuario = ()=>{
        
-        axios.get(`http://${BASE_URL}:${API_PORT}/user/${id}`,{
+        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/user/${id}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
