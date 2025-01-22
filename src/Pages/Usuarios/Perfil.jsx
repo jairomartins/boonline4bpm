@@ -62,6 +62,7 @@ async function handleUpdateProfile (e){
         localStorage.setItem("x-user-mat-id",userData.userMatriculaId) // atualiza o id do usuario
 
     }).catch(function(error){
+        setErroMessagem("Erro ao atualizar perfil. Verifique os dados e tente novamente.");
         console.log(error)         
 
     })
@@ -76,15 +77,22 @@ async function handleUpdateProfile (e){
       setErroShow(false);
       setSuccessMessage("");
 
-      try {
-        const response = await axios.put(`http://${BASE_URL}:${API_PORT}/profile/password`, { userPassword: newPassword });
-        setSuccessMessage(response.data.message || "Senha alterada com sucesso!");
-      } catch (error) {
-        setErroShow(true);
-        setErroMessagem(error.response?.data?.message || "Erro ao alterar a senha.");
-      } finally {
+      e.preventDefault()
+      console.log("editando senha")
+      axios.post(`http://${BASE_URL}:${API_PORT}/recoverPassword/${userData._id}`,{
+          userPassword:newPassword
+      },{
+          headers :{
+              "x-access-token":localStorage.getItem("x-access-token")
+          },
+      })
+      .then(function (response){
+          console.log(response.data)
 
-      }
+      }).catch(function(error){
+          console.log(error)         
+
+      })
     }
 
     
