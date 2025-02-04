@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 
 import {  Col, Container, Row, Form, ProgressBar, Card} from 'react-bootstrap';
@@ -9,12 +9,12 @@ import { GrDocumentTime } from 'react-icons/gr';
 import { ImLocation } from 'react-icons/im';
 
 
-function FormCabecalho ({boletim, setBoletim}){
+function FormCabecalho ({boletim, setBoletim, municipio}){
     
+    useEffect(() => {
+        setBoletim((prev) => ({ ...prev, municipio: municipio }));
+    }, [municipio, setBoletim]);
 
-    console.log(boletim.municipio)
-
-    
     return (
         <>
         
@@ -128,27 +128,17 @@ function FormCabecalho ({boletim, setBoletim}){
                         onChange={(e)=>{setBoletim({...boletim, bairro:e.target.value})}}/>
                     </Col>
                 </Row>
-                {console.log(boletim.municipio +" form cabecalho")}
+
                 <Row>
                     <Col sm={8}>
                         <Form.Label>Município : </Form.Label>
-                        <Form.Select
-                            name="cidadeOcorrencia"
-                            defaultValue=''
-                            size="sm"
-                            onChange={(e)=>{setBoletim({...boletim, municipio:e.target.value})}}
-                        >
-                            <option value={""}>Escolha uma opção</option>
-                            <option value="Balsas">Balsas</option>
-                            <option value="Riachão">Riachão</option>
-                            <option value="Fortaleza dos Nogueiras">Fortaleza dos Nogueiras</option>
-                            <option value="Nova Colinas">Nova Colinas</option>
-                            <option value="Feira Nova">Feira Nova</option>
-                            <option value="São Pedro dos Crentes">São Pedro dos Crentes</option>
-                            <option value="Alto Parnaíba">Alto Parnaíba</option>
-                            <option value="Tasso Fragoso">Tasso Fragoso</option>
-                            <option value="Batavo">Distrito Batavo (Balsas)</option>
-                        </Form.Select>
+                            <Form.Control
+                                disabled={true}
+                                size="sm"
+                                placeholder="Município"
+                                value={municipio}
+                            >
+                            </Form.Control>
                     </Col>
 
                     <Col>

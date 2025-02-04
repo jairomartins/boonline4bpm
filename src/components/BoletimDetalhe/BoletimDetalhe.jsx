@@ -23,7 +23,7 @@ import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
 
 import { Link, useNavigate } from "react-router-dom";
 import { BoletimContext } from "../../Context/BoletimContext";
-import PDFComponent from "../../PDF/PDFComponent";
+// import PDFComponent from "../../PDF/PDFComponent";
 
 const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
 const API_PORT = process.env.REACT_APP_API_PORT
@@ -173,7 +173,7 @@ const BoletimDetalhe = () => {
             </Row>
 
             <Row className="text-justify">
-                <Editor editorState={editorState} onChange={setEditorState} readOnly={true}/>
+                <Editor editorState={editorState} onChange={setEditorState} readOnly={true} />
             </Row>
             <hr/>
 
@@ -275,7 +275,7 @@ const BoletimDetalhe = () => {
             <p className="d-print-none"><b>II - Imprimir</b> -  Para imprimir o boletim ou salvar PDF;</p>
             <p className="d-print-none"><b>III -  Novo B.O</b> -  Para Iniciar um novo boletim, todos os dados preenchidos serão apagados</p>
         </Container>
-        <PDFComponent boletim={boletim}/>
+        {/* <PDFComponent boletim={boletim}/> */}
     </> );
 }
  

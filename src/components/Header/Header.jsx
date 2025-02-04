@@ -8,14 +8,14 @@ import FormCabecalho from "./FormCabecalho";
 import NavPage from "../NavPage";
 
 
-const Header = ()=>{
+const Header = ({municipio})=>{
     const {boletim, setBoletim} = useContext(BoletimContext)
 
 
     return(
         <>
             <CabecalhoBoletim texto={"Fato Comunicado"}/>
-            <FormCabecalho boletim={boletim} setBoletim={setBoletim} />
+            <FormCabecalho boletim={boletim} setBoletim={setBoletim} municipio={municipio} />
             <NavPage prev="/dashboard" next="../envolvido"/>
 
         </>

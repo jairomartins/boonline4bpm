@@ -22,7 +22,7 @@ function UserProfile() {
   useEffect(() => {
     async function fetchUserData() {
   
-        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/user/${id}`,{
+        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/users/${id}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }

@@ -33,7 +33,8 @@ import PDFComponent from "../PDF/PDFComponent";
 
 export default function Boletim(){ 
    
-    const {authenticated, cidade} = useContext(Context);
+    const {authenticated, municipio} = useContext(Context);
+
     const userTipo = localStorage.getItem("x-user-tipo");
     const checkUserTipo = (tipo) =>{
         return "admin" === userTipo 
@@ -52,7 +53,7 @@ export default function Boletim(){
 
                         <Route path="/boletim">
                             <Route path="header" 
-                                element={authenticated ? (<Header cidadeLogin={cidade}/>):(<Home/>)} 
+                                element={authenticated ? (<Header municipio={municipio}/>):(<Home/>)} 
                             />
 
                             <Route path="envolvido" 
