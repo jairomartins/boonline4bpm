@@ -1,31 +1,38 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { Container, Table } from "react-bootstrap";
 import Envolvido from "./Envolvido";
-
 import { BoletimContext } from "../../Context/BoletimContext";
 
-function EnvolvidoList ({setEnvolvido, setModoEdicao}){
+function EnvolvidoList({ setEnvolvido, setModoEdicao }) {
+    const { boletim, setBoletim } = useContext(BoletimContext);
 
-    const {boletim, setBoletim} = useContext(BoletimContext)
+    const envolvidosMemo = useMemo(() => (
+        boletim.envolvidos.map(envolvido => (
+            <Envolvido 
+                key={envolvido.id} 
+                envolvido={envolvido} 
+                boletim={boletim} 
+                setBoletim={setBoletim} 
+                setEnvolvido={setEnvolvido} 
+                setModoEdicao={setModoEdicao} 
+            />
+        ))
+    ), [boletim, setBoletim, setEnvolvido, setModoEdicao]);
+
     return (
-        <>
         <Container fluid>
-        <Table>
-            <thead>
-                <tr>
-                <th>Envolvimento</th>
-                <th>Nome</th>
-                <th>Opões</th>
-                </tr>
-            </thead>
-            <tbody>
-                {boletim.envolvidos.map(envolvido=><Envolvido key={envolvido.id} Envolvido={envolvido} boletim={boletim} setBoletim={setBoletim} envolvido={envolvido} setEnvolvido={setEnvolvido} setModoEdicao={setModoEdicao}/>)}
-            </tbody>
-        </Table>
+            <Table>
+                <thead>
+                    <tr>
+                        <th>Envolvimento</th>
+                        <th>Nome</th>
+                        <th>Opções</th>
+                    </tr>
+                </thead>
+                <tbody>{envolvidosMemo}</tbody>
+            </Table>
         </Container>
-        </>
-    )
-
+    );
 }
 
-export default EnvolvidoList
+export default EnvolvidoList;

@@ -9,8 +9,7 @@ import InputMask from 'react-input-mask';
 import { BoletimContext } from "../../Context/BoletimContext";
 
 //formulario para inserir e/ou editar um envolvido na ocorrencia
-//modoEdicao = true : exibe botao que confirma e edição
-//modoEdicao = false : exibe botao que confirma inserção de um envolvido 
+
 function FormEnvolvido ({envolvido, setEnvolvido, modoEdicao, setModoEdicao}){
     
     const {boletim, setBoletim} = useContext(BoletimContext)
