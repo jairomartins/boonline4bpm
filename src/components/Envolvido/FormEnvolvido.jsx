@@ -85,17 +85,18 @@ function FormEnvolvido ({envolvido, setEnvolvido, modoEdicao, setModoEdicao}){
                             <Col sm={3}>
                                 <Form.Label>Tipo de Envolvimento:</Form.Label>
                                 <Form.Select size="sm" name="tipoEnvolvido"
-                                defaultValue={envolvido.tipo} 
-                                onChange={(e)=>{setEnvolvido({...envolvido, tipo:e.target.value})}}>
-                                <option selected={envolvido.tipo ==='Autor'} value="Autor" >Autor</option>
-                                <option selected={envolvido.tipo ==='Suspeito'} value="Suspeito">Suspeito</option>
-                                <option selected={envolvido.tipo ==='Condutor'} value="Condutor">Condutor</option>
-                                <option selected={envolvido.tipo ==='Vítima'} value="Vítima">Vítima</option>
-                                <option selected={envolvido.tipo ==='Testemunha'} value="Testemunha">Testemunha</option>
-                                <option selected={envolvido.tipo ==='Comunicante'} value="Comunicante">Comunicante</option>
-                                <option selected={envolvido.tipo ==='Vítima Fatal'} value="Vítima Fatal">Vítima Fatal</option>
-                                <option selected={envolvido.tipo ==='Outro'} value="Outro">Outro</option>
+                                    value={envolvido.tipo}
+                                    onChange={(e) => { setEnvolvido({ ...envolvido, tipo: e.target.value }) }}>
+                                    <option value="Autor">Autor</option>
+                                    <option value="Suspeito">Suspeito</option>
+                                    <option value="Condutor">Condutor</option>
+                                    <option value="Vítima">Vítima</option>
+                                    <option value="Testemunha">Testemunha</option>
+                                    <option value="Comunicante">Comunicante</option>
+                                    <option value="Vítima Fatal">Vítima Fatal</option>
+                                    <option value="Outro">Outro</option>
                                 </Form.Select>
+
                             </Col>
                             <Col sm={6}>
                                 <Form.Label>Nome:</Form.Label>
