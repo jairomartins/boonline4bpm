@@ -25,7 +25,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL
 
 const DashboardBoletimp3 = (cidadeLogin) => {
 
-    const {cidade} = useContext(Context)
+    const {municipio} = useContext(Context)
     
     const {boletim, setBoletim} = useContext(BoletimContext)
 
@@ -47,10 +47,11 @@ const DashboardBoletimp3 = (cidadeLogin) => {
     const buscarBoletim = async () =>{
         setExibeBoletimList(false)
         console.log("buscarBoletim boletim dashboard id : "+idBusca)
-        
+        console.log("buscando na cidade: "+municipio)
+
         setIsLoading(true)
 
-        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${cidade}`,{
+        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${municipio}`,{
             headers:{
                 "x-access-token":localStorage.getItem("x-access-token")
             }
