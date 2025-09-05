@@ -8,7 +8,7 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import {useNavigate } from "react-router-dom";
 
 import { ImFileText } from "react-icons/im";
-import {BiAddToQueue, BiCollection, BiUserCircle} from "react-icons/bi"
+import {BiAddToQueue, BiUserCircle} from "react-icons/bi"
 import {GiExitDoor} from "react-icons/gi"
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
@@ -29,9 +29,7 @@ const Dashboard = () => {
         navigate('/perfil')
     }
 
-    const handleClickTCO = ()=>{
-        navigate('/links')
-    }
+
     const handleClickGerenciarUsuarios =()=>{
         navigate("/administrador/usuarios")
     }
