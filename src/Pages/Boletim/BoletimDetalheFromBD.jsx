@@ -23,7 +23,6 @@ import EnvolvidosDetalhe from "../../components/BoletimDetalhe/EnvolvidosDetalhe
 
 import { Link} from "react-router-dom";
 import { BoletimContext } from "../../Context/BoletimContext";
-import PDFComponent from "../../PDF/PDFComponent";
 
 const BoletimDetalhe = () => {
 
