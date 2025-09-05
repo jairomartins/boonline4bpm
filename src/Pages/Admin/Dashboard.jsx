@@ -66,14 +66,6 @@ const Dashboard = () => {
 
                 <Col sm={3} md={3} className="justify-content-md-center d-grid gap-2">
                     {/* <Link to={"/links"}> */}
-                        <Button onClick={handleClickTCO} variant="warning" className="mt-2">
-                            TCO-PMMA - Arquivos<BiCollection/>
-                        </Button>
-                    {/* </Link> */}
-                </Col>
-
-                <Col sm={3} md={3} className="justify-content-md-center d-grid gap-2">
-                    {/* <Link to={"/links"}> */}
                         <Button onClick={handleClickGerenciarUsuarios} variant="warning" className="mt-2">
                             Gerenciamento de Usuários <BiAddToQueue/>
                         </Button>
