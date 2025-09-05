@@ -1,119 +1,141 @@
-import React, {useContext} from "react";
-
-import {BrowserRouter,Routes,Route} from "react-router-dom";
+import React, { useContext } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { Context } from "../Context/AuthContext";
 import { BoletimProvider } from "../Context/BoletimContext";
 
-import Home from "../Home/home"
-import Header from "../components/Header/Header"
-import Envolvidos from "../components/Envolvido/Envolvidos"
-import ItensApreendidos from "../components/Material/ItensApreendidos"
-import Efetivo from "../components/Efetivo/Efetivo"
-import Historico from "../components/Historico/Historico"
-import BoletimDetalhe from "../components/BoletimDetalhe/BoletimDetalhe"
-import Page404 from "../components/Page404"
+import Home from "../Home/home";
+import Header from "../components/Header/Header";
+import Envolvidos from "../components/Envolvido/Envolvidos";
+import ItensApreendidos from "../components/Material/ItensApreendidos";
+import Efetivo from "../components/Efetivo/Efetivo";
+import Historico from "../components/Historico/Historico";
+import BoletimDetalhe from "../components/BoletimDetalhe/BoletimDetalhe";
+import Page404 from "../components/Page404";
+
 import RegisterUser from "../Pages/Usuarios/RegisterUser";
 import LoginUser from "../Pages/Usuarios/LoginUser";
-import Perfil from "../Pages/Usuarios/Perfil"
-
-// import ListaBoletim from "../Pages/Boletim/ListaBoletim";
-import Dashboard from "../Pages/Admin/Dashboard";
-import DashboardUsuario from "../Pages/Admin/DashboardUsuario"
-import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
+import Perfil from "../Pages/Usuarios/Perfil";
 import EmailVerify from "../Pages/Usuarios/EmailVerify";
 import PasswordRecover from "../Pages/Usuarios/PasswordRecover";
-import Links from "../Pages/Links/Links";
+
+import Dashboard from "../Pages/Admin/Dashboard";
+import DashboardUsuario from "../Pages/Admin/DashboardUsuario";
 import DashboardBoletimp3 from "../Pages/Admin/DashboardBoletimp3";
 import DashboardUsuarios from "../Pages/Admin/Usuarios/DashboardUsuarios";
 import DashboardOcorrencias from "../Pages/Admin/Ocorrencias/DashboardOcorrencias";
-import PDFComponent from "../PDF/PDFComponent";
 
+import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
+import Links from "../Pages/Links/Links";
 
+// -------------------------
+// Rota privada genérica
+// -------------------------
+function PrivateRoute({ element, authenticated, tipo = null }) {
+  const userTipo = localStorage.getItem("x-user-tipo");
 
-export default function Boletim(){ 
-   
-    const {authenticated, municipio} = useContext(Context);
+  if (!authenticated) return <Home />;
+  if (tipo && tipo !== userTipo) return <Home />;
 
-    const userTipo = localStorage.getItem("x-user-tipo");
-    const checkUserTipo = (tipo) =>{
-        return "admin" === userTipo 
-    }
+  return element;
+}
 
-    return (
-        <>
-            <BoletimProvider>
-                <BrowserRouter>
-                    <Routes>
-                    
+export default function Boletim() {
+  const { authenticated, municipio } = useContext(Context);
 
-                        <Route path="/" 
-                            element={<Home/>}
-                        />
+  return (
+    <BoletimProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Home */}
+          <Route path="/" element={<Home />} />
 
-                        <Route path="/boletim">
-                            <Route path="header" 
-                                element={authenticated ? (<Header municipio={municipio}/>):(<Home/>)} 
-                            />
+          {/* Rotas de Boletim */}
+          <Route path="/boletim">
+            <Route
+              path="header"
+              element={
+                <PrivateRoute
+                  authenticated={authenticated}
+                  element={<Header municipio={municipio} />}
+                />
+              }
+            />
+            <Route
+              path="envolvido"
+              element={<PrivateRoute authenticated={authenticated} element={<Envolvidos />} />}
+            />
+            <Route
+              path="material"
+              element={<PrivateRoute authenticated={authenticated} element={<ItensApreendidos />} />}
+            />
+            <Route
+              path="efetivo"
+              element={<PrivateRoute authenticated={authenticated} element={<Efetivo />} />}
+            />
+            <Route
+              path="historico"
+              element={<PrivateRoute authenticated={authenticated} element={<Historico />} />}
+            />
+            <Route
+              path="VerBoletim"
+              element={<PrivateRoute authenticated={authenticated} element={<BoletimDetalhe />} />}
+            />
+          </Route>
 
-                            <Route path="envolvido" 
-                                element={authenticated ? (<Envolvidos/>):(<Home/>)} 
-                            />
-                            
-                            <Route path="material" 
-                                element={ authenticated ? <ItensApreendidos/>:<Home/>} 
-                                />
-                            
-                            <Route path="efetivo" 
-                                element={authenticated ? <Efetivo/>:<Home/>} 
-                                />
-                            
-                            <Route path="historico" 
-                                element={authenticated  ? <Historico/>:<Home/>} 
-                                />
-                            
-                            <Route path="VerBoletim" 
-                                element={authenticated ? <BoletimDetalhe/>:<Home/>}
-                            />
-                            
-                        </Route>
-                        <Route path="/administrador">
-                            <Route path="usuarios" 
-                                element={authenticated && checkUserTipo("admin") ? (<DashboardUsuarios/>):(<Home/>)} 
-                            />
-                            <Route path="ocorrencias" 
-                                element={authenticated && checkUserTipo("admin") ? (<DashboardOcorrencias/>):(<Home/>)} 
-                            />
-                        </Route>
-                        
+          {/* Área administrativa */}
+          <Route path="/administrador">
+            <Route
+              path="usuarios"
+              element={
+                <PrivateRoute
+                  authenticated={authenticated}
+                  tipo="admin"
+                  element={<DashboardUsuarios />}
+                />
+              }
+            />
+            <Route
+              path="ocorrencias"
+              element={
+                <PrivateRoute
+                  authenticated={authenticated}
+                  tipo="admin"
+                  element={<DashboardOcorrencias />}
+                />
+              }
+            />
+          </Route>
 
-                        
-                        
-                        <Route path="*" element={<Page404/>}/>
+          {/* Usuários */}
+          <Route path="/registro" element={<RegisterUser />} />
+          <Route path="/login" element={<LoginUser />} />
+          <Route path="/emailverify" element={<EmailVerify />} />
+          <Route path="/passwordrecover/:id" element={<PasswordRecover />} />
+          <Route path="/perfil" element={<Perfil />} />
 
-                        <Route path="/registro" element={<RegisterUser/>}/>
-                        <Route path="/login" element={<LoginUser/>}/>
-                        <Route path="/emailverify" element={<EmailVerify/>}/>
-                        <Route path="/passwordrecover/:id" element={<PasswordRecover/>}/>
+          {/* Dashboards */}
+          <Route
+            path="/dashboard"
+            element={<PrivateRoute authenticated={authenticated} element={<Dashboard />} />}
+          />
+          <Route
+            path="/dashboard/boletim"
+            element={<PrivateRoute authenticated={authenticated} element={<DashboardBoletimp3 />} />}
+          />
+          <Route
+            path="/dashboard/usuarios"
+            element={<PrivateRoute authenticated={authenticated} element={<DashboardUsuario />} />}
+          />
 
-                        <Route path="/perfil" element={<Perfil/>}/>
+          {/* Outros */}
+          <Route path="/BoFromBD" element={<BoletimDetalheFromBD />} />
+          <Route path="/links" element={<Links />} />
 
-
-                        <Route path="/dashboard" element={authenticated ? <Dashboard/>:<Home/>}/>
-                        <Route path="/dashboard/boletim" element={authenticated ? <DashboardBoletimp3 />:<Home/>}/>
-                        <Route path="/dashboard/usuarios" element={authenticated ?<DashboardUsuario/>:<Home/>}/>
-                        
-                        {/* <Route path="adm/listaBoletim" element={<ListaBoletim/>}/> */}
-                        <Route path="/BoFromBD"  element={<BoletimDetalheFromBD/>} />
-
-                        <Route path="/PDFMake"  element={<PDFComponent/>} />
-
-                        <Route path="/links" element={<Links/>}/>
-                    </Routes>
-                </BrowserRouter>
-            </BoletimProvider>
-
-        </>
-    )
-
+          {/* 404 */}
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </BrowserRouter>
+    </BoletimProvider>
+  );
 }
