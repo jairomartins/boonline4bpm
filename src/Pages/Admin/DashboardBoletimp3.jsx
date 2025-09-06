@@ -42,7 +42,7 @@ const DashboardBoletimp3 = () => {
   const buscarBoletim = async () => {
     setError(null);
     setExibeBoletim(false);
-
+    setBoletimList([]);
     try {
       setIsLoading(true);
       const { data } = await axios.get(
