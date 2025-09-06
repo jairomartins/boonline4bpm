@@ -32,7 +32,7 @@ const Dashboard = () => {
 
     return ( 
     <>
-        <Cabecalho texto={"Gerenciador de Boletins Digitais: versão(2022.1)"}/>
+        <Cabecalho/>
 
         <Container>
             <br/>

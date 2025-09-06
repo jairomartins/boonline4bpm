@@ -26,7 +26,6 @@ import DashboardUsuarios from "../Pages/Admin/Usuarios/DashboardUsuarios";
 import DashboardOcorrencias from "../Pages/Admin/Ocorrencias/DashboardOcorrencias";
 
 import BoletimDetalheFromBD from "../Pages/Boletim/BoletimDetalheFromBD";
-import Links from "../Pages/Links/Links";
 
 // -------------------------
 // Rota privada genérica
@@ -130,7 +129,6 @@ export default function Boletim() {
 
           {/* Outros */}
           <Route path="/BoFromBD" element={<BoletimDetalheFromBD />} />
-          <Route path="/links" element={<Links />} />
 
           {/* 404 */}
           <Route path="*" element={<Page404 />} />
