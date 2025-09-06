@@ -22,17 +22,17 @@ const BoletimListRelatorioP3 = ({ boletimList }) => {
     const relatorio = boletimList
       .map((boletim, index) => {
         return (
-`📄 BO: ${boletim.numero}
-🔢 OCORRÊNCIA: ${index + 1}
-📅 DATA: ${boletim.data}
-⏰ HORA: ${boletim.horario}
-📍 LOCAL: ${boletim.endereco}, ${boletim.numeroEndereco}, ${boletim.bairro} - ${boletim.municipio}
-⚠️ NATUREZA: ${boletim.natureza}
-📝 HISTÓRICO:
-${textos[index]}
+          `📄 BO: ${boletim.numero}
+          🔢 OCORRÊNCIA: ${index + 1}
+          📅 DATA: ${boletim.data}
+          ⏰ HORA: ${boletim.horario}
+          📍 LOCAL: ${boletim.endereco}, ${boletim.numeroEndereco}, ${boletim.bairro} - ${boletim.municipio}
+          ⚠️ NATUREZA: ${boletim.natureza}
+          📝 HISTÓRICO:
+          ${textos[index]}
 
-`
-        );
+          `
+          );
       })
       .join("\n--------------------\n\n")
       .toUpperCase(); // tudo em maiúsculo
