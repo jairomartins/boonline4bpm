@@ -1,11 +1,10 @@
-
-import axios from "axios";
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 
-import { Button, Col, Container, Form, Row} from "react-bootstrap";
-import { VscNewFile } from 'react-icons/vsc';
-import {BsArrowLeft} from 'react-icons/bs'
+import { Button, Col, Container, Form, Row, Alert } from "react-bootstrap";
+import { VscNewFile } from "react-icons/vsc";
+import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
@@ -19,180 +18,177 @@ import FormBuscarBoletimData from "../../components/Form/FormBuscarBoletimData";
 import FormBuscarBoletimNumero from "../../components/Form/FormBuscarBoletimNumero";
 import BoletimListRelatorioP3 from "../../components/Dashboard/BoletimListRelatorioP3";
 
-const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
-const API_PORT = process.env.REACT_APP_API_PORT
-const BASE_URL = process.env.REACT_APP_BASE_URL
+// Variáveis de ambiente
+const PROTOCOLO = process.env.REACT_APP_PROTOCOLO;
+const API_PORT = process.env.REACT_APP_API_PORT;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
-const DashboardBoletimp3 = (cidadeLogin) => {
+const DashboardBoletimp3 = () => {
+  const navigate = useNavigate();
+  const { municipio } = useContext(Context);
+  const { boletim, setBoletim } = useContext(BoletimContext);
 
-    const {municipio} = useContext(Context)
-    
-    const {boletim, setBoletim} = useContext(BoletimContext)
+  const [boletimList, setBoletimList] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("buscarPorNumero");
+  const [idBusca, setIdBusca] = useState("");
 
-    const [boletimList, setBoletimList]= useState([])
+  const [exibeBoletim, setExibeBoletim] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+  // -------------------------------
+  // Buscar boletim por número
+  // -------------------------------
+  const buscarBoletim = async () => {
+    setError(null);
+    setExibeBoletim(false);
 
-    const navigate = useNavigate()      
-
-    const [exibeBoletim, setExibeBoletim] = useState(false);
-    const [isLoading, setIsLoading] = useState(false)
-    const [exibeBoletimList, setExibeBoletimList] = useState(false)
-    const [idBusca, setIdBusca] = useState('')
-    const [selectedOption, setSelectedOption] = useState('buscarPorNumero'); // Estado para armazenar a opção selecionada
-
-
-    
-    // faz requisição GET que verifica se o boletim esta cadastrado no banco de dados
-    // se encontrar usa o objeto de retorno para setar o boletim e exibir detalhes
-    const buscarBoletim = async () =>{
-        setExibeBoletimList(false)
-        console.log("buscarBoletim boletim dashboard id : "+idBusca)
-        console.log("buscando na cidade: "+municipio)
-
-        setIsLoading(true)
-
-        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${municipio}`,{
-            headers:{
-                "x-access-token":localStorage.getItem("x-access-token")
-            }
-        })
-        .then((response)=>{
-            console.log(response.data)
-            setBoletim(response.data)
-            setExibeBoletim(true)
-            setIsLoading(false)
-        }).catch(function (error) {
-            // manipula erros da requisição
-            setBoletim({})
-            console.error(error)
-            setIsLoading(false)
-        })
-        .then(function () {
-            // sempre será executado
-        });
-    }
-
-
-    const buscarBoletimPorDia = async () =>{
-        console.log("buscarBoletim boletim dashboard dia : "+idBusca)
-        setIsLoading(true)
-        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/dia/${idBusca}`,{
-            headers:{
-                "x-access-token":localStorage.getItem("x-access-token")
-            }
-        })
-        .then((response)=>{
-            console.log(response.data[0]) 
-            setExibeBoletimList(true)
-            setBoletimList(response.data)
-            setExibeBoletimList(true)
-            setExibeBoletim(false)
-            console.log(boletimList)
-            setIsLoading(false)
-        }).catch(function (error) {
-            // manipula erros da requisição
-            setBoletimList({})
-            console.error(error)
-            setIsLoading(false)
-        })
-        .then(function () {
-            // sempre será executado
-        });
-    }
-
-    const handleClickNovoBoletim = ()=>{
-        const newboletim = ({
-            id:uuidv4(),
-            envolvidos:[],
-            materiaisApreendidos:[],
-            efetivo:[],
-            images:[]
-        })
-        setBoletim(newboletim)
-        navigate('../boletim/header')
-    }
-
-    const handleClickVoltar = ()=>{
-        navigate('/dashboard')
-    }
-
-    // Função para renderizar o formulário com base na opção selecionada
-    const renderSelectedForm = () => {
-        switch (selectedOption) {
-        case 'buscarPorNumero':
-            return <FormBuscarBoletimNumero setIdBusca={setIdBusca} checkBoletim={buscarBoletim} />;
-        case 'buscarPorData':
-            return <FormBuscarBoletimData setIdBusca={setIdBusca} checkBoletim={buscarBoletimPorDia} />;
-        default:
-            return null;
+    try {
+      setIsLoading(true);
+      const { data } = await axios.get(
+        `${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${municipio}`,
+        {
+          headers: { "x-access-token": localStorage.getItem("x-access-token") },
         }
+      );
+
+      setBoletim(data);
+      setExibeBoletim(true);
+    } catch (err) {
+      setError("Não foi possível encontrar o boletim.");
+      setBoletim({});
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // -------------------------------
+  // Buscar boletins por data
+  // -------------------------------
+  const buscarBoletimPorDia = async () => {
+    setError(null);
+
+    try {
+      setIsLoading(true);
+      const { data } = await axios.get(
+        `${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/dia/${idBusca}`,
+        {
+          headers: { "x-access-token": localStorage.getItem("x-access-token") },
+        }
+      );
+
+      setBoletimList(data);
+      setExibeBoletim(false);
+    } catch (err) {
+      setError("Erro ao buscar boletins por data.");
+      setBoletimList([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // -------------------------------
+  // Criar novo boletim
+  // -------------------------------
+  const handleClickNovoBoletim = () => {
+    const newBoletim = {
+      id: uuidv4(),
+      envolvidos: [],
+      materiaisApreendidos: [],
+      efetivo: [],
+      images: [],
     };
-    return ( 
 
+    setBoletim(newBoletim);
+    navigate("../boletim/header");
+  };
+
+  const handleClickVoltar = () => navigate("/dashboard");
+
+  // -------------------------------
+  // Renderiza formulário de busca
+  // -------------------------------
+  const renderSelectedForm = () => {
+    if (selectedOption === "buscarPorNumero") {
+      return <FormBuscarBoletimNumero setIdBusca={setIdBusca} checkBoletim={buscarBoletim} />;
+    }
+    if (selectedOption === "buscarPorData") {
+      return <FormBuscarBoletimData setIdBusca={setIdBusca} checkBoletim={buscarBoletimPorDia} />;
+    }
+    return null;
+  };
+
+  return (
     <>
-        <Cabecalho/>
-            
-        <Container>
-            <LoadSpinner visible={isLoading}/>
-            <Row className="justify-content-md-center">
-            <div>
-                <Form.Select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
-                    <option value="">Escolha uma opção</option>
-                    <option value="buscarPorNumero">Buscar por Número</option>
-                    <option value="buscarPorData">Buscar por Data</option>
-                </Form.Select>
-                <br/>
-                {/* Renderiza o formulário com base na opção selecionada */}
-                {renderSelectedForm()}
-            </div>
-            </Row>
-            <Row className="justify-content-md-center">
-                <Col md={6} sm={12}>
-                    {(exibeBoletim)?
-                        <BoletimInformacoes boletim={boletim} setBoletim={setBoletim}/>
-                        :
-                        ""
-                    }
-                </Col>
-            </Row>
-            <Row className="justify-content-md-center">
-                <Col md={6} sm={12}>
-                    {
-                        (exibeBoletimList)?
-                            <BoletimList boletimList={boletimList}/>
-                        : ''
+      <Cabecalho />
 
-                    }
-                </Col>
-            </Row>
+      <Container>
+        <LoadSpinner visible={isLoading} />
 
+        {error && <Alert variant="danger">{error}</Alert>}
+
+        <Row className="justify-content-md-center">
+          <Col md={6}>
+            <Form.Select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+              <option value="buscarPorNumero">Buscar por Número</option>
+              <option value="buscarPorData">Buscar por Data</option>
+            </Form.Select>
+
+            <div className="mt-3">{renderSelectedForm()}</div>
+          </Col>
+        </Row>
+
+        {/* Exibe boletim único */}
+        {exibeBoletim && (
+          <Row className="justify-content-md-center">
+            <Col md={8}>
+              <BoletimInformacoes boletim={boletim} setBoletim={setBoletim} />
+            </Col>
+          </Row>
+        )}
+
+        {/* Exibe lista de boletins */}
+        {boletimList.length > 0 && (
+          <>
             <Row className="justify-content-md-center">
-                <Col md={6} sm={12}>
-                    {
-                        (exibeBoletimList)?
-                            <BoletimListRelatorioP3 boletimList={boletimList}/>
-                        : ''
-
-                    }
-                </Col>
+              <Col md={8}>
+                <BoletimList boletimList={boletimList} />
+              </Col>
             </Row>
 
-            <Row className="justify-content-md-center">
-                <Col sm={3} className="justify-content-md-center d-grid gap-2 mt-3">   
-                    <Button onClick={handleClickVoltar} variant="outline-primary" size="sm" > 
-                    <BsArrowLeft/>Voltar 
-                    </Button>   
-                </Col>
-                <Col sm={3} className="justify-content-md-center d-grid gap-2 mt-3">
-                    <Button onClick={handleClickNovoBoletim} variant="success" size="sm"> 
-                        Novo Boletim <VscNewFile/>
-                    </Button>
-                </Col>
+            <Row className="justify-content-md-center mt-3">
+              <Col md={8}>
+                <BoletimListRelatorioP3 boletimList={boletimList} />
+              </Col>
             </Row>
+          </>
+        )}
 
-        </Container>
+        {/* Botões */}
+        <Row className="justify-content-md-center mt-4 g-2">
+            <Col xs={12} sm={3} className="d-grid">
+                <Button
+                onClick={handleClickVoltar}
+                variant="outline-primary"
+                size="sm"
+                className="mb-2 mb-sm-0" // Espaço só quando estiver em telas pequenas
+                >
+                <BsArrowLeft /> Voltar
+                </Button>
+            </Col>
+            <Col xs={12} sm={3} className="d-grid">
+                <Button
+                onClick={handleClickNovoBoletim}
+                variant="success"
+                size="sm"
+                >
+                Novo Boletim <VscNewFile />
+                </Button>
+            </Col>
+        </Row>
+      </Container>
+    </>
+  );
+};
 
-    </> );
-}
- 
 export default DashboardBoletimp3;
