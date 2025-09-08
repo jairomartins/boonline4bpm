@@ -9,26 +9,33 @@ import { VscNewFile } from "react-icons/vsc";
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import { Context } from "../../Context/AuthContext";
+import { BoletimContext } from "../../Context/BoletimContext";
+import { v4 as uuidv4 } from "uuid";
 
 const Dashboard = () => {
   const { setAuthenticated } = useContext(Context);
   const navigate = useNavigate();
+  const { setBoletim } = useContext(BoletimContext);
   const userTipo = localStorage.getItem("x-user-tipo");
 
   const handleClickBoletim = () => navigate("boletim");
   const handleClickPerfil = () => navigate("/perfil");
   const handleClickGerenciarUsuarios = () => navigate("/administrador/usuarios");
 
+  // -------------------------------
+  // Iniciar novo boletim
+  // -------------------------------
   const handleClickNovoBoletim = () => {
-    const newBoletim = {
-      id: Date.now(),
-      envolvidos: [],
-      materiaisApreendidos: [],
-      efetivo: [],
-      images: [],
-    };
-    localStorage.setItem("boletim", JSON.stringify(newBoletim));
-    navigate("/boletim/header");
+     const newBoletim = {
+          id: uuidv4(),
+          envolvidos: [],
+          materiaisApreendidos: [],
+          efetivo: [],
+          images: [],
+        };
+    
+        setBoletim(newBoletim);
+        navigate("../boletim/header");
   };
 
   const handleClickSair = () => {
