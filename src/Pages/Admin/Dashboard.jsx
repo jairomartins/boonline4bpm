@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ImFileText } from "react-icons/im";
 import { BiAddToQueue, BiUserCircle } from "react-icons/bi";
 import { GiExitDoor } from "react-icons/gi";
+import { VscNewFile } from "react-icons/vsc";
 
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import { Context } from "../../Context/AuthContext";
@@ -17,15 +18,34 @@ const Dashboard = () => {
   const handleClickBoletim = () => navigate("boletim");
   const handleClickPerfil = () => navigate("/perfil");
   const handleClickGerenciarUsuarios = () => navigate("/administrador/usuarios");
+
+  const handleClickNovoBoletim = () => {
+    const newBoletim = {
+      id: Date.now(),
+      envolvidos: [],
+      materiaisApreendidos: [],
+      efetivo: [],
+      images: [],
+    };
+    localStorage.setItem("boletim", JSON.stringify(newBoletim));
+    navigate("/boletim/header");
+  };
+
   const handleClickSair = () => {
-    localStorage.removeItem("x-access-token");
-    localStorage.removeItem("x-user-mat-id");
+    localStorage.clear();
     setAuthenticated(false);
   };
 
   const menuItems = [
+    {
+      title: "Novo Boletim",
+      icon: <VscNewFile size={36} />,
+      action: handleClickNovoBoletim,
+      variant: "primary",
+      highlight: true,
+    },
+    { title: "Boletins Registrados", icon: <ImFileText size={30} />, action: handleClickBoletim },
     { title: "Meu Perfil", icon: <BiUserCircle size={30} />, action: handleClickPerfil },
-    { title: "Boletins", icon: <ImFileText size={30} />, action: handleClickBoletim },
     ...(userTipo === "admin"
       ? [
           {
@@ -43,21 +63,28 @@ const Dashboard = () => {
       <Cabecalho />
 
       <Container className="mt-4">
+        {/* Menus em cards */}
         <Row className="g-3 justify-content-center">
           {menuItems.map((item, index) => (
             <Col key={index} xs={12} sm={6} md={4}>
               <Card
-                className="text-center shadow-sm border-0 rounded-3 h-100"
+                className={`text-center shadow-sm border-0 rounded-3 h-100 ${
+                  item.highlight ? "bg-primary text-white" : ""
+                }`}
                 onClick={item.action}
                 style={{ cursor: "pointer" }}
               >
                 <Card.Body>
-                  <div className="mb-2 text-primary">{item.icon}</div>
+                  <div className="mb-2">{item.icon}</div>
                   <Card.Title className="fw-bold">{item.title}</Card.Title>
                   <Button
                     variant={item.variant || "primary"}
                     size="sm"
-                    className="mt-2"
+                    className={
+                      item.highlight
+                        ? "bg-light text-primary fw-bold border-0 mt-2"
+                        : "mt-2"
+                    }
                     onClick={item.action}
                   >
                     Acessar
@@ -68,6 +95,7 @@ const Dashboard = () => {
           ))}
         </Row>
 
+        {/* Botão Sair */}
         <Row className="mt-4">
           <Col className="d-grid">
             <Button onClick={handleClickSair} variant="outline-danger">
