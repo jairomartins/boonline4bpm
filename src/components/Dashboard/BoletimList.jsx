@@ -1,16 +1,11 @@
-import { Card, Row, Col, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Card, Row, Col} from "react-bootstrap";
+
 
 const BoletimList = ({ boletimList }) => {
-  const usuarioLogadoID = localStorage.getItem("x-user-mat-id");
-  const userTipo = localStorage.getItem("x-user-tipo");
 
   return (
     <div className="d-flex flex-column gap-3">
       {boletimList.map((boletim) => {
-        const boletimDoUsuario = boletim?.efetivo?.some(
-          (efetivo) => efetivo.id === usuarioLogadoID
-        );
 
         return (
           <Card key={boletim.id} className="shadow-sm border-0 rounded-3">
@@ -35,27 +30,6 @@ const BoletimList = ({ boletimList }) => {
                 </Col>
               </Row>
 
-              <div className="d-flex gap-2 mt-3">
-                <Button
-                  as={Link}
-                  to="/BoFromBD"
-                  variant="outline-primary"
-                  size="sm"
-                >
-                  Ver
-                </Button>
-
-                {(boletimDoUsuario || userTipo === "admin") && (
-                  <Button
-                    as={Link}
-                    to="/boletim/header"
-                    variant="outline-success"
-                    size="sm"
-                  >
-                    Editar
-                  </Button>
-                )}
-              </div>
             </Card.Body>
           </Card>
         );

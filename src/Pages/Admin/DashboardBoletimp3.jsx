@@ -150,7 +150,7 @@ const DashboardBoletimp3 = () => {
         {/* Exibe lista de boletins */}
         {boletimList.length > 0 && (
           <>
-            <Row className="justify-content-md-center">
+            <Row className="justify-content-md-center mt-3">
               <Col md={8}>
                 <BoletimList boletimList={boletimList} />
               </Col>
@@ -181,6 +181,7 @@ const DashboardBoletimp3 = () => {
                 onClick={handleClickNovoBoletim}
                 variant="success"
                 size="sm"
+                className="mb-2 mb-sm-0" // Espaço só quando estiver em telas pequenas
                 >
                 Novo Boletim <VscNewFile />
                 </Button>
