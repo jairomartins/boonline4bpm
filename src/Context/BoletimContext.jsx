@@ -1,22 +1,22 @@
 import React, { createContext, useState, useEffect } from "react";
+import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 
 // Criação do contexto para o Boletim
 const BoletimContext = createContext();
 
 function BoletimProvider({ children }) {
-  // Estado do boletim, inicializado com os dados armazenados ou valores padrão
   const [boletim, setBoletim] = useState(() => {
-    // Verifica se há um boletim armazenado no localStorage
     const storedBoletim = localStorage.getItem("boletim");
-    
-    // Se existir, utiliza o boletim armazenado, caso contrário, cria um novo boletim
     return storedBoletim
-      ? JSON.parse(storedBoletim) // Converte a string do localStorage para objeto JavaScript
+      ? JSON.parse(storedBoletim)
       : {
           municipio: "Balsas",
           natureza: "",
+          numero: "",
+          data: "",
           id: uuidv4(),
+          _id: null,  // novo campo para MongoDB
           envolvidos: [],
           materiaisApreendidos: [],
           efetivo: [],
@@ -24,17 +24,53 @@ function BoletimProvider({ children }) {
         };
   });
 
-  // Efeito que atualiza o localStorage sempre que o boletim for modificado
+  // Sincroniza localStorage
   useEffect(() => {
     localStorage.setItem("boletim", JSON.stringify(boletim));
-  }, [boletim]); // Executa o efeito quando o estado 'boletim' for modificado
+  }, [boletim]);
 
-  // Retorna o provedor de contexto com o estado do boletim e a função para modificá-lo
+  // Função para criar ou atualizar boletim na API
+  const salvarBoletim = async () => {
+    try {
+      const response = await axios.post("/api/boletim", { boletim });
+      const boletimRetornado = response.data.boletim;
+
+      // Atualiza o estado com o _id retornado do MongoDB
+      setBoletim((prev) => ({
+        ...prev,
+        ...boletimRetornado,
+      }));
+
+      return boletimRetornado;
+    } catch (err) {
+      console.error("Erro ao salvar boletim:", err);
+      throw err;
+    }
+  };
+
+  // Função para resetar boletim
+  const resetBoletim = () => {
+    setBoletim({
+      municipio: "Balsas",
+      natureza: "",
+      numero: "",
+      data: "",
+      id: uuidv4(),
+      _id: null,
+      envolvidos: [],
+      materiaisApreendidos: [],
+      efetivo: [],
+      images: [],
+    });
+  };
+
   return (
-    <BoletimContext.Provider value={{ boletim, setBoletim }}>
-      {children} {/* Renderiza os componentes filhos envolvidos neste contexto */}
+    <BoletimContext.Provider
+      value={{ boletim, setBoletim, salvarBoletim, resetBoletim }}
+    >
+      {children}
     </BoletimContext.Provider>
   );
 }
 
-export { BoletimContext, BoletimProvider }; // Exporta o contexto e o provedor
+export { BoletimContext, BoletimProvider };

@@ -8,7 +8,7 @@ const BoletimList = ({ boletimList }) => {
       {boletimList.map((boletim) => {
 
         return (
-          <Card key={boletim.id} className="shadow-sm border-0 rounded-3">
+          <Card key={boletim._id} className="shadow-sm border-0 rounded-3">
             <Card.Body>
               <Row>
                 <Col xs={12}>
