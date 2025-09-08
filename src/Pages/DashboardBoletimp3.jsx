@@ -7,16 +7,16 @@ import { VscNewFile } from "react-icons/vsc";
 import { BsArrowLeft } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
-import Cabecalho from "../../components/Cabecalho/Cabecalho";
-import BoletimInformacoes from "../Boletim/BoletimInformacoes";
-import LoadSpinner from "../../components/LoadSpinner/LoadSpinner";
+import Cabecalho from "../components/Cabecalho/Cabecalho";
+import BoletimInformacoes from "./Boletim/BoletimInformacoes";
+import LoadSpinner from "../components/LoadSpinner/LoadSpinner";
 
-import { Context } from "../../Context/AuthContext";
-import { BoletimContext } from "../../Context/BoletimContext";
-import BoletimList from "../../components/Dashboard/BoletimList";
-import FormBuscarBoletimData from "../../components/Form/FormBuscarBoletimData";
-import FormBuscarBoletimNumero from "../../components/Form/FormBuscarBoletimNumero";
-import BoletimListRelatorioP3 from "../../components/Dashboard/BoletimListRelatorioP3";
+import { Context } from "../Context/AuthContext";
+import { BoletimContext } from "../Context/BoletimContext";
+import BoletimList from "../components/Dashboard/BoletimList";
+import FormBuscarBoletimData from "../components/Form/FormBuscarBoletimData";
+import FormBuscarBoletimNumero from "../components/Form/FormBuscarBoletimNumero";
+import BoletimListRelatorioP3 from "../components/Dashboard/BoletimListRelatorioP3";
 
 // Variáveis de ambiente
 const PROTOCOLO = process.env.REACT_APP_PROTOCOLO;

@@ -7,9 +7,9 @@ import { BiAddToQueue, BiUserCircle } from "react-icons/bi";
 import { GiExitDoor } from "react-icons/gi";
 import { VscNewFile } from "react-icons/vsc";
 
-import Cabecalho from "../../components/Cabecalho/Cabecalho";
-import { Context } from "../../Context/AuthContext";
-import { BoletimContext } from "../../Context/BoletimContext";
+import Cabecalho from "../components/Cabecalho/Cabecalho";
+import { Context } from "../Context/AuthContext";
+import { BoletimContext } from "../Context/BoletimContext";
 import { v4 as uuidv4 } from "uuid";
 
 const Dashboard = () => {

@@ -19,9 +19,8 @@ import Perfil from "../Pages/Usuarios/Perfil";
 import EmailVerify from "../Pages/Usuarios/EmailVerify";
 import PasswordRecover from "../Pages/Usuarios/PasswordRecover";
 
-import Dashboard from "../Pages/Admin/Dashboard";
-import DashboardUsuario from "../Pages/Admin/DashboardUsuario";
-import DashboardBoletimp3 from "../Pages/Admin/DashboardBoletimp3";
+import Dashboard from "../Pages/Dashboard";
+import DashboardBoletimp3 from "../Pages/DashboardBoletimp3";
 import DashboardUsuarios from "../Pages/Admin/Usuarios/DashboardUsuarios";
 import DashboardOcorrencias from "../Pages/Admin/Ocorrencias/DashboardOcorrencias";
 
@@ -121,10 +120,6 @@ export default function Boletim() {
           <Route
             path="/dashboard/boletim"
             element={<PrivateRoute authenticated={authenticated} element={<DashboardBoletimp3 />} />}
-          />
-          <Route
-            path="/dashboard/usuarios"
-            element={<PrivateRoute authenticated={authenticated} element={<DashboardUsuario />} />}
           />
 
           {/* Outros */}

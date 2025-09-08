@@ -11,9 +11,9 @@ import { ImFileText } from "react-icons/im";
 import { BiUserCircle} from "react-icons/bi"
 import {GiExitDoor} from "react-icons/gi"
 
-import Cabecalho from "../../components/Cabecalho/Cabecalho";
+import Cabecalho from "../components/Cabecalho/Cabecalho";
 
-import { Context } from "../../Context/AuthContext";
+import { Context } from "../Context/AuthContext";
 
 const Dashboard = () => {
 
@@ -24,7 +24,6 @@ const Dashboard = () => {
     const handleClickBoletim = ()=>{
         navigate('boletim')
     }
-
 
     const handleClickSair =()=>{
         setAuthenticated(false)
@@ -53,9 +52,9 @@ const Dashboard = () => {
             </Row>
 
             <Row>
-            <Col className="justify-content-md-center d-grid gap-2">
-                    
-                        <Button onClick={handleClickSair} className="mt-2">Sair<GiExitDoor/></Button>
+                <Col className="justify-content-md-center d-grid gap-2">
+                        
+                    <Button onClick={handleClickSair} className="mt-2">Sair<GiExitDoor/></Button>
 
                 </Col>
             </Row>
