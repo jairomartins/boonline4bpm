@@ -18,10 +18,8 @@ import FormBuscarBoletimData from "../components/Form/FormBuscarBoletimData";
 import FormBuscarBoletimNumero from "../components/Form/FormBuscarBoletimNumero";
 import BoletimListRelatorioP3 from "../components/Dashboard/BoletimListRelatorioP3";
 
-// Variáveis de ambiente
-const PROTOCOLO = process.env.REACT_APP_PROTOCOLO;
-const API_PORT = process.env.REACT_APP_API_PORT;
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+// URL da API a partir das variáveis de ambiente
+const API_URL = process.env.REACT_APP_API_URL;
 
 const DashboardBoletimp3 = () => {
   const navigate = useNavigate();
@@ -46,7 +44,7 @@ const DashboardBoletimp3 = () => {
     try {
       setIsLoading(true);
       const { data } = await axios.get(
-        `${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/list/${idBusca}/${municipio}`,
+        `${API_URL}/adm/boletim/list/${idBusca}/${municipio}`,
         {
           headers: { "x-access-token": localStorage.getItem("x-access-token") },
         }
@@ -71,7 +69,7 @@ const DashboardBoletimp3 = () => {
     try {
       setIsLoading(true);
       const { data } = await axios.get(
-        `${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/dia/${idBusca}`,
+        `${API_URL}/adm/boletim/dia/${idBusca}`,
         {
           headers: { "x-access-token": localStorage.getItem("x-access-token") },
         }
@@ -171,7 +169,7 @@ const DashboardBoletimp3 = () => {
                 onClick={handleClickVoltar}
                 variant="outline-primary"
                 size="sm"
-                className="mb-2 mb-sm-0" // Espaço só quando estiver em telas pequenas
+                className="mb-2 mb-sm-0"
                 >
                 <BsArrowLeft /> Voltar
                 </Button>
@@ -181,7 +179,7 @@ const DashboardBoletimp3 = () => {
                 onClick={handleClickNovoBoletim}
                 variant="success"
                 size="sm"
-                className="mb-2 mb-sm-0" // Espaço só quando estiver em telas pequenas
+                className="mb-2 mb-sm-0"
                 >
                 Novo Boletim <VscNewFile />
                 </Button>
