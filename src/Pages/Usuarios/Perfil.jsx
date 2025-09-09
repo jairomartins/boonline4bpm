@@ -44,7 +44,7 @@ function UserProfile() {
     setSuccessMessage("");
 
     try {
-      const response = await axios.put(`${API_URL}/users/${idAntigo}`, {
+      await axios.put(`${API_URL}/users/${idAntigo}`, {
         userMatriculaId: userData.userMatriculaId,
         userName: userData.userName,
         userEmail: userData.userEmail,
