@@ -5,6 +5,8 @@ import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import { Link } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 
+// URL da API a partir da variável de ambiente
+const API_URL = process.env.REACT_APP_API_URL;
 
 function UserProfile() {
   const [idAntigo, setIdAntigo] = useState("");
@@ -12,94 +14,86 @@ function UserProfile() {
   const [erroShow, setErroShow] = useState(false);
   const [erroMessagem, setErroMessagem] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const id = localStorage.getItem('x-user-mat-id')
-
-  const PROTOCOLO = process.env.REACT_APP_PROTOCOLO;
-  const API_PORT = process.env.REACT_APP_API_PORT;
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const id = localStorage.getItem('x-user-mat-id');
 
   // Fetch user data from the API on load
   useEffect(() => {
     async function fetchUserData() {
-  
-        axios.get(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/users/${id}`,{
-            headers:{
-                "x-access-token":localStorage.getItem("x-access-token")
-            }
-        })
-        .then((response)=>{
-            console.log(response)
-            setUserData(response.data[0])
-            setIdAntigo(response.data[0].userMatriculaId) //guarda id antigo para fazer alteraçao se necessario
-        }).catch(function (error) {
-            console.error(error)
-        })
-        .then(function () {
-            // sempre será executado
+      try {
+        const response = await axios.get(`${API_URL}/users/${id}`, {
+          headers: {
+            "x-access-token": localStorage.getItem("x-access-token")
+          }
         });
+
+        setUserData(response.data[0]);
+        setIdAntigo(response.data[0].userMatriculaId); // guarda id antigo
+      } catch (error) {
+        console.error(error);
+        setErroShow(true);
+        setErroMessagem("Erro ao carregar dados do usuário.");
+      }
     }
     fetchUserData();
-  }, [BASE_URL, API_PORT, id, PROTOCOLO]);
+  }, [id]);
 
   // Handle form submission to update user data
-async function handleUpdateProfile (e){   
-    e.preventDefault()
-    axios.put(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/users/${idAntigo}`,{
-        userMatriculaId:userData.userMatriculaId,
-        userName:userData.userName,
-        userEmail:userData.userEmail,
-        userPassword:userData.userPassword,
-        userContato:userData.userContato,
-        tipo:userData.userTipo,
-        userBarra:userData.userBarra,
-        userGraduacao:userData.userGraduacao
-    },{
-        headers :{
-            "x-access-token":localStorage.getItem("x-access-token")
-        },
-    })
-    .then(function (response){
-        localStorage.setItem("x-user-mat-id",userData.userMatriculaId) // atualiza o id do usuario
-        alert("Perfil atualizado com sucesso!")
+  async function handleUpdateProfile(e) {
+    e.preventDefault();
+    setErroShow(false);
+    setSuccessMessage("");
 
-    }).catch(function(error){
-        setErroMessagem("Erro ao atualizar perfil. Verifique os dados e tente novamente.");
-        console.log(error)         
+    try {
+      const response = await axios.put(`${API_URL}/users/${idAntigo}`, {
+        userMatriculaId: userData.userMatriculaId,
+        userName: userData.userName,
+        userEmail: userData.userEmail,
+        userPassword: userData.userPassword,
+        userContato: userData.userContato,
+        tipo: userData.userTipo,
+        userBarra: userData.userBarra,
+        userGraduacao: userData.userGraduacao
+      }, {
+        headers: {
+          "x-access-token": localStorage.getItem("x-access-token")
+        }
+      });
 
-    })
-}
+      localStorage.setItem("x-user-mat-id", userData.userMatriculaId); // atualiza id
+      setSuccessMessage("Perfil atualizado com sucesso!");
+    } catch (error) {
+      console.error(error);
+      setErroShow(true);
+      setErroMessagem("Erro ao atualizar perfil. Verifique os dados e tente novamente.");
+    }
+  }
 
   // Handle password change
   async function handleChangePassword(e) {
     e.preventDefault();
     const newPassword = prompt("Digite a nova senha:");
 
-    if (newPassword) {
-      setErroShow(false);
-      setSuccessMessage("");
+    if (!newPassword) return;
 
-      e.preventDefault()
-      console.log("editando senha")
-      axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/recoverPassword/${userData._id}`,{
-          userPassword:newPassword
-      },{
-          headers :{
-              "x-access-token":localStorage.getItem("x-access-token")
-          },
-      })
-      .then(function (response){
-          console.log(response.data)
+    setErroShow(false);
+    setSuccessMessage("");
 
-      }).catch(function(error){
-          console.log(error)         
+    try {
+      await axios.post(`${API_URL}/users/recoverPassword/${userData._id}`, {
+        userPassword: newPassword
+      }, {
+        headers: {
+          "x-access-token": localStorage.getItem("x-access-token")
+        }
+      });
 
-      })
+      setSuccessMessage("Senha alterada com sucesso!");
+    } catch (error) {
+      console.error(error);
+      setErroShow(true);
+      setErroMessagem("Erro ao alterar a senha.");
     }
-
-    
   }
-
-
 
   return (
     <>
@@ -109,17 +103,12 @@ async function handleUpdateProfile (e){
         <br />
         <Row className="justify-content-md-center">
           <Col sm={12} md={6}>
-            <Alert variant="danger" show={erroShow}>
-              {erroMessagem}
-            </Alert>
-            <Alert variant="success" show={!!successMessage}>
-              {successMessage}
-            </Alert>
+            <Alert variant="danger" show={erroShow}>{erroMessagem}</Alert>
+            <Alert variant="success" show={!!successMessage}>{successMessage}</Alert>
 
             <Card>
               <Card.Header className="text-center">
                 <Card.Title>Gerenciar Perfil</Card.Title>
-                {/* <LoadSpinner visible={isLoading} /> */}
               </Card.Header>
               <Card.Body>
                 <Form onSubmit={handleUpdateProfile}>
@@ -147,7 +136,6 @@ async function handleUpdateProfile (e){
                     value={userData.userBarra || ""}
                     onChange={(e) => setUserData({ ...userData, userBarra: e.target.value })}
                   />
-
                   <br />
                   <Form.Label>Email:</Form.Label>
                   <Form.Control
@@ -163,24 +151,20 @@ async function handleUpdateProfile (e){
                     onChange={(e) => setUserData({ ...userData, userContato: e.target.value })}
                   />
                   <br />
-                  
-                 
-                  <Button variant="success" type="submit">
-                    Salvar Alterações
-                  </Button>
-                  <Button variant="danger" className="ms-2" onClick={handleChangePassword}>
-                    Alterar Senha
-                  </Button>
+                  <Button variant="success" type="submit">Salvar Alterações</Button>
+                  <Button variant="danger" className="ms-2" onClick={handleChangePassword}>Alterar Senha</Button>
                 </Form>
               </Card.Body>
             </Card>
           </Col>
-
         </Row>
+
         <br />
         <Row>
           <Col className="text-center">
-            <Button  variant="outline-primary"><Link className="text-decoration-none" to="/dashboard"><BsArrowLeft/> Voltar</Link></Button>
+            <Button variant="outline-primary">
+              <Link className="text-decoration-none" to="/dashboard"><BsArrowLeft /> Voltar</Link>
+            </Button>
           </Col>
         </Row>
       </Container>
