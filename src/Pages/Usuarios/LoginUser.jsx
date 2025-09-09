@@ -17,10 +17,8 @@ const LoginUser = () => {
     const [erroShow, setErroShow] = useState(false);
     const [erroMessage, setErroMessage] = useState("");
 
-    // Variáveis de ambiente para configuração da API
-    const PROTOCOLO = process.env.REACT_APP_PROTOCOLO;
-    const API_PORT = process.env.REACT_APP_API_PORT;
-    const BASE_URL = process.env.REACT_APP_BASE_URL;
+    // URL da API a partir das variáveis de ambiente
+    const API_URL = process.env.REACT_APP_API_URL;
 
     // Verifica se o usuário já está autenticado ao carregar o componente
     useEffect(() => {
@@ -39,7 +37,7 @@ const LoginUser = () => {
     
         try {
             // Envia requisição de login para a API
-            const response = await axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/login`, {
+            const response = await axios.post(`${API_URL}/login`, {
                 userEmail,
                 userPassword,
             });
@@ -58,7 +56,6 @@ const LoginUser = () => {
         }
     };
     
-
     // Redireciona o usuário para o dashboard caso já esteja autenticado
     if (authenticated) {
         return <Navigate to="/dashboard" replace />;
@@ -76,11 +73,11 @@ const LoginUser = () => {
                             {/* Campo de seleção da cidade */}
                             <Form.Label>Selecione sua cidade:</Form.Label>
                             <Form.Select
-                                value={municipio} // Usa o estado atualizado da cidade
+                                value={municipio}
                                 size="sm"
                                 onChange={(e) => {
                                     setMunicipio(e.target.value);
-                                    localStorage.setItem("x-user-municipio", e.target.value); // Atualiza no localStorage
+                                    localStorage.setItem("x-user-municipio", e.target.value);
                                 }}
                             >
                                 {["Balsas", "Riachão", "Fortaleza dos Nogueiras", "Nova Colinas", "Feira Nova", "São Pedro dos Crentes", "Alto Parnaíba", "Tasso Fragoso", "Batavo"].map((cidadeNome, index) => (
