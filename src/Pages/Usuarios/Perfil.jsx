@@ -77,10 +77,8 @@ async function handleUpdateProfile (e){
     if (newPassword) {
       setErroShow(false);
       setSuccessMessage("");
-
       e.preventDefault()
-      console.log("editando senha")
-      axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/recoverPassword/${userData._id}`,{
+      axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/users/recoverPassword/${userData._id}`,{
           userPassword:newPassword
       },{
           headers :{
