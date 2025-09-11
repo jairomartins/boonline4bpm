@@ -122,7 +122,7 @@ const DashboardBoletimp3 = () => {
     <>
       <Cabecalho />
 
-      <Container>
+      <Container className="mt-3 mb-5">
         <LoadSpinner visible={isLoading} />
 
         {error && <Alert variant="danger">{error}</Alert>}
