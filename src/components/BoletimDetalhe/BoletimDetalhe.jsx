@@ -1,20 +1,16 @@
-import React,{useState, useEffect, useContext} from "react";
-import { Col, Row, Container, Button, Table} from "react-bootstrap";
-import axios from "axios"
+import React, { useState, useEffect, useContext } from "react";
+import { Col, Row, Container, Button, Table } from "react-bootstrap";
+import axios from "axios";
 
-import {Editor,EditorState} from "draft-js"
+import { Editor, EditorState } from "draft-js";
 import 'draft-js/dist/Draft.css';
+import { stateFromHTML } from 'draft-js-import-html';
 
-import {stateFromHTML} from 'draft-js-import-html';
-import { v4 as uuidv4 } from "uuid";
+import { AiFillPrinter } from "react-icons/ai";
+import { BsArrowLeft, BsFillPlusCircleFill } from "react-icons/bs";
+import { BiSave } from "react-icons/bi";
 
-import { AiFillPrinter } from "react-icons/ai"
-import {BsArrowLeft,BsFillPlusCircleFill } from "react-icons/bs"
-import {BiSave} from "react-icons/bi"
-
-// import BandeiraMaranhao from "../BandeiraMaranhao";
-import Logo4BPM from "../Logo4BPM"
-// import BrasaoMa from "../Brasao_Maranhao"
+import Logo4BPM from "../Logo4BPM";
 import LogoPMMA from "../Logo_PMMA";
 
 import MaterialDetalhe from "./MaterialDetalhe";
@@ -23,260 +19,194 @@ import EnvolvidosDetalhe from "./EnvolvidosDetalhe";
 
 import { Link, useNavigate } from "react-router-dom";
 import { BoletimContext } from "../../Context/BoletimContext";
-// import PDFComponent from "../../PDF/PDFComponent";
 
-const PROTOCOLO = process.env.REACT_APP_PROTOCOLO
-const API_PORT = process.env.REACT_APP_API_PORT
-const BASE_URL = process.env.REACT_APP_BASE_URL
+const PROTOCOLO = process.env.REACT_APP_PROTOCOLO;
+const API_PORT = process.env.REACT_APP_API_PORT;
+const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const BoletimDetalhe = () => {
+  const { boletim, setBoletim } = useContext(BoletimContext);
+  const navigate = useNavigate();
 
-    const {boletim, setBoletim} = useContext(BoletimContext)
+  // State do editor
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-    useEffect(() => {
-        const state = boletim.historicohtml
-          ? EditorState.createWithContent(stateFromHTML(boletim.historicohtml))
-          : EditorState.createEmpty();
-        setEditorState(state);
-      }, [boletim.historicohtml]);
+  // Inicializa editor quando o boletim muda
+  useEffect(() => {
+    const state = boletim.historicohtml
+      ? EditorState.createWithContent(stateFromHTML(boletim.historicohtml))
+      : EditorState.createEmpty();
+    setEditorState(state);
+  }, [boletim.historicohtml]);
 
-    const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
-    
-    const navigate = useNavigate()
-     
-    
+  // Cria um novo boletim
+  const novoBoletim = () => {
+    const newBoletim = {
+      numero: "",
+      natureza: "",
+      data: "",
+      horario: "",
+      endereco: "",
+      bairro: "",
+      municipio: "",
+      referencia: "",
+      latitude: "",
+      longitude: "",
+      envolvidos: [],
+      materiaisApreendidos: [],
+      efetivo: [],
+      historicohtml: "",
+      // NÃO colocar id ou _id, MongoDB vai gerar
+    };
+    setBoletim(newBoletim);
+    navigate('/dashboard');
+  };
 
-    //Salva o boletim no servidor 
-    const saveToDB = async ()=>{
-        
-        await axios.post(`${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/create`,{
-                boletim: boletim
-            },{
-            headers :{
-                "x-access-token":localStorage.getItem("x-access-token")
-            },
+  // Salva boletim no backend
+  const saveToDB = async () => {
+    try {
+      const response = await axios.post(
+        `${PROTOCOLO}://${BASE_URL}:${API_PORT}/adm/boletim/create`,
+        { boletim: boletim },
+        {
+          headers: {
+            "x-access-token": localStorage.getItem("x-access-token"),
+          },
         }
-        )
-        .then(function (response) {
-            // manipula o sucesso da requisição
-            console.log(response.data.message)
-            alert(response.data.message)
-            // console.log('tentei mano!')
-        })
-        .catch(function (error) {
-            // manipula erros da requisição
-            alert('Erro ao salvar o boletim ')
-            console.error(error);
-        })
-        .then(function () {
-            // sempre será executado
-        });
+      );
+
+      alert(response.data.message);
+      console.log(response.data.boletim);
+
+      // Atualiza state com _id retornado pelo backend
+      setBoletim(response.data.boletim);
+
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao salvar o boletim");
     }
+  };
 
-    const printPage = async ()=>{
-        saveToDB()//salva o boletim antes de gerar o pdf
-        document.title = "BO_"+boletim.numero+"_"+boletim.data;window.print() //define o nome do arquivo quando gera o pdf
-    }
+  // Imprime o boletim
+  const printPage = () => {
+    saveToDB(); // salva antes de imprimir
+    document.title = `BO_${boletim.numero}_${boletim.data}`;
+    window.print();
+  };
 
-    const novoBoletim = async()=>{
-        const newboletim = ({
-            id:uuidv4(),
-            envolvidos:[],
-            materiaisApreendidos:[],
-            efetivo:[],
-        })
-        setBoletim(newboletim)
-        navigate('/dashboard')
-    }
+  return (
+    <Container style={{ fontSize: "12px" }}>
+      <br />
+      <Row className="text-center">
+        <Col><LogoPMMA /></Col>
+        <Col style={{ fontSize: "10px" }}>
+          <b>
+            <p>ESTADO DO MARANHÃO <br />
+              SECRETARIA DE ESTADO DA SEGURANÇA PÚBLICA<br />
+              POLÍCIA MILITAR DO MARANHÃO<br />
+              COMANDO DO POLICIAMENTO DE ÁREA DO INTERIOR – CPAI-6<br />
+              4º BATALHÃO DE POLÍCIA MILITAR
+            </p>
+          </b>
+        </Col>
+        <Col><Logo4BPM /></Col>
+      </Row>
 
+      <Row>
+        <Col className="text-center">
+          OCORRÊNCIA NUMERO:<b> {boletim.numero} {boletim.dataRegistro}</b>
+        </Col>
+      </Row>
 
-   return ( <>
-        <Container  style={{fontSize:"12px"}}>
-            <br></br>
-            <Row   className="text-center">
-                <Col>
-                    <LogoPMMA/>
-                </Col>
-                <Col style={{fontSize:"10px"}}>
-                    {/* <BrasaoMa/> */}
-                    <b><p>ESTADO DO MARANHÃO <br/>
-                    SECRETARIA DE ESTADO DA SEGURANÇA PÚBLICA<br/>
-                    POLÍCIA MILITAR DO MARANHÃO<br/>
-                    COMANDO DO POLICIAMENTO DE ÁREA DO INTERIOR – CPAI-6<br/>
-                    4º BATALHÃO DE POLÍCIA MILITAR
-                    </p></b>
-                </Col>
-                <Col>
-                    <Logo4BPM/>
-                </Col>
-            </Row>
-            <Row>
-                <Col className="text-center">OCORRÊNCIA NUMERO:<b> {boletim.numero} {boletim.dataRegistro}</b></Col>
-            </Row>
-            <hr/>
-            <Row>
-                <Col className="text-center"><h6>FATO COMUNICADO<Link className="d-print-none" to="/boletim/header">Editar</Link></h6></Col>
-                
-            </Row>
-            <br/>
-            <Row>
-                <Col>
-                    <b>Natureza da Ocorrência: </b> {boletim.natureza} 
-                </Col>
-                <Col>
-                    <b>Data: </b>{boletim.data} 
-                </Col>
-                <Col>
-                <b>Horário: </b>{boletim.horario}  
-                </Col>
-            </Row>
-            <Row>
-                <Col><b>Local:</b> {boletim.endereco} {boletim.numeroEndereco}  </Col>
-                <Col><b>Bairro:</b> {boletim.bairro}</Col>
-                <Col><b>Municipio:</b> {boletim.municipio}</Col>
-            </Row>
-            <Row>
-                <Col><b>Ponto de Refêrencia :</b> {boletim.referencia}</Col>
-                
-                <Col><b>Coordenadas:</b> {boletim.latitude} {boletim.longitude}</Col>
-                <Col></Col>
-            </Row>
-            <hr/>
-            <Row>
-            
-                <Col className="text-center"><h6>ENVOLVIDO(S)<Link className="d-print-none" to="/boletim/envolvido">Editar</Link></h6></Col>
-                
-            </Row>
+      <hr />
 
-            {boletim.envolvidos.map(envolvido=><EnvolvidosDetalhe key={envolvido.id} envolvido={envolvido}/>)}
-           
-            
-            <hr/>
-        </Container>
-    
-        <Container style={{fontSize:"12px"}}>
-            {/**faz a quebra de pagina na impressao */}
-            {/* <Row style={{pageBreakBefore:"always"}}>
-            </Row>  */}
+      {/* Dados do boletim */}
+      <Row>
+        <Col><b>Natureza da Ocorrência: </b> {boletim.natureza}</Col>
+        <Col><b>Data: </b> {boletim.data}</Col>
+        <Col><b>Horário: </b> {boletim.horario}</Col>
+      </Row>
+      <Row>
+        <Col><b>Local:</b> {boletim.endereco} {boletim.numeroEndereco}</Col>
+        <Col><b>Bairro:</b> {boletim.bairro}</Col>
+        <Col><b>Municipio:</b> {boletim.municipio}</Col>
+      </Row>
+      <Row>
+        <Col><b>Ponto de Refêrencia :</b> {boletim.referencia}</Col>
+        <Col><b>Coordenadas:</b> {boletim.latitude} {boletim.longitude}</Col>
+        <Col></Col>
+      </Row>
+      <hr />
 
-            <Row>
-                <Col className="text-center"><h6>ARMAS E OBJETOS APREENDIDOS<Link className="d-print-none" to="/boletim/material">Editar</Link></h6></Col>
-            </Row>
-           
-                {boletim.materiaisApreendidos.map(material=><MaterialDetalhe key={material.id} material={material}/>)}
-                   
+      {/* Envolvidos */}
+      <Row className="text-center"><h6>ENVOLVIDO(S)<Link className="d-print-none" to="/boletim/envolvido">Editar</Link></h6></Row>
+      {boletim.envolvidos.map(envolvido => <EnvolvidosDetalhe key={envolvido._id || envolvido.id} envolvido={envolvido} />)}
 
-            <hr/>
+      <hr />
 
-            <Row>
-                <Col className="text-center"><h6>HISTÓRICO <Link className="d-print-none" to="/boletim/historico">Editar</Link></h6></Col>
-            </Row>
+      {/* Materiais */}
+      <Row className="text-center"><h6>ARMAS E OBJETOS APREENDIDOS<Link className="d-print-none" to="/boletim/material">Editar</Link></h6></Row>
+      {boletim.materiaisApreendidos.map(material => <MaterialDetalhe key={material._id || material.id} material={material} />)}
 
-            <Row className="text-justify">
-                <Editor editorState={editorState} onChange={setEditorState} readOnly={true} />
-            </Row>
-            <hr/>
+      <hr />
 
-            <Row>
-                <Col className="text-center"><h6>EFETIVO EMPREGADO <Link className="d-print-none" to="/boletim/efetivo">Editar</Link></h6></Col>
-            </Row>
-            <Row>
+      {/* Histórico */}
+      <Row className="text-center"><h6>HISTÓRICO <Link className="d-print-none" to="/boletim/historico">Editar</Link></h6></Row>
+      <Row className="text-justify">
+        <Editor editorState={editorState} onChange={setEditorState} readOnly={true} />
+      </Row>
+      <hr />
 
-            {boletim.efetivo.map(policial=><PolicialDetalhe key={policial.id} policial={policial}/>)}
-                 
-            </Row>
-            <hr/>
-            <Row>
-                <Col className="text-center"><h6>UNIDADE DE ENTREGA</h6></Col>
-            </Row>
+      {/* Efetivo */}
+      <Row className="text-center"><h6>EFETIVO EMPREGADO <Link className="d-print-none" to="/boletim/efetivo">Editar</Link></h6></Row>
+      <Row>
+        {boletim.efetivo.map(policial => <PolicialDetalhe key={policial._id || policial.id} policial={policial} />)}
+      </Row>
+        {/* Unidade de Entrega */}
+            <hr />
+            <Row className="text-center"><h6>UNIDADE DE ENTREGA</h6></Row>
             <Table borderless>
-                <tbody>
+            <tbody>
                 <tr>
-                    <td>Unidade ___________________________</td>
-                    <td>Data  _______/________/_______</td>
-                    <td>Hora       _________:_________</td>
+                <td>Unidade ___________________________</td>
+                <td>Data  _______/________/_______</td>
+                <td>Hora       _________:_________</td>
                 </tr>
                 <tr>
-                    <td>Matricula ___________________________</td>
-                    <td>Nome ______________________________</td>
-                    <td>Assinatura ___________________________</td>
+                <td>Matricula ___________________________</td>
+                <td>Nome ______________________________</td>
+                <td>Assinatura ___________________________</td>
                 </tr>
-                </tbody>
+            </tbody>
             </Table>
-            <hr/>
-            {/* <Row>
-                <Col className="text-center"><h6>ANEXOS: <Link className="d-print-none" to="/boletim/efetivo">Editar</Link></h6></Col>
-            </Row>
-                {boletim.images?.map((imageData, imageIndex) => (
-                     <>
-                    <Row style={{pageBreakBefore:"always"}}> </Row>
-              
-                    <div key={imageIndex} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '20px', }}>
-                        <p  style={{textTransform: 'uppercase', fontWeight:"bold"}}>{imageData.caption}:</p>
-                        <img src={imageData.preview} alt={`Imagem ${imageData.caption}`} title={imageData.caption} style={{ maxWidth: '600px', maxHeight: '600px', marginRight: '10px', marginBottom:'5px'}} />
+      <hr />
+      <Row className="text-center">
+        <Col>
+          <Button className="d-print-none" size="sm" variant="outline-primary">
+            <Link className="text-decoration-none" to="../historico">
+              <BsArrowLeft /> Voltar
+            </Link>
+          </Button>
+        </Col>
+        <Col className="text-center">
+          <Button size="sm" variant="warning" className="d-print-none" onClick={printPage}>
+            Imprimir <AiFillPrinter />
+          </Button>
+        </Col>
+        <Col>
+          <Button onClick={saveToDB} className="d-print-none" size="sm" variant="success">
+            Salvar <BiSave />
+          </Button>
+        </Col>
+        <Col>
+          <Button onClick={novoBoletim} className="d-print-none" size="sm" variant="danger">
+            Novo B.O <BsFillPlusCircleFill />
+          </Button>
+        </Col>
+      </Row>
+      <br />
+    </Container>
+  );
+};
 
-                    </div>
-                   
-                    </>   
-                    ))} */}
-           
-            <Row className="text-center">
-                <Col>
-                    <Button
-                        className="d-print-none"
-                        size="sm"  
-                        variant="outline-primary">
-                        <Link 
-                            className="text-decoration-none" 
-                            to="../historico">
-                                <BsArrowLeft/> Voltar
-                        </Link>
-                    </Button>
-               </Col>
-                <Col className="text-center">
-                    {/* d-print-none exclui o botao do pdf*/}
-                    <Button 
-                        size="sm"
-                        variant="warning" 
-                        className="d-print-none"
-                        onClick={printPage}>
-                            Imprimir <AiFillPrinter/>
-                    </Button>
-                </Col>
-                <Col>
-                    <Button
-
-                        onClick={saveToDB}
-                        className="d-print-none"
-                        size="sm"  
-                        variant="success">
-                        
-                        Salvar <BiSave/>
-                        
-                    </Button>
-               </Col>
-                <Col>
-                    <Button
-
-                        onClick={novoBoletim}
-                        className="d-print-none"
-                        size="sm"  
-                        variant="danger">
-                        
-                        Novo B.O <BsFillPlusCircleFill/>
-                        
-                    </Button>
-               </Col>
-            </Row>
-            <br/>
-            <hr/>
-            <p className="d-print-none"><b>OBS:</b></p>
-            <p className="d-print-none"><b>I -  Salvar</b> -  Para salvar o boletim no banco de dados;</p>
-            <p className="d-print-none"><b>II - Imprimir</b> -  Para imprimir o boletim ou salvar PDF;</p>
-            <p className="d-print-none"><b>III -  Novo B.O</b> -  Para Iniciar um novo boletim, todos os dados preenchidos serão apagados</p>
-        </Container>
-        {/* <PDFComponent boletim={boletim}/> */}
-    </> );
-}
- 
-export default BoletimDetalhe
+export default BoletimDetalhe;
