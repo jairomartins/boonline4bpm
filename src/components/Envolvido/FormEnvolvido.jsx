@@ -22,7 +22,7 @@ function FormEnvolvido ({envolvido, setEnvolvido, modoEdicao, setModoEdicao}){
             nome:"",
             cpf:"",
             bairro:"",
-            sexo:"",
+            sexo:"Masculino",//Sexo padrao
             nascimento:"",
             endereco: "",
             numero:"",
