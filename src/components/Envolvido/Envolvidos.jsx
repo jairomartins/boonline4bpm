@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useState } from "react";
-
+import { v4 as uuidv4 } from 'uuid';
 
 import NavPage from "../NavPage";
 
@@ -20,7 +20,8 @@ function Envolvidos (){
     //dados dos envolvidos na ocorrencia, os dados previsto para o preencimento de envolvidos na ocorrencia
     const [envolvido, setEnvolvido] = useState(
         {
-        id:"",
+        //id gerado automaticamente import { v4 as uuidv4 } from 'uuid';
+        id: uuidv4(),
         tipo:"Autor",//Tipo padrao
         nome:"",
         cpf:"",
