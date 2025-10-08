@@ -1,22 +1,18 @@
 import React from "react";
-import { Col, Row } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
+import "./cabecalho.css";
+import "../Logo4BPM.css";
 
-import './cabecalho.css'
-import "../Logo4BPM.css"
+const CabecalhoBoletim = ({ texto }) => {
+  return (
+    <Container fluid className="px-0">
+      <Row className="cabecalho-boletim align-items-center text-center shadow-sm">
+        <Col>
+          <h4 className="titulo-cabecalho">{texto}</h4>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
-const CabecalhoBoletim = ({texto}) => {
-    return ( 
-        <>
-            <Row className="container-cabecalho-boletim">
-                <Col>
-                    
-                    <h4>{texto}</h4>
-                    
-                </Col>
-            </Row>
-
-        </>
-     );
-}
- 
 export default CabecalhoBoletim;
