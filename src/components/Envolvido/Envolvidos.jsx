@@ -26,7 +26,7 @@ function Envolvidos (){
         nome:"",
         cpf:"",
         bairro:"",
-        sexo:"",
+        sexo:"masculino",//Sexo padrao
         nascimento:"",
         endereco: "",
         numero:"",
